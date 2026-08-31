@@ -13,17 +13,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 180 180%27%3E%3Crect width=%27180%27 height=%27180%27 fill=%27%2387CEEB%27/%3E%3Crect x=%2745%27 y=%2745%27 width=%2790%27 height=%2790%27 fill=%27%2343AA8B%27/%3E%3C/svg%3E">
 <title>Cumplí tu Deseo · beta</title>
 <style>
-:root{
-  --blanco:#FFFFFF; --cielo:#87CEEB; --verde:#43AA8B;
-  --tinta:#10242C; --gris:#6E8592; --nube:#F3F8FA;
-  --linea:rgba(16,36,44,.12);
-  --sombra:0 1px 2px rgba(16,36,44,.04), 0 12px 32px rgba(16,36,44,.06);
-  --font:"Helvetica Neue","HelveticaNeue",Helvetica,Arial,"Liberation Sans",sans-serif;
-}
+:root{--blanco:#FFFFFF;--cielo:#87CEEB;--verde:#43AA8B;--tinta:#10242C;--gris:#6E8592;--nube:#F3F8FA;--linea:rgba(16,36,44,.12);--sombra:0 1px 2px rgba(16,36,44,.04), 0 12px 32px rgba(16,36,44,.06);--font:"Helvetica Neue","HelveticaNeue",Helvetica,Arial,"Liberation Sans",sans-serif}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{font-family:var(--font);
-  -webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5;}
+body{font-family:var(--font);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5}
 button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--verde);outline-offset:3px;border-radius:2px}
 img{display:block;max-width:100%}
@@ -38,14 +31,11 @@ img{display:block;max-width:100%}
 .muted{color:var(--gris)}
 
 /* ---------- botones / campos ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 20px;border-radius:10px;border:1px solid transparent;
-  font-size:14.5px;font-weight:600;cursor:pointer;
-  transition:background .15s,border-color .15s,color .15s,transform .1s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:10px;border:1px solid transparent;font-size:14.5px;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s,color .15s,transform .1s}
 .btn:active{transform:translateY(1px)}
-.btn--primary{background:var(--verde);color:var(--blanco)}
+
 .btn--primary:hover{background:#379479}
-.btn--ghost{border-color:var(--linea);}
+.btn--ghost{border-color:var(--linea)}
 .btn--ghost:hover{border-color:var(--verde);color:var(--verde)}
 .btn--cielo:hover{background:#6dbfe2}
 .btn--block{width:100%}
@@ -67,10 +57,10 @@ img{display:block;max-width:100%}
 .field input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .field__moneda{display:block;margin-top:3px;font-weight:400;letter-spacing:.02em;text-transform:none;color:var(--gris);font-size:10.5px}
 .pesos{position:relative;display:flex;align-items:center}
-.pesos__signo{position:absolute;left:15px;font-size:16px;font-weight:600;color:var(--gris);pointer-events:none}
+.pesos__signo{position:absolute;font-weight:600;color:var(--gris);pointer-events:none}
 .pesos input{padding-left:38px !important;font-variant-numeric:tabular-nums}
 .pesos input:focus + .pesos__signo,.pesos:focus-within .pesos__signo{color:var(--verde)}
-.campo-bloqueado{cursor:not-allowed;}
+.campo-bloqueado{cursor:not-allowed}
 .field__hint{font-size:12px;color:var(--gris);margin:6px 0 0}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
@@ -92,39 +82,34 @@ img{display:block;max-width:100%}
 /* El bloque se apoya contra el borde interno: queda cerca del centro
    de la pantalla en vez de flotar al fondo a la derecha. */
 .auth{width:100%;max-width:400px;margin:0 auto 0 0}
-.linkish{background:none;border:0;padding:0;font-weight:600;cursor:pointer;
-  text-decoration:underline;text-underline-offset:3px;}
+.linkish{background:none;border:0;padding:0;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .alert{font-size:13px;color:#B3261E;background:rgba(179,38,30,.07);padding:9px 12px;border-radius:8px;
   margin-bottom:14px;display:none}
 .alert.is-on{display:block}
 
 /* ================= APP ================= */
-.topbar{position:sticky;top:0;z-index:40;background:var(--blanco);border-bottom:1px solid var(--linea)}
+.topbar{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--linea)}
 .topbar{background:var(--blanco)}
-.topbar__row{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;
-  justify-content:space-between;gap:20px}
+.topbar__row{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex}
 .logo-perfil{background:none;border:0;padding:6px;cursor:pointer;line-height:0;
   transition:transform .15s,opacity .15s}
 .logo-perfil:hover{opacity:.8}
 .logo-perfil:active{transform:scale(.94)}
-.logo-perfil__marca{display:block;width:36px;height:36px;object-fit:contain;
-  filter:drop-shadow(0 0 10px rgba(103,232,249,.5))}
+.logo-perfil__marca{display:block;width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(103,232,249,.5))}
 .topbar__user{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--gris)}
-.avatar{width:32px;height:32px;border-radius:50%;background:var(--cielo);color:var(--tinta);display:grid;
-  place-items:center;font-size:12px;font-weight:700;flex:none;background-size:cover;background-position:center}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--cielo);color:var(--tinta);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none;background-size:cover;background-position:center}
 .avatar--lg{width:76px;height:76px;font-size:24px}
 .seg{background:none;border:0;cursor:pointer;padding:18px 8px 16px;font-size:12px;font-weight:700;
   letter-spacing:.16em;text-transform:uppercase;color:var(--gris);transition:color .2s;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis}
 .seg:hover,.seg[aria-selected="true"]{color:var(--tinta)}
 .seg--centro[aria-selected="true"]{color:var(--verde)}
-.viewport{max-width:1120px;margin:0 auto;padding:0 24px;}
+.viewport{max-width:1120px;margin:0 auto;padding:0 24px}
 .panel__head{margin-bottom:22px}
 .panel__title{font-size:clamp(28px,4.4vw,44px);font-weight:200;letter-spacing:-.03em;margin:6px 0 0}
 .panel__note{color:var(--gris);font-size:14.5px;margin:10px 0 0;max-width:56ch}
 .btn--grande{font-size:17px;padding:17px 42px;border-radius:12px}
-.panel-donar{margin-top:18px;border:1px solid var(--linea);border-radius:16px;padding:26px 22px;
-  display:grid;align-items:center;}
+.panel-donar{margin-top:18px;border:1px solid var(--linea);border-radius:16px;padding:26px 22px;display:grid;align-items:center}
 .panel-donar--dos{grid-template-columns:1fr 1fr;align-items:start}
 .panel-donar__lado{min-width:0}
 .panel-donar__centro{display:flex;justify-content:center}
@@ -132,16 +117,15 @@ img{display:block;max-width:100%}
 .panel-donar__sub{font-size:12.5px;color:var(--gris);margin:10px 0 0;text-align:center}
 .titulazo--cielo{border-bottom-color:var(--verde)}
 .titulazo--cielo h3{color:var(--cielo)}
-.titulazo{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  margin:44px 0 20px;padding-bottom:14px;border-bottom:3px solid var(--cielo)}
-.titulazo h3{font-size:clamp(28px,4vw,40px);font-weight:200;letter-spacing:-.03em;margin:0;}
+.titulazo{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:44px 0 20px;padding-bottom:14px;border-bottom:3px solid var(--cielo)}
+.titulazo h3{font-size:clamp(28px,4vw,40px);font-weight:200;letter-spacing:-.03em;margin:0}
 .titulazo h3 b{font-weight:600}
 .titulazo__nota{font-size:13px;color:var(--gris)}
-.subhead{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.subhead{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);display:flex;align-items:center;justify-content:space-between;gap:14px}
 
 /* ---- buscador ---- */
 .buscador{position:relative;display:flex;align-items:center;margin-bottom:26px}
-.buscador__icono{position:absolute;left:16px;width:17px;height:17px;pointer-events:none;}
+.buscador__icono{position:absolute;left:16px;width:17px;height:17px;pointer-events:none}
 .buscador input{width:100%;padding:14px 90px 14px 44px;border:1px solid var(--linea);border-radius:12px;
   background:var(--nube);font-size:15px;transition:border-color .15s,box-shadow .15s,background .15s}
 .buscador input:focus{outline:none;border-color:var(--verde);background:var(--blanco);
@@ -218,28 +202,24 @@ img{display:block;max-width:100%}
   #listaSubastas > .lote,
   .suenos-lista > .sueno{transition:none;opacity:.7;transform:none;filter:none}
 }
-.carrusel__flecha{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--linea);
-  background:var(--blanco);color:var(--tinta);font-size:20px;line-height:1;cursor:pointer;display:grid;
-  place-items:center;transition:border-color .15s,color .15s,background .15s}
+.carrusel__flecha{flex:none;width:38px;height:38px;border-radius:50%;font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:border-color .15s,color .15s,background .15s}
 .carrusel__flecha:hover{border-color:var(--verde);color:var(--verde)}
 .carrusel__puntos{display:flex;justify-content:center;gap:7px;margin:14px 0 6px}
-.punto{width:6px;height:6px;border-radius:50%;border:0;padding:0;cursor:pointer;
-  transition:background .2s,transform .2s;}
-.punto.is-on{transform:scale(1.4);}
+.punto{width:6px;height:6px;border-radius:50%;border:0;padding:0;cursor:pointer;transition:background .2s,transform .2s}
+.punto.is-on{transform:scale(1.4)}
 .sin-resultados{padding:40px 10px;text-align:center;color:var(--gris);font-size:14.5px}
 
 /* ---- tarjetas de fundación ---- */
-.stack{display:flex;flex-direction:column;gap:16px}
+.stack{display:flex;flex-direction:column}
 .card{border:1px solid var(--linea);border-radius:16px;background:var(--blanco);cursor:pointer;
   transition:border-color .18s,box-shadow .18s,transform .18s}
 .card:hover{border-color:var(--cielo);box-shadow:var(--sombra);transform:translateY(-2px)}
 .banner{height:76px;background-size:cover;background-position:center;background-repeat:no-repeat}
 .card__body{padding:26px 24px 22px;display:grid;grid-template-columns:1fr 220px;gap:28px}
-.card__id{display:flex;gap:14px;align-items:center;margin-top:0}
-.card__id .avatar{width:66px;height:66px;font-size:20px;border:2px solid var(--linea);
-  background-size:contain;background-repeat:no-repeat;background-color:var(--blanco);box-shadow:none}
-.card__name{font-size:20px;font-weight:600;letter-spacing:-.02em;margin:0}
-.card__place{font-size:12px;color:var(--gris);margin:3px 0 0}
+.card__id{margin-top:0}
+.card__id .avatar{font-size:20px;border:2px solid var(--linea);background-size:contain;background-repeat:no-repeat;box-shadow:none}
+.card__name{letter-spacing:-.02em}
+
 .campana-click{position:relative;border-radius:12px;padding:12px 14px;margin:-12px -14px;cursor:pointer;
   transition:background .16s}
 .campana-click:hover{background:var(--nube)}
@@ -247,12 +227,12 @@ img{display:block;max-width:100%}
   opacity:0;transform:translateY(-3px);transition:opacity .18s,transform .18s}
 .campana-click:hover .campana-click__cta{opacity:1;transform:none}
 .causa__row{display:flex;justify-content:space-between;gap:14px;font-size:13.5px;margin-bottom:6px}
-.causa__meta{font-size:12.5px;white-space:nowrap;}
+.causa__meta{font-size:12.5px;white-space:nowrap}
 .meter{height:8px;border-radius:99px;background:var(--nube);overflow:hidden;border:1px solid var(--linea)}
-.meter__fill{height:100%;border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);}
+.meter__fill{height:100%;border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 .meter__fill.is-full{background:var(--verde)}
 .causa__pie{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--gris);margin-top:6px}
-.causa__pie b{font-weight:600;}
+.causa__pie b{font-weight:600}
 .aporte-general{margin-top:16px;padding-top:14px;border-top:1px dashed var(--linea)}
 .card__side{border-left:1px solid var(--linea);padding:20px 0 0 24px;display:flex;flex-direction:column;
   justify-content:space-between;gap:16px}
@@ -269,21 +249,19 @@ img{display:block;max-width:100%}
 .minitag--link:hover{border-color:var(--verde);color:var(--verde)}
 
 /* ---- tarjetas de subasta: la imagen manda ---- */
-.subastas-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px}
+.subastas-nav{align-items:center}
 .subastas-nav__txt{font-size:12.5px;color:var(--gris)}
 .subastas-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding-bottom:4px}
 .subastas-grid::-webkit-scrollbar{display:none}
-.subastas-grid > .lote{flex:0 0 82%;scroll-snap-align:center}
+.subastas-grid > .lote{scroll-snap-align:center}
 .subastas-nav{display:flex;justify-content:center;gap:7px;margin-top:14px}
 .subastas-grid--viejo{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
 .subasta-card{border:1px solid var(--linea);border-radius:18px;background:var(--blanco);overflow:hidden;
   display:flex;flex-direction:column;transition:border-color .18s,box-shadow .18s,transform .18s}
 .subasta-card:hover{border-color:var(--cielo);box-shadow:var(--sombra);transform:translateY(-2px)}
-.subasta-foto{position:relative;aspect-ratio:4/3;background-size:contain;background-repeat:no-repeat;
-  background-position:center;background-color:var(--nube);
-  background-image:linear-gradient(115deg,rgba(135,206,235,.5),rgba(67,170,139,.32))}
-.subasta-foto__mini{position:absolute;left:12px;bottom:12px;gap:6px;}
+.subasta-foto{position:relative;aspect-ratio:4/3;background-size:contain;background-repeat:no-repeat;background-position:center;background-image:linear-gradient(115deg,rgba(135,206,235,.5),rgba(67,170,139,.32))}
+.subasta-foto__mini{position:absolute;left:12px;bottom:12px;gap:6px}
 .subasta-foto__mini img{width:42px;height:42px;border-radius:9px;object-fit:cover;border:2px solid var(--blanco);
   box-shadow:var(--sombra)}
 .subasta-foto__cant{position:absolute;right:12px;top:12px;background:rgba(16,36,44,.72);color:var(--blanco);
@@ -294,15 +272,13 @@ img{display:block;max-width:100%}
 .subasta-card__label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
 .subasta-card__precio{font-size:24px;font-weight:600;letter-spacing:-.03em;margin-top:3px}
 .subasta-card__min{font-size:11.5px;color:var(--gris);margin-top:3px}
-.subasta-card__cierre{display:flex;align-items:center;gap:7px;}
-.subasta-card__cierre b{font-weight:600;}
-.subasta-card__oferta.es-boton{cursor:pointer;border-radius:12px;
-  transition:background .15s;}
-.subasta-card__fund{display:flex;align-items:center;gap:11px;margin-top:14px;padding-top:14px;
-  border-top:1px solid var(--linea);font-size:13.5px;}
+.subasta-card__cierre{display:flex;align-items:center;gap:7px}
+.subasta-card__cierre b{font-weight:600}
+.subasta-card__oferta.es-boton{cursor:pointer;border-radius:12px;transition:background .15s}
+.subasta-card__fund{display:flex;align-items:center;gap:11px;margin-top:14px;padding-top:14px;border-top:1px solid var(--linea);font-size:13.5px}
 .subasta-card__fund .avatar{width:34px;height:34px;font-size:11px;flex:none}
 .subasta-card__benef{font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-.subasta-card__fund span{cursor:pointer;display:block;font-size:16px;font-weight:600;letter-spacing:-.015em;margin-top:1px;}
+.subasta-card__fund span{cursor:pointer;display:block;font-size:16px;font-weight:600;letter-spacing:-.015em;margin-top:1px}
 .subasta-card__fund span:hover{color:var(--verde)}
 .subasta-card__accion{margin-top:14px}
 .subasta-card__accion .btn{width:100%}
@@ -318,10 +294,8 @@ img{display:block;max-width:100%}
 #screen-app{position:relative;z-index:1;background:transparent}
 /* El menú se apoya en el cielo de estrellas, no en un fondo propio. */
 body.noche #screen-app{background:transparent !important}
-#vistaLista{position:relative;z-index:1}
-.cielo-fondo{position:fixed;inset:0;z-index:0;opacity:0;pointer-events:none;overflow:hidden;
-  transition:opacity .5s ease;
-  background:
+#vistaLista{z-index:1}
+.cielo-fondo{position:fixed;inset:0;z-index:0;opacity:0;pointer-events:none;overflow:hidden;transition:opacity .5s ease;background:
     radial-gradient(1px 1px at 6% 12%, #fff, transparent),
     radial-gradient(1px 1px at 14% 31%, rgba(255,255,255,.8), transparent),
     radial-gradient(2px 2px at 21% 8%,  #fff, transparent),
@@ -342,9 +316,8 @@ body.noche #screen-app{background:transparent !important}
     radial-gradient(2px 2px at 63% 90%, rgba(255,255,255,.8), transparent),
     radial-gradient(1px 1px at 88% 95%, rgba(255,255,255,.5), transparent),
     radial-gradient(1px 1px at 3% 62%, rgba(255,255,255,.6), transparent),
-    radial-gradient(130% 90% at 50% 0%, #16324f 0%, #0d2038 48%, #060f1e 100%);
-}
-body.noche .cielo-fondo{opacity:1}
+    radial-gradient(130% 90% at 50% 0%, #16324f 0%, #0d2038 48%, #060f1e 100%)}
+
 body.noche{background:#060f1e}
 
 .nube{position:absolute;border-radius:99px;background:rgba(255,255,255,.06);filter:blur(11px)}
@@ -354,8 +327,7 @@ body.noche{background:#060f1e}
 @keyframes deriva{from{transform:translateX(-36px)}to{transform:translateX(36px)}}
 
 /* estrellas que se encandilan: crecen y se apagan en un segundo */
-.titila{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.25;
-  animation:destello 7s ease-in-out infinite}
+
 @keyframes destello{
   0%,100%{opacity:.2;transform:scale(1);box-shadow:none}
   6%{opacity:1;transform:scale(2.6);box-shadow:0 0 12px 3px rgba(255,255,255,.9)}
@@ -398,10 +370,8 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 /* Menú principal: rectángulos apenas teñidos sobre el cielo. */
 /* El menú principal se define una sola vez, más abajo. */
 @keyframes entraTexto{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.suenos-lista{display:flex;flex-direction:column;gap:16px;}
-.borrar-sueno{background:none;border:0;padding:6px 0 0;margin-top:8px;cursor:pointer;
-  font-size:11.5px;text-decoration:underline;text-underline-offset:3px;
-  align-self:flex-start;}
+
+.borrar-sueno{background:none;border:0;padding:6px 0 0;margin-top:8px;cursor:pointer;font-size:11.5px;text-decoration:underline;text-underline-offset:3px;align-self:flex-start}
 .borrar-sueno:active{color:#B3261E}
 @media (max-width:820px){
 }
@@ -421,12 +391,11 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .deseo-fila__t span{display:block;font-size:12.5px;color:var(--gris);margin-top:3px}
 .deseo-fila__acc{display:flex;align-items:center;gap:8px;flex:none}
 .sobre--wsp:hover{border-color:#25D366;color:#25D366}
-.deseo-texto{font-size:16px;line-height:1.7;white-space:pre-wrap;border-radius:14px;
-  padding:20px 22px;margin:0;}
+.deseo-texto{font-size:16px;line-height:1.7;white-space:pre-wrap;border-radius:14px;padding:20px 22px;margin:0}
 
 /* ---- estadísticas de fundación ---- */
 .stats-pantalla{max-width:1120px;margin:0 auto;padding:40px 34px 90px}
-.stats-pantalla h2{font-weight:200;letter-spacing:-.035em;}
+.stats-pantalla h2{font-weight:200;letter-spacing:-.035em}
 .stats-pantalla .lede{font-size:14px;color:var(--gris);margin:8px 0 30px}
 .st-grupo{margin-bottom:34px}
 .st-grupo h3{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gris);
@@ -460,7 +429,7 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .admin__barra input,.admin__barra select{padding:10px 13px;border:1px solid var(--linea);border-radius:10px;font-size:14px}
 .admin__barra input{flex:1;min-width:200px}
 .tabla{width:100%;border-collapse:collapse;font-size:13.5px}
-.tabla th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:0 12px 10px;border-bottom:1px solid var(--linea);}
+.tabla th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:0 12px 10px;border-bottom:1px solid var(--linea)}
 .tabla td{padding:12px;border-bottom:1px solid var(--linea);vertical-align:middle}
 .tabla tr.is-baja td{opacity:.45}
 .tabla__quien{display:flex;align-items:center;gap:10px}
@@ -535,28 +504,26 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .alta__nota{font-size:12.5px;color:var(--gris);line-height:1.55;background:var(--nube);border-radius:12px;
   padding:14px 16px;margin:0 0 18px}
 
-.alta__top{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.alta__top{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .alta{max-width:1080px;margin:0 auto;padding:56px 40px 90px;display:grid;
   grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:start}
 .alta__titulo{font-weight:200;letter-spacing:-.035em;line-height:1.05;margin:0}
 .alta__lede{color:var(--gris);font-size:15.5px;line-height:1.6;margin:16px 0 0;max-width:38ch}
-.alta__form{border:1px solid var(--linea);border-radius:18px;padding:30px;background:var(--blanco);
-  align-self:start}
+.alta__form{border-radius:18px;align-self:start}
 
 /* ---- filas / listas ---- */
-.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;
-  border-bottom:1px solid var(--linea)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
 .row__main{font-size:15px;font-weight:500}
 .row__sub{font-size:12.5px;color:var(--gris);margin-top:3px}
 .row__val{font-size:15px;font-weight:600;color:var(--verde);white-space:nowrap}
-.empty{padding:24px;text-align:center;font-size:14px;}
+.empty{padding:24px;text-align:center;font-size:14px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);
   border-radius:14px;overflow:hidden;margin-top:16px}
 .stat{background:var(--blanco);padding:18px}
 .stat__num{font-size:28px;font-weight:200;letter-spacing:-.03em}
 .stat__label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);margin-top:4px}
-.perfil__hero{border:1px solid var(--linea);border-radius:16px;overflow:hidden}
-.perfil__id{display:flex;align-items:flex-end;gap:18px;}
+.perfil__hero{border:1px solid var(--linea)}
+.perfil__id{display:flex;align-items:flex-end;gap:18px}
 .perfil__id .avatar{border:4px solid var(--blanco);box-shadow:var(--sombra)}
 .estado{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px}
 .estado--pend{background:rgba(135,206,235,.22);color:#1c5c78}
@@ -594,8 +561,7 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .colab__name{font-size:16px;font-weight:600;letter-spacing:-.01em}
 .colab__rol{font-size:12.5px;color:var(--gris);margin-top:2px}
 .rank{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);border-radius:14px;overflow:hidden}
-.rank__row{background:var(--blanco);display:grid;grid-template-columns:34px 1fr auto;align-items:center;
-  gap:14px;padding:13px 18px}
+.rank__row{background:var(--blanco);display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:14px;padding:13px 18px}
 .rank__row--simple{grid-template-columns:1fr auto}
 .rank__row.is-me{background:rgba(135,206,235,.12)}
 .rank__pos{font-size:14px;font-weight:700;color:var(--gris);text-align:center}
@@ -603,8 +569,7 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .acciones{display:flex;flex-wrap:wrap;gap:8px}
 
 /* ---- página de fundación (detalle) ---- */
-.volver{background:none;border:0;padding:0;color:var(--gris);font-size:13px;font-weight:600;cursor:pointer;
-  display:inline-flex;align-items:center;gap:6px;margin-bottom:18px;transition:color .15s}
+.volver{background:none;border:0;padding:0;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;margin-bottom:18px;transition:color .15s}
 .volver:hover{color:var(--verde)}
 .ficha{border:1px solid var(--linea);border-radius:18px;overflow:hidden}
 .ficha__id{display:flex;align-items:flex-end;gap:18px;padding:0 26px 22px;margin-top:-34px}
@@ -665,8 +630,7 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .vop__n{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
 .vop__d{font-size:12.5px;color:var(--gris);line-height:1.4}
 
-.paso-sep{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  margin:24px 0 12px;padding-top:18px;border-top:1px solid var(--linea);}
+.paso-sep{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin:24px 0 12px;padding-top:18px;border-top:1px solid var(--linea)}
 
 .avance{margin:-6px 0 20px}
 .avance__meter{display:flex;height:12px;border-radius:99px;background:var(--nube);overflow:hidden;
@@ -789,18 +753,16 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .rank__acciones{display:flex;align-items:center;gap:10px}
 
 /* ---- encabezado del perfil con controles ---- */
-.perfil-head{display:flex;align-items:center;justify-content:space-between;gap:22px;
-  flex-wrap:wrap;margin-bottom:22px}
-.buscador-cuentas{flex:1;min-width:230px;margin-bottom:0;}
+.perfil-head{display:flex;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
+.buscador-cuentas{flex:1;min-width:230px;margin-bottom:0}
 .buscador-cuentas .buscador input{padding:11px 14px 11px 42px;font-size:14px}
 .handle{font-size:13px;color:var(--verde);font-weight:600;margin-top:4px}
 .sug__handle{color:var(--verde);font-weight:600}
 .sug__tipo{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:var(--gris);white-space:nowrap}
 .perfil-head .panel__title{margin:0}
-.perfil-head__ctrls{display:flex;flex-wrap:wrap;}
-.switch{display:flex;align-items:center;gap:11px;border:1px solid var(--linea);
-  border-radius:12px;cursor:pointer;text-align:left;transition:border-color .18s,background .18s;}
+.perfil-head__ctrls{display:flex;flex-wrap:wrap}
+.switch{display:flex;align-items:center;gap:11px;border:1px solid var(--linea);border-radius:12px;cursor:pointer;text-align:left;transition:border-color .18s,background .18s}
 .switch:hover{border-color:var(--cielo)}
 .switch.is-on{border-color:var(--verde);background:rgba(67,170,139,.06)}
 .switch__riel{width:36px;height:20px;border-radius:99px;background:var(--linea);position:relative;flex:none;
@@ -809,24 +771,23 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .switch__bola{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--blanco);
   box-shadow:0 1px 3px rgba(16,36,44,.3);transition:transform .2s}
 .switch.is-on .switch__bola{transform:translateX(16px)}
-.switch__t b{display:block;font-weight:600;letter-spacing:-.01em;}
-.switch__t span{display:block;margin-top:2px;line-height:1.4;}
+.switch__t b{display:block;font-weight:600;letter-spacing:-.01em}
+.switch__t span{display:block;margin-top:2px;line-height:1.4}
 
 .deseos-config{margin:18px 0 6px}
 .deseos-config .switch{width:100%}
 
-.apoyo{align-items:center;gap:14px;border:1px solid var(--linea);border-radius:14px;}
+.apoyo{align-items:center;gap:14px;border:1px solid var(--linea);border-radius:14px}
 .apoyo .avatar{width:42px;height:42px;font-size:14px;flex:0 0 42px}
 .apoyo__t{flex:1;min-width:0}
 .apoyo__t b{display:block;font-size:15.5px;font-weight:600;letter-spacing:-.015em;cursor:pointer}
 .apoyo__t b:hover{color:var(--verde)}
-.apoyo__t span{display:block;font-size:12.5px;margin-top:2px;}
-.apoyo__m{letter-spacing:-.02em;}
+.apoyo__t span{display:block;font-size:12.5px;margin-top:2px}
+.apoyo__m{letter-spacing:-.02em}
 
 /* ---- insignias de fundaciones apoyadas ---- */
-.insignias{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:14px}
-.insignia{position:relative;border:0;padding:14px 8px 16px;cursor:pointer;text-align:center;
-  border-radius:14px;transition:background .15s;}
+.insignias{display:grid;gap:14px}
+.insignia{position:relative;border:0;padding:14px 8px 16px;cursor:pointer;text-align:center;border-radius:14px;transition:background .15s}
 .insignia:hover{background:var(--nube)}
 .insignia__aro{display:grid;place-items:center;width:70px;height:70px;margin:0 auto 10px;border-radius:50%;
   border:2px solid var(--linea);transition:border-color .18s}
@@ -841,12 +802,9 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 
 /* ---- desplegables ---- */
 .desplegable{border:1px solid var(--linea);border-radius:14px;overflow:hidden;margin-top:26px}
-.desplegable__cab{width:100%;border:0;padding:16px 18px;cursor:pointer;display:flex;
-  align-items:center;justify-content:space-between;gap:16px;font-size:12px;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;transition:background .15s;}
+.desplegable__cab{width:100%;border:0;padding:16px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:background .15s}
 .desplegable__cab:hover{background:var(--nube)}
-.desplegable__meta{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:400;
-  letter-spacing:0;text-transform:none;}
+.desplegable__meta{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:400;letter-spacing:0;text-transform:none}
 .desplegable__flecha{transition:transform .25s;font-size:13px}
 .desplegable.is-open .desplegable__flecha{transform:rotate(180deg)}
 .desplegable__cuerpo{display:none;padding:0 18px 18px;border-top:1px solid var(--linea)}
@@ -875,9 +833,8 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 /* ---- edición por clic directo ---- */
 .editable{cursor:pointer;border-radius:8px;transition:background .15s,box-shadow .15s}
 .editable:hover{background:rgba(135,206,235,.14);box-shadow:0 0 0 6px rgba(135,206,235,.14)}
-.avatar-edit{position:relative;cursor:pointer}
-.avatar-edit::after{content:"";position:absolute;inset:0;border-radius:50%;background:rgba(16,36,44,.45);
-  opacity:0;transition:opacity .18s}
+
+.avatar-edit::after{opacity:0;transition:opacity .18s}
 .avatar-edit::before{content:"Cambiar";position:absolute;inset:0;display:grid;place-items:center;z-index:2;
   color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:0;
   transition:opacity .18s;pointer-events:none}
@@ -893,11 +850,9 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .propuesta__lista{margin-top:18px}
 
 /* ---- modal ---- */
-.modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:20px;
-  background:rgba(16,36,44,.36)}
+.modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
 .modal.is-open{display:flex}
-.modal__box{background:var(--blanco);width:100%;max-width:480px;padding:26px;
-  box-shadow:0 24px 60px rgba(16,36,44,.24);max-height:90vh;overflow:auto;}
+.modal__box{background:var(--blanco);width:100%;max-width:480px;padding:26px;box-shadow:0 24px 60px rgba(16,36,44,.24);max-height:90vh;overflow:auto}
 .modal__box--grande{max-width:560px;padding:34px}
 .modal__box--grande .modal__title{font-size:27px}
 .codigo-input{text-align:center;font-size:26px;letter-spacing:.5em;font-weight:600;text-indent:.5em}
@@ -905,7 +860,7 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
   border:1px dashed var(--linea);border-radius:10px;font-size:12.5px;color:var(--gris)}
 .saltear b{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--tinta);letter-spacing:.12em;font-size:14px}
 .modal__title{font-size:23px;font-weight:300;letter-spacing:-.02em;margin:8px 0 6px}
-.modal__sub{font-size:14px;margin:0 0 20px;}
+.modal__sub{font-size:14px;margin:0 0 20px}
 .modal__actions{display:flex;gap:10px;margin-top:20px}
 .modal__actions .btn{flex:1}
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--nube);padding:5px;
@@ -917,9 +872,7 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .tabpane.is-on{display:block}
 .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer}
 .check input{margin-top:3px;accent-color:var(--verde)}
-.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,160%);
-  padding:13px 20px;border-radius:999px;font-size:14px;z-index:95;transition:transform .35s cubic-bezier(.4,0,.2,1);max-width:90vw;text-align:center;}
-.toast.is-on{transform:translate(-50%,0)}
+.toast{position:fixed;left:50%;bottom:26px;padding:13px 20px;border-radius:999px;font-size:14px;z-index:95;max-width:90vw;text-align:center}
 
 /* ================= MODO DIOS ================= */
 .gm.is-open{display:block}
@@ -964,9 +917,8 @@ body.godmode .topbar{box-shadow:inset 0 3px 0 #000}
 
 /* ==================== APP MÓVIL (siempre activa en la beta) ==================== */
 /* En pantallas grandes la app se centra como un teléfono; en el celular ocupa todo. */
-html{background:#060f1e;height:100%}
-body{
-  -webkit-tap-highlight-color:transparent;}
+
+body{-webkit-tap-highlight-color:transparent}
 body{-webkit-text-size-adjust:100%}
 
 /* Reglas de la app móvil, activas siempre en la beta */
@@ -986,7 +938,6 @@ body{-webkit-text-size-adjust:100%}
   .panel__head{margin-bottom:14px}
 
   /* menú principal: alto cómodo para el pulgar */
-
 
   /* pantallas internas */
   .alta__top{padding:12px 14px;position:sticky;top:0;background:var(--blanco);z-index:20;
@@ -1055,7 +1006,6 @@ body{-webkit-text-size-adjust:100%}
   .st-grid{grid-template-columns:1fr}
 }
 
-
 /* ==================== AJUSTE FINO PARA CELULAR ==================== */
 /* Cada ventana entra en una pantalla: cabecera fija, contenido al medio, acción al pie. */
 #screen-subastas .stats-pantalla,#screen-deseos .stats-pantalla,
@@ -1065,7 +1015,7 @@ body{-webkit-text-size-adjust:100%}
 .alta__top{flex:none}
 
 /* los carruseles ocupan el alto disponible */
-#screen-fundaciones .carrusel__viewport{padding:10px 0}
+
 #screen-fundaciones .titulazo{margin:2px 0 0}
 #screen-fundaciones .titulazo h3{font-size:24px;letter-spacing:-.03em}
 #screen-fundaciones .titulazo{margin-top:26px;padding-bottom:10px}
@@ -1074,18 +1024,13 @@ body{-webkit-text-size-adjust:100%}
    generales dejaban una franja muerta entre el buscador y la tarjeta, que en
    una pantalla de una sola tarjeta se nota mucho. */
 #screen-fundaciones .buscador-wrap{margin-bottom:10px}
-#screen-subastas .subastas-grid{flex:1;min-height:0;align-items:stretch}
-#screen-subastas .subasta-card{display:flex;flex-direction:column}
-#screen-subastas .subasta-foto{aspect-ratio:auto;}
+
+#screen-subastas .subasta-foto{aspect-ratio:auto}
 
 /* los deseos también se pasan de a uno */
-.suenos-lista{flex:1;min-height:0;display:flex;flex-direction:row;gap:12px;overflow-x:auto;
-  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-  overscroll-behavior-x:contain;margin-top:6px}
-.suenos-lista::-webkit-scrollbar{display:none}
+.suenos-lista{flex:1;min-height:0;flex-direction:row;overscroll-behavior-x:contain}
+
 #screen-deseos .buscador{max-width:100%}
-#screen-deseos .stats-pantalla{padding-top:6px !important}
-#screen-deseos .suenos-lista{margin-top:12px}
 
 /* Cumplí tu deseo: formulario que entra y botones cómodos */
 /* la acción queda pegada abajo, al alcance del pulgar */
@@ -1094,7 +1039,7 @@ body{-webkit-text-size-adjust:100%}
 
 .perfil-head{flex-direction:column;align-items:stretch;gap:12px}
 .perfil-head .panel__title{font-size:24px}
-.perfil-head__ctrls{flex-direction:column;align-items:stretch;gap:10px}
+.perfil-head__ctrls{flex-direction:column;align-items:stretch}
 .perfil-head__ctrls .btn{width:100%;min-height:46px}
 .switch{width:100%;padding:12px 14px}
 .switch__t b{font-size:13.5px}
@@ -1115,11 +1060,10 @@ body{-webkit-text-size-adjust:100%}
 .btn--sm{min-height:38px}
 .btn--xs{min-height:32px}
 
-
 /* ===== Tarjetas de carrusel en celular =====
    Regla de oro: una tarjeta = una pantalla, sin scroll interno,
    y la acción principal abajo, dentro del pulgar. */
-#screen-fundaciones .card{display:flex;flex-direction:column;height:100%}
+
 /* .card__body de esta pantalla se define una sola vez, más abajo. */
 /* (acá vivía una regla para el primer hijo de .card__body: ese hijo es
    .card__id, y con flex:1 en columna el avatar y el nombre se apilaban
@@ -1133,18 +1077,10 @@ body{-webkit-text-size-adjust:100%}
 #screen-fundaciones .campana-click__cta{display:none}
 #screen-fundaciones .card__side{display:none}
 #screen-fundaciones .card .btn--primary{width:100%;min-height:50px;margin-top:12px}
-#screen-fundaciones .carrusel__slide{display:flex}
 
 /* ===== Subastas ===== */
-#screen-subastas .subasta-card{height:100%}
-#screen-subastas .subasta-foto{flex:1;min-height:150px}
-#screen-subastas .subasta-card__body{padding:14px 16px 16px;gap:2px}
-#screen-subastas .subasta-card__titulo{font-size:17px;line-height:1.25}
-#screen-subastas .subasta-card__precio{font-size:24px}
-#screen-subastas .subasta-card__min{font-size:11.5px}
-#screen-subastas .subasta-card__accion{margin-top:12px}
-#screen-subastas .subasta-card__accion .btn{width:100%;min-height:50px}
 
+#screen-subastas .subasta-card__accion .btn{width:100%}
 
 /* ==================== BASE MÓVIL DEFINITIVA ====================
    Un solo scroll: el de la página. iOS se lleva mal con contenedores
@@ -1160,8 +1096,7 @@ body{overflow-y:auto;-webkit-overflow-scrolling:touch}
 .screen.is-active{display:block !important}
 .topbar__row,.stats-pantalla,.alta{max-width:100% !important;margin:0 !important}
 .stats-pantalla{display:block !important}
-.alta__top{padding:10px 14px calc(10px) !important;position:sticky;top:0;z-index:20;
-  background:var(--blanco);border-bottom:1px solid var(--linea)}
+.alta__top{padding:10px 14px calc(10px) !important;position:sticky;top:0;z-index:20;background:var(--blanco);border-bottom:1px solid var(--linea)}
 
 /* nada scrollea adentro de nada, salvo los carruseles horizontales */
 
@@ -1177,7 +1112,6 @@ h1,h2,h3,p,b,span{overflow-wrap:anywhere}
 .cielo-fondo{left:0;right:0;transform:none;max-width:100%}
 .modal{left:0;right:0;transform:none;max-width:100%}
 
-
 /* ==================== ESTÉTICA NOCTURNA ====================
    Superficies azul profundo, acento turquesa y bordes que iluminan. */
 :root{--noche:#0b2136;--noche2:#0e2a44;--linea-noche:rgba(255,255,255,.12);--turquesa:#3ddbb5}
@@ -1190,7 +1124,7 @@ h1,h2,h3,p,b,span{overflow-wrap:anywhere}
   background:rgba(9,20,36,.86);backdrop-filter:blur(12px);border-bottom-color:var(--linea-noche)}
 #screen-deseos .brand__name,#screen-subastas .brand__name,#screen-eventos .brand__name,
 #screen-apoyo .brand__name,#screen-avisos .brand__name{color:#fff}
-#screen-deseos .buscador input{background:rgba(255,255,255,.08);border-color:var(--linea-noche);color:#fff}
+#screen-deseos .buscador input{border-color:var(--linea-noche);color:#fff}
 #screen-deseos .buscador input::placeholder{color:rgba(255,255,255,.45)}
 #screen-deseos .empty,#screen-apoyo .empty,#screen-avisos .empty,#screen-subastas .empty{
   color:rgba(255,255,255,.65);border-color:var(--linea-noche)}
@@ -1209,8 +1143,7 @@ h1,h2,h3,p,b,span{overflow-wrap:anywhere}
 .subasta-card .btn--cielo{background:linear-gradient(180deg,#3ddbb5,#1f9c7f);border:0;color:#06231c;font-weight:600}
 
 /* eventos */
-#screen-eventos .ecard{background:linear-gradient(180deg,var(--noche2),var(--noche));
-  border:1px solid rgba(61,219,181,.22);color:#fff}
+#screen-eventos .ecard{background:linear-gradient(180deg,var(--noche2),var(--noche));border:1px solid rgba(61,219,181,.22);color:#fff}
 #screen-eventos .ecard__nombre,#screen-eventos .ecard__fecha{color:#fff}
 #screen-eventos .ecard__lugar,#screen-eventos .ecard__desc{color:rgba(255,255,255,.6)}
 #screen-eventos .carrusel__flecha{background:rgba(255,255,255,.1);border-color:var(--linea-noche);color:#fff}
@@ -1235,11 +1168,8 @@ h1,h2,h3,p,b,span{overflow-wrap:anywhere}
 
 /* notificaciones */
 
-
 /* ==================== PORTADA ==================== */
-#screen-home{width:100%;max-width:100%;margin:0;
-  background:radial-gradient(130% 90% at 50% -10%, #16324f 0%, #0b2038 45%, #040d1c 100%) !important;
-  color:#fff;min-height:100vh !important;min-height:100dvh !important}
+#screen-home{margin:0;color:#fff;min-height:100vh !important;min-height:100dvh !important}
 
 /* halos de profundidad */
 .portada__halo{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}
@@ -1249,72 +1179,57 @@ h1,h2,h3,p,b,span{overflow-wrap:anywhere}
   background:rgba(163,230,53,.24);animation:latir 12s 1.5s ease-in-out infinite}
 @keyframes latir{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.14);opacity:1}}
 
-.portada__logo{position:relative;z-index:1;height:auto;
-  filter:drop-shadow(0 0 26px rgba(45,212,191,.55)) drop-shadow(0 0 60px rgba(163,230,53,.28));
-  animation:flotar 6s ease-in-out infinite;}
+.portada__logo{position:relative;z-index:1;animation:flotar 6s ease-in-out infinite}
 @keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
-.portada__marca{position:relative;z-index:1;line-height:.95;}
-.portada__m1,.portada__m2{display:block;font-weight:800;letter-spacing:-.02em;}
+.portada__marca{position:relative;z-index:1;line-height:.95}
+.portada__m1,.portada__m2{display:block;font-weight:800;letter-spacing:-.02em}
 .portada__m1{color:#fff;text-shadow:0 4px 22px rgba(0,0,0,.5),0 0 34px rgba(255,255,255,.18)}
 .portada__m2{background:linear-gradient(95deg,#22d3ee 0%,#2dd4a4 45%,#a3e635 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 0 20px rgba(45,212,191,.45))}
 
 /* la línea con energía corriendo */
-.portada__linea{position:relative;z-index:1;width:min(78%,320px);height:1px;margin:22px 0 16px;
-  background:linear-gradient(90deg,transparent,rgba(45,212,191,.5),rgba(163,230,53,.5),transparent);
-  box-shadow:0 0 14px rgba(45,212,191,.5)}
+.portada__linea{position:relative;z-index:1;width:min(78%,320px);height:1px;background:linear-gradient(90deg,transparent,rgba(45,212,191,.5),rgba(163,230,53,.5),transparent);box-shadow:0 0 14px rgba(45,212,191,.5)}
 .portada__linea i{position:absolute;top:-1px;left:0;width:34%;height:3px;border-radius:3px;
   background:linear-gradient(90deg,transparent,#5eead4,#bef264,transparent);
   filter:blur(.4px);animation:corre 2.8s ease-in-out infinite}
 @keyframes corre{0%{left:-36%}100%{left:102%}}
 
-.portada__frase{position:relative;z-index:1;margin:0 0 30px;
-  letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.82);font-weight:500;
-  text-shadow:0 0 18px rgba(255,255,255,.22);}
+.portada__frase{position:relative;z-index:1;margin:0 0 30px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.82);font-weight:500;text-shadow:0 0 18px rgba(255,255,255,.22)}
 
 .portada__zona{position:relative;z-index:1;width:100%;max-width:none;
   animation:apareceZona .38s cubic-bezier(.2,.8,.3,1) both}
 @keyframes apareceZona{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
 
 /* botón principal */
-.cta{position:relative;width:88%;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:18px;
-  border:0;cursor:pointer;border-radius:26px;padding:22px 26px;
-  background:linear-gradient(100deg,#22d3ee 0%,#2dd4a4 50%,#a3e635 100%);
-  box-shadow:0 0 26px rgba(45,212,191,.5),0 16px 40px rgba(0,0,0,.45),
-    inset 0 1px 0 rgba(255,255,255,.5),inset 0 -3px 10px rgba(0,0,0,.16);
-  transition:transform .16s cubic-bezier(.2,.8,.3,1),box-shadow .2s,filter .2s}
+.cta{position:relative;width:88%;margin:0 auto;display:flex;align-items:center;justify-content:center;border:0;cursor:pointer;border-radius:26px;background:linear-gradient(100deg,#22d3ee 0%,#2dd4a4 50%,#a3e635 100%);box-shadow:0 0 26px rgba(45,212,191,.5),0 16px 40px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.5),inset 0 -3px 10px rgba(0,0,0,.16);transition:transform .16s cubic-bezier(.2,.8,.3,1),box-shadow .2s,filter .2s}
 .cta:active{transform:scale(.965);
   box-shadow:0 0 46px rgba(94,234,212,.85),0 0 90px rgba(163,230,53,.45),
     inset 0 1px 0 rgba(255,255,255,.6);filter:brightness(1.08)}
 .cta__ico{flex:none;width:38px;height:38px;display:grid;place-items:center;color:#06312a}
 .cta__ico svg{width:100%;height:100%;filter:drop-shadow(0 1px 2px rgba(255,255,255,.4))}
 .cta__linea{width:1px;height:34px;background:rgba(255,255,255,.45);border-radius:1px;flex:none}
-.cta__txt{font-weight:800;letter-spacing:.06em;color:#fff;
-  text-shadow:0 2px 10px rgba(0,0,0,.32);}
+.cta__txt{text-shadow:0 2px 10px rgba(0,0,0,.32)}
 .cta--corto{width:100%;padding:17px 22px;border-radius:18px;margin-top:6px}
 .cta--corto .cta__txt{font-size:18px;letter-spacing:.04em}
 
-.portada__pie{margin:16px 0 0;color:rgba(255,255,255,.72);}
+.portada__pie{margin:16px 0 0;color:rgba(255,255,255,.72)}
 
 /* acceso, con vidrio */
-.portada__acceso{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
-  border-radius:24px;padding:22px 20px 18px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  box-shadow:0 20px 50px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.16)}
-.campo-neon{text-align:left;}
+.portada__acceso{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:24px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 20px 50px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.16)}
+.campo-neon{text-align:left}
 .campo-neon label{display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
   color:rgba(255,255,255,.6);margin-bottom:7px}
-.campo-neon input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
-  border-radius:14px;color:#fff;font-size:16px;font-family:inherit;
-  transition:border-color .18s,box-shadow .18s;}
+.campo-neon input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;color:#fff;font-size:16px;font-family:inherit;transition:border-color .18s,box-shadow .18s}
 .campo-neon input:focus{outline:0;border-color:rgba(94,234,212,.7);
   box-shadow:0 0 0 3px rgba(45,212,191,.18),0 0 22px rgba(45,212,191,.3)}
 /* El campo de acceso alterna entre dos mails de largo muy distinto. Cuando el
    largo no entra, se achica la letra en vez de cortar el texto. La clase la
    pone ajustarCampoMail() midiendo el campo, no un ancho fijo. */
 #mail.es-largo{font-size:14px;letter-spacing:-.005em}
-.portada__links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:16px}
+.portada__links{display:flex;flex-wrap:wrap;justify-content:center;margin-top:16px}
 .portada__links .linkish{color:rgba(255,255,255,.72);font-size:13px}
 .portada__links .linkish:hover{color:#5eead4}
 .portada__ayuda{margin:14px 0 0;font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.5}
@@ -1336,21 +1251,12 @@ h1,h2,h3,p,b,span{overflow-wrap:anywhere}
   .cta{padding:18px 22px}
 }
 
-
 /* ============================================================
    SISTEMA VISUAL ÚNICO · vidrio oscuro
    Azul marino casi negro, paneles translúcidos con blur,
    bordes finos cian y luz que entra por los cantos.
    ============================================================ */
-:root{
-  --fondo:#050c17; --fondo2:#08172a; --petroleo:#0d2a3f;
-  --vidrio:rgba(255,255,255,.055);
-  --vidrio2:rgba(255,255,255,.085);
-  --canto:rgba(103,232,249,.22);
-  --canto-vivo:rgba(103,232,249,.5);
-  --cian:#67e8f9; --turq:#2dd4bf; --celeste:#9fc4d8;
-  --sombra-honda:0 22px 60px rgba(0,0,0,.55);
-}
+:root{--fondo:#050c17;--fondo2:#08172a;--petroleo:#0d2a3f;--vidrio:rgba(255,255,255,.055);--vidrio2:rgba(255,255,255,.085);--canto:rgba(103,232,249,.22);--canto-vivo:rgba(103,232,249,.5);--cian:#67e8f9;--turq:#2dd4bf;--celeste:#9fc4d8;--sombra-honda:0 22px 60px rgba(0,0,0,.55)}
 
 html,body{background:var(--fondo)}
 body{color:#fff}
@@ -1417,40 +1323,33 @@ b,strong{color:#fff}
 .check{color:var(--celeste)}
 
 /* ---------- botones ---------- */
-.btn--primary{background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399) !important;
-  color:#04222b !important;border:0 !important;font-weight:600;
-  box-shadow:0 0 22px rgba(45,212,191,.32), inset 0 1px 0 rgba(255,255,255,.45) !important}
+.btn--primary{background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399) !important;color:#04222b !important;border:0 !important;font-weight:600;box-shadow:0 0 22px rgba(45,212,191,.32), inset 0 1px 0 rgba(255,255,255,.45) !important}
 .btn--primary:active{filter:brightness(1.08);box-shadow:0 0 34px rgba(45,212,191,.5) !important}
 .btn--cielo{background:rgba(103,232,249,.14) !important;color:var(--cian) !important;
   border:1px solid var(--canto-vivo) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.12) !important}
-.btn--ghost{background:rgba(255,255,255,.05) !important;color:#fff !important;
-  border:1px solid rgba(255,255,255,.16) !important}
+.btn--ghost{background:rgba(255,255,255,.05) !important;color:#fff !important;border:1px solid rgba(255,255,255,.16) !important}
 .volver{color:var(--celeste) !important}
 .linkish{color:var(--cian) !important}
 
 /* ---------- barras de avance ---------- */
 .meter,.sueno-card__barra,.avance__meter{background:rgba(255,255,255,.08) !important;
   border-color:rgba(255,255,255,.12) !important}
-.meter__fill{background:linear-gradient(90deg,#22d3ee,#2dd4bf) !important;
-  box-shadow:0 0 14px rgba(45,212,191,.5)}
+.meter__fill{background:linear-gradient(90deg,#22d3ee,#2dd4bf) !important;box-shadow:0 0 14px rgba(45,212,191,.5)}
 .causa__row span,.causa__meta{color:var(--celeste) !important}
 
 /* ---------- filas, tablas, desplegables ---------- */
-.row{background:transparent !important;border-bottom:1px solid rgba(255,255,255,.08) !important;
-  border-radius:0 !important;box-shadow:none !important}
+.row{background:transparent !important;border-bottom:1px solid rgba(255,255,255,.08) !important;border-radius:0 !important;box-shadow:none !important}
 .row__main,.tabla__n{color:#fff !important}
 .tabla th{color:var(--celeste) !important;border-color:rgba(255,255,255,.12) !important}
 .tabla td{border-color:rgba(255,255,255,.08) !important;color:#fff}
 .desplegable__cab{background:transparent !important;color:#fff}
 .desplegable__meta{color:var(--celeste) !important}
-.empty{background:rgba(255,255,255,.03) !important;border:1px dashed rgba(255,255,255,.16) !important;
-  color:var(--celeste) !important;border-radius:16px}
+.empty{background:rgba(255,255,255,.03) !important;border:1px dashed rgba(255,255,255,.16) !important;color:var(--celeste) !important;border-radius:16px}
 .estado{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:var(--celeste)}
 .estado--ok{background:rgba(45,212,191,.16);color:var(--turq);border-color:rgba(45,212,191,.35)}
 
 /* ---------- carruseles ---------- */
-.carrusel__flecha{background:rgba(255,255,255,.07) !important;border:1px solid rgba(255,255,255,.16) !important;
-  color:#fff !important}
+.carrusel__flecha{background:rgba(255,255,255,.07) !important;border:1px solid rgba(255,255,255,.16) !important;color:#fff !important}
 .punto{background:rgba(255,255,255,.22)}
 .punto.is-on{background:var(--turq);box-shadow:0 0 10px rgba(45,212,191,.6)}
 
@@ -1464,8 +1363,7 @@ b,strong{color:#fff}
 .modal__title{color:#fff}
 .modal__sub{color:var(--celeste)}
 .deseo-texto{background:rgba(255,255,255,.05) !important;color:#fff}
-.toast{background:rgba(8,22,38,.96);border:1px solid var(--canto);color:#fff;
-  box-shadow:var(--sombra-honda)}
+.toast{background:rgba(8,22,38,.96);border:1px solid var(--canto);color:#fff;box-shadow:var(--sombra-honda)}
 
 /* ---------- planes ---------- */
 .plan__nivel{color:var(--turq) !important}
@@ -1482,15 +1380,12 @@ b,strong{color:#fff}
 
 /* la entrada del menú conserva su color pero con el mismo vidrio */
 
-
-
 /* ==================== AJUSTES FINALES ==================== */
 
 /* portada */
 .cta{gap:0}
 .cta__txt{width:100%;text-align:center}
-.portada__beta{position:relative;z-index:1;margin:16px 0 0;font-size:12.5px;
-  color:rgba(159,196,216,.75);line-height:1.9}
+.portada__beta{position:relative;z-index:1;margin:16px 0 0;font-size:12.5px;color:rgba(159,196,216,.75);line-height:1.9}
 .atajo{background:none;border:0;padding:2px 4px;cursor:pointer;font-family:inherit;
   font-size:12.5px;font-weight:700;letter-spacing:.08em}
 .atajo--verde{color:#4ade80;text-shadow:0 0 12px rgba(74,222,128,.65)}
@@ -1498,12 +1393,6 @@ b,strong{color:#fff}
 .atajo:active{filter:brightness(1.25)}
 
 /* las 5 entradas, un color cada una */
-
-
-
-
-
-
 
 /* ---------- Cumplí tu sueño: entra en una pantalla ---------- */
 /* el buscador de fundación, discreto */
@@ -1513,8 +1402,7 @@ b,strong{color:#fff}
 /* ---------- Subastas ---------- */
 .subasta-foto{background-color:rgba(255,255,255,.04) !important;border-radius:18px 18px 0 0}
 .subasta-foto__mini{display:none}
-.subasta-card__cierre{color:var(--celeste) !important;background:transparent !important;
-  border:0 !important;padding:0 !important;margin-top:10px;font-size:12px}
+.subasta-card__cierre{color:var(--celeste) !important;background:transparent !important;border:0 !important;padding:0 !important;margin-top:10px;font-size:12px}
 .subasta-card__cierre b{color:#fff !important}
 .subasta-card__cierre span{color:var(--celeste) !important}
 .subasta-card__cierre.is-urgente{color:#fca5a5 !important}
@@ -1522,42 +1410,35 @@ b,strong{color:#fff}
 .subasta-card__oferta.es-boton{background:transparent !important;margin:0;padding:10px 0}
 .subasta-card__oferta.es-boton:active{background:rgba(103,232,249,.08) !important}
 .subasta-card__productos,.producto-chip{display:none !important}
-.subasta-card__accion .btn{background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399) !important;
-  color:#04222b !important;border:0 !important}
+.subasta-card__accion .btn{background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399) !important;color:#04222b !important;border:0 !important}
 
 /* ---------- perfil ---------- */
 .perfil-head__ctrls{gap:8px}
 
-
 /* ==================== TARJETAS DE ENTRADA ====================
    Superficie pulida: degradado intenso, brillo alto, canto luminoso,
    halo del mismo color y sombra honda para que floten. */
-.menu-principal{display:flex;flex-direction:column;gap:16px;padding:12px 0 28px}
 
 /* La superficie va en el propio botón: sin capas negativas, que rompen
    apenas otro estilo toca el apilado. */
 /* reflejo diagonal, como el de una superficie pulida */
-
-
-
 
 /* ==================== BARRA INFERIOR FLOTANTE ==================== */
 .stats-pantalla{padding-bottom:120px !important}
 
 /* ==================== NOTIFICACIONES ==================== */
 
-
 /* ==================== ENCAJE EN PANTALLA ====================
    Todas las vistas usan el mismo ancho y el mismo margen lateral.
    El menú principal entra completo entre la cabecera y la barra. */
-:root{--lado:16px; --barra:78px}
+:root{--lado:16px;--barra:78px}
 
 .topbar__row,.viewport,.stats-pantalla,.alta,.portada,#vistaLista,#panelIzq{
   max-width:none !important;width:100% !important;margin-left:0 !important;margin-right:0 !important;
   padding-left:16px !important;padding-right:16px !important;box-sizing:border-box}
 
 /* cabecera: sólo el título, centrado */
-.topbar__row{justify-content:center !important;padding-top:12px !important;padding-bottom:12px !important}
+
 .topbar__titulo{font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
   color:#fff;text-shadow:0 0 18px rgba(103,232,249,.4)}
 
@@ -1577,21 +1458,19 @@ body.menu-fijo{overflow:hidden}
 .causa__row b{color:#67e8f9 !important}
 .causa__meta{color:#7dd3fc !important}
 
-
 /* ==================== CIERRE: UNA SOLA RESOLUCIÓN ====================
    Última capa. Fija el lienzo para que ninguna regla heredada del
    escritorio vuelva a angostar la app ni a permitir scroll de página. */
 *,*::before,*::after{box-sizing:border-box}
 html{height:100%;background:#050c17 !important}
-body{margin:0 !important;padding:0 !important;width:100% !important;max-width:100% !important;
-  min-height:100%;background:#050c17 !important;overflow-x:hidden !important}
+body{margin:0 !important;padding:0 !important;width:100% !important;max-width:100% !important;min-height:100%;background:#050c17 !important;overflow-x:hidden !important}
 
 /* portada y menú: exactamente una pantalla, sin desplazamiento */
 body.portada,body.menu-fijo{height:100vh;height:100dvh;overflow:hidden !important;position:fixed;inset:0}
 /* el contenido de la portada se mide en alto de pantalla */
-.portada__logo{width:min(34vw,140px);max-height:19vh}
+
 .portada__marca{margin-top:clamp(10px,2.2vh,22px)}
-.portada__frase{font-size:clamp(11px,1.6vh,14px);}
+.portada__frase{font-size:clamp(11px,1.6vh,14px)}
 .cta{padding:clamp(15px,2.4vh,22px) 26px}
 .cta__txt{font-size:clamp(21px,3.4vh,30px)}
 .portada__pie{margin-top:clamp(8px,1.6vh,16px);font-size:clamp(12px,1.7vh,14px)}
@@ -1602,14 +1481,12 @@ body.portada,body.menu-fijo{height:100vh;height:100dvh;overflow:hidden !importan
 
 /* el menú: la barra inferior es el piso exacto */
 
-
 /* ==================== CIELO DEL MENÚ ====================
    Estrellas quietas que se encandilan, y fugaces que cruzan las tarjetas. */
 #vistaLista{position:relative}
 .chispas{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:20px}
 .chispas{z-index:3}
-.titila{position:absolute;width:2.5px;height:2.5px;border-radius:50%;background:#fff;opacity:.22;
-  animation:destello 8s ease-in-out infinite}
+.titila{position:absolute;border-radius:50%;background:#fff;animation:destello 8s ease-in-out infinite}
 @keyframes destello{
   0%,100%{opacity:.18;transform:scale(1);box-shadow:none}
   5%{opacity:1;transform:scale(2.4);box-shadow:0 0 10px 3px rgba(180,240,255,.85)}
@@ -1619,7 +1496,6 @@ body.portada,body.menu-fijo{height:100vh;height:100dvh;overflow:hidden !importan
   background:linear-gradient(90deg,transparent,rgba(190,245,255,.95));
   box-shadow:0 0 10px rgba(160,235,255,.9)}
 .chispas .fugaz.is-on{animation:cruza var(--dur,1.4s) ease-in forwards}
-
 
 /* ---- Cumplí tu sueño: tarjeta de vidrio y selector en tiras ---- */
 
@@ -1636,7 +1512,6 @@ body.portada,body.menu-fijo{height:100vh;height:100dvh;overflow:hidden !importan
   box-shadow:0 0 20px rgba(45,212,191,.28)}
 .fund-tira.is-on .fund-tira__n{color:#5eead4;font-weight:600}
 
-
 /* ==================== REPARTO DEL ESPACIO ====================
    El menú se resuelve con una grilla de cinco filas iguales:
    así no puede quedar aire sobrante abajo. */
@@ -1646,19 +1521,16 @@ body.portada,body.menu-fijo{height:100vh;height:100dvh;overflow:hidden !importan
 body.sin-scroll{overflow:hidden !important;position:fixed;inset:0}
 #screen-deseos.is-active,#screen-subastas.is-active,#screen-eventos.is-active{
   height:100vh;height:100dvh;display:flex;flex-direction:column}
-#screen-deseos .stats-pantalla,#screen-subastas .stats-pantalla,#screen-eventos .stats-pantalla{
-  flex:1;min-height:0;display:flex !important;flex-direction:column;
-  padding-bottom:calc(var(--nav-alto) + 10px) !important}
+#screen-deseos .stats-pantalla,#screen-subastas .stats-pantalla,#screen-eventos .stats-pantalla{flex:1;min-height:0;padding-bottom:calc(var(--nav-alto) + 10px) !important}
 #screen-deseos .suenos-lista,#screen-subastas .subastas-grid{flex:1;min-height:0;align-items:stretch}
 #screen-eventos .carrusel{flex:1;min-height:0}
-#screen-eventos .carrusel__viewport{height:100%}
+
 #screen-eventos .carrusel__slide{display:flex}
-#screen-eventos .ecard{width:100%;display:flex;flex-direction:column}
+#screen-eventos .ecard{display:flex;flex-direction:column}
 #screen-eventos .ecard__img{flex:1;min-height:110px;height:auto}
 
 /* ==================== FORMULARIO EN UN SOLO RECTÁNGULO ==================== */
-.alta__form{background:transparent !important;border:0 !important;padding:0 !important;
-  box-shadow:none !important}
+.alta__form{background:transparent !important;border:0 !important;padding:0 !important;box-shadow:none !important}
 .alta__intro{margin-bottom:10px}
 .field--fund{position:relative}
 .busca-fund{width:100%;background:rgba(255,255,255,.05) !important;
@@ -1678,8 +1550,7 @@ body.sin-scroll{overflow:hidden !important;position:fixed;inset:0}
 .fund-res__vacio{font-size:12.5px;color:var(--celeste);margin:6px 2px}
 
 /* ==================== NOTIFICACIONES ==================== */
-#screen-avisos #listaAvisos{display:flex;flex-direction:column;gap:12px}
-
+#screen-avisos #listaAvisos{flex-direction:column}
 
 /* ---- perfil ordenado ---- */
 #panelIzq .panel__title{margin:6px 0 14px}
@@ -1698,25 +1569,21 @@ body.sin-scroll{overflow:hidden !important;position:fixed;inset:0}
 .apoyo__baja{margin-top:12px;width:100%}
 .cerrar-zona{margin:20px 0 0}
 
-
 /* ==================== MENÚ: OCUPA TODO EL ALTO ====================
    La cadena de alturas se cortaba porque .panels estaba forzado a
    display:block. Acá se restablece sólo para la página principal. */
 /* cada tarjeta llena su fila, sin altura mínima que la frene */
-
 
 /* ==================== MENÚ ANCLADO ====================
    En vez de heredar altura por una cadena de contenedores (frágil, y ya
    nos falló dos veces), el menú se ancla al hueco real entre la cabecera
    y la barra inferior. El alto queda definido, no calculado por herencia. */
 
-
 /* el campo de usuario cambia de rol al deslizarlo */
 @keyframes giraRol{
   0%{opacity:0;transform:translateX(14px)}
   100%{opacity:1;transform:none}
 }
-
 
 /* ==================== CORAZÓN Y PERFIL: TODO A LA VISTA ====================
    La ventana no se mueve; si el contenido sobra, se desplaza sólo el
@@ -1733,12 +1600,10 @@ body.sin-scroll{overflow:hidden !important;position:fixed;inset:0}
 #screen-apoyo .subhead{margin:16px 0 8px}
 
 /* apoyos mensuales, en una línea */
-.fila-apoyo{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.05);
-  border:1px solid rgba(103,232,249,.16);border-radius:13px;padding:9px 13px}
+.fila-apoyo{display:flex;gap:11px;background:rgba(255,255,255,.05);border:1px solid rgba(103,232,249,.16);border-radius:13px}
 .fila-apoyo .avatar{width:28px;height:28px;font-size:10px;flex:none}
 .fila-apoyo__n{flex:1;min-width:0;font-size:14px;font-weight:600;cursor:pointer;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.fila-apoyo__m{flex:none;font-size:14px;font-weight:600;color:var(--turq)}
 
 /* historial simple: fecha, destino, monto */
 .hist-lista{display:flex;flex-direction:column}
@@ -1756,7 +1621,6 @@ body.sin-scroll{overflow:hidden !important;position:fixed;inset:0}
 #panelIzq{flex-direction:column;min-height:0}
 body.perfil-fijo{overflow:hidden}
 
-
 /* modal a pantalla completa, para el registro */
 .modal__box--pleno{max-width:100% !important;width:100% !important;height:100vh !important;height:100dvh !important;
   max-height:100vh !important;max-height:100dvh !important;border-radius:0 !important;display:flex;flex-direction:column;
@@ -1766,7 +1630,6 @@ body.perfil-fijo{overflow:hidden}
   border-top:1px solid rgba(255,255,255,.1);background:transparent}
 .modal__box--pleno .modal__actions .btn{flex:1;min-height:50px}
 .modal__actions{background:transparent !important}
-
 
 /* ==================== PERFIL Y ESTADÍSTICAS: PANTALLA QUIETA ==================== */
 body.perfil-quieto{overflow:hidden !important;position:fixed;inset:0}
@@ -1792,18 +1655,15 @@ body.perfil-quieto .panel-donar{margin-top:12px}
 body.perfil-quieto .cerrar-zona{margin:18px 0 0}
 
 /* estadísticas: cabecera fija y el detalle desplazándose adentro */
-#screen-stats.is-active{height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
-#screen-stats .stats-pantalla{overflow-y:auto;-webkit-overflow-scrolling:touch;
-  padding-bottom:calc(24px + env(safe-area-inset-bottom)) !important;scrollbar-width:none;}
+#screen-stats.is-active{height:100vh;height:100dvh}
+#screen-stats .stats-pantalla{overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(24px + env(safe-area-inset-bottom)) !important;scrollbar-width:none}
 #screen-stats .stats-pantalla::-webkit-scrollbar{display:none}
-
 
 /* Cumplí tu sueño: pantalla quieta, todo a la vista */
 
 /* ==================== ESTADÍSTICAS: TODO EN UNA PANTALLA ==================== */
 #screen-stats.is-active{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
-#screen-stats .stats-pantalla{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;
-  padding:10px 16px calc(14px + env(safe-area-inset-bottom)) !important}
+#screen-stats .stats-pantalla{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;padding:10px 16px calc(14px + env(safe-area-inset-bottom)) !important}
 #screen-stats h2{font-size:20px;margin:0 0 2px}
 #screen-stats .lede{display:none}
 .stats-usuario{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;
@@ -1818,7 +1678,6 @@ body.perfil-quieto .cerrar-zona{margin:18px 0 0}
 /* los desgloses y gráficos se ven en su propio detalle, no acá */
 .stats-usuario .statc__toggle,.stats-usuario .statc__cuerpo{display:none !important}
 
-
 /* ==================== PLACA DEL MENÚ ====================
    Capa propia, colgada del cuerpo y no de la cadena de contenedores.
    Se ubica sola entre la cabecera y la barra: nada de lo que pase
@@ -1830,26 +1689,19 @@ body.menu-fijo .placa{display:flex;flex-direction:column;pointer-events:auto}
 .placa .menu-principal{flex:1;min-height:0;display:flex;flex-direction:column;
   gap:12px;padding:0;margin:0}
 
-
 /* ---- centro de notificaciones: cinco entran cómodas ---- */
 #screen-avisos #listaAvisos{gap:9px}
 #screen-avisos h2{font-size:20px;margin-bottom:4px}
 
 /* ---- tocar la foto abre el selector ---- */
 .avatar-edit{cursor:pointer;position:relative}
-.avatar-edit::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;
-  background:linear-gradient(transparent, rgba(0,0,0,.5));border-radius:0 0 50% 50%}
-
+.avatar-edit::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(transparent, rgba(0,0,0,.5));border-radius:0 0 50% 50%}
 
 /* ==================== PLACA DE SUEÑOS ====================
    El listado se despega de la cadena de contenedores y se ancla entre la
    cabecera y la barra, igual que el menú principal. */
-#screen-deseos .stats-pantalla,#screen-subastas .stats-pantalla,#screen-eventos .stats-pantalla{
-  position:fixed;left:0;right:0;
-  top:88px;bottom:calc(var(--nav-alto) + 4px);
-  z-index:5;padding:0 16px !important;display:flex !important;flex-direction:column;
-  overflow:hidden}
-#screen-deseos .buscador-wrap{flex:none;margin-bottom:8px}
+#screen-deseos .stats-pantalla,#screen-subastas .stats-pantalla,#screen-eventos .stats-pantalla{position:fixed;left:0;right:0;top:88px;bottom:calc(var(--nav-alto) + 4px);z-index:5;padding:0 16px !important;display:flex !important;flex-direction:column;overflow:hidden}
+#screen-deseos .buscador-wrap{flex:none}
 #screen-deseos h2,#screen-subastas h2,#screen-eventos h2{flex:none;font-size:18px;margin:0 0 6px}
 
 /* el carrusel ocupa el alto disponible y la tarjeta se estira dentro */
@@ -1858,7 +1710,6 @@ body.menu-fijo .placa{display:flex;flex-direction:column;pointer-events:auto}
 #screen-eventos .carrusel__viewport{height:100%}
 #screen-subastas .subasta-foto,#screen-eventos .ecard__img{flex:1;min-height:110px;height:auto}
 #screen-subastas .subastas-nav{flex:none;margin-top:10px}
-
 
 /* ==================== TARJETAS COMPLETAS A LA VISTA ====================
    Nada de scroll interno ni recortes: la tarjeta reparte su alto entre
@@ -1871,10 +1722,8 @@ body.menu-fijo .placa{display:flex;flex-direction:column;pointer-events:auto}
 /* ---- Subastas solidarias ---- */
 #screen-subastas .subasta-card{height:100%;display:flex;flex-direction:column;overflow:hidden}
 #screen-subastas .subasta-foto{flex:0 0 34%;min-height:0;height:auto}
-#screen-subastas .subasta-card__body{flex:1;min-height:0;display:flex;flex-direction:column;
-  padding:12px 15px 14px;gap:0;overflow:hidden}
-#screen-subastas .subasta-card__titulo{flex:none;font-size:16px;line-height:1.22;margin:0;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#screen-subastas .subasta-card__body{flex:1;min-height:0;display:flex;flex-direction:column;padding:12px 15px 14px;gap:0;overflow:hidden}
+#screen-subastas .subasta-card__titulo{flex:none;font-size:16px;line-height:1.22;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 #screen-subastas .subasta-card__oferta{flex:none;margin:8px 0 0;padding:6px 0}
 #screen-subastas .subasta-card__label{font-size:9.5px;letter-spacing:.12em}
 #screen-subastas .subasta-card__precio{font-size:clamp(21px,3.1vh,27px);line-height:1.05}
@@ -1892,34 +1741,23 @@ body.menu-fijo .placa{display:flex;flex-direction:column;pointer-events:auto}
   #screen-subastas .subasta-foto{flex:0 0 26%}
 }
 
-
 /* Aportar desde otra faceta: títulos en negro. Para que se lean, la caja
    pasa a fondo claro; en oscuro el negro sería invisible. */
 
-
 /* bajada de la portada */
-.portada__bajada{position:relative;z-index:1;margin:clamp(10px,2vh,20px) auto 0;max-width:26ch;
-  font-size:clamp(18px,2.9vh,24px);line-height:1.35;color:rgba(255,255,255,.86);font-weight:300;
-  text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.portada__bajada{position:relative;z-index:1;margin:clamp(10px,2vh,20px) auto 0;font-size:clamp(18px,2.9vh,24px);line-height:1.35;color:rgba(255,255,255,.86);font-weight:300;text-shadow:0 1px 12px rgba(0,0,0,.4)}
 .portada__bajada b{font-weight:700}
 .portada__bajada .es-cielo{color:#67e8f9;text-shadow:0 0 14px rgba(103,232,249,.55)}
 .portada__bajada .es-verde{color:#4ade80;text-shadow:0 0 14px rgba(74,222,128,.55)}
 
-
 /* El aviso emergente se escondía sólo desplazándose, y como estaba a 26px
    del borde, su canto superior asomaba como un arco bajo la barra.
    Ahora en reposo está apagado y fuera de alcance. */
-.toast{opacity:0;visibility:hidden;pointer-events:none;
-  transform:translate(-50%,220%) !important;
-  transition:transform .28s cubic-bezier(.2,.8,.3,1), opacity .2s, visibility .2s}
-.toast.is-on{opacity:1;visibility:visible;pointer-events:auto;
-  transform:translate(-50%,0) !important;
-  bottom:calc(var(--nav-alto) + 16px)}
-
+.toast{opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,220%) !important;transition:transform .28s cubic-bezier(.2,.8,.3,1), opacity .2s, visibility .2s}
+.toast.is-on{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0) !important;bottom:calc(var(--nav-alto) + 16px)}
 
 /* ==================== CABECERA DE LA PÁGINA PRINCIPAL ==================== */
-.topbar__row{justify-content:flex-start !important;gap:12px;align-items:center;
-  padding-top:10px !important;padding-bottom:10px !important}
+.topbar__row{justify-content:flex-start !important;gap:12px;align-items:center;padding-top:10px !important;padding-bottom:10px !important}
 .cab__logo{width:46px;height:46px;object-fit:contain;flex:none;
   filter:drop-shadow(0 0 12px rgba(103,232,249,.45))}
 .cab__texto{flex:1;min-width:0;text-align:left}
@@ -1943,41 +1781,23 @@ body.menu-fijo .placa{display:flex;flex-direction:column;pointer-events:auto}
 .nav5__b{grid-template-rows:auto auto;gap:3px;align-content:center}
 .nav5__b svg{width:24px;height:24px}
 .nav5__txt{font-size:10px;letter-spacing:.01em;color:inherit}
-.nav5__punto{top:8px;right:calc(50% - 17px)}
-
 
 /* Cumplí tu sueño: el título ya está en la cabecera; el de abajo se va
    y su espacio lo aprovecha la tarjeta de campos. */
 
-
 /* ==================== CIELO CON MÁS VIDA ====================
    Más estrellas y algunas que se encandilan a destiempo. */
 body.noche .cielo-fondo{opacity:1}
-.cielo-fondo::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(1.6px 1.6px at 12% 16%, rgba(255,255,255,.85), transparent),
-    radial-gradient(1.2px 1.2px at 27% 62%, rgba(200,240,255,.7), transparent),
-    radial-gradient(1.8px 1.8px at 44% 24%, rgba(255,255,255,.9), transparent),
-    radial-gradient(1.2px 1.2px at 58% 78%, rgba(200,240,255,.65), transparent),
-    radial-gradient(1.5px 1.5px at 73% 34%, rgba(255,255,255,.8), transparent),
-    radial-gradient(1.2px 1.2px at 86% 68%, rgba(190,235,255,.7), transparent),
-    radial-gradient(1.7px 1.7px at 93% 18%, rgba(255,255,255,.85), transparent),
-    radial-gradient(1.2px 1.2px at 34% 91%, rgba(255,255,255,.7), transparent),
-    radial-gradient(1.4px 1.4px at 66% 8%, rgba(210,245,255,.75), transparent),
-    radial-gradient(1.1px 1.1px at 8% 44%, rgba(255,255,255,.6), transparent),
-    radial-gradient(1.3px 1.3px at 51% 47%, rgba(255,255,255,.7), transparent),
-    radial-gradient(1.1px 1.1px at 79% 88%, rgba(200,240,255,.6), transparent)}
-.titila{width:3.4px;height:3.4px;opacity:.3}
+.cielo-fondo::after{content:"";position:absolute;inset:0;pointer-events:none}
+
 @keyframes destello{
   0%,100%{opacity:.25;transform:scale(1);box-shadow:none}
   5%{opacity:1;transform:scale(3);box-shadow:0 0 16px 5px rgba(200,245,255,.95)}
   15%{opacity:.25;transform:scale(1);box-shadow:none}
 }
 
-
 /* El número arrancaba encima del signo $: le damos su propio espacio. */
 .pesos__signo{left:16px;font-size:15px}
-
 
 /* Cumplí tu sueño: un solo botón, sin franja de fondo desfasada. */
 .btn--publicar{width:100%;min-height:56px;font-size:17px;font-weight:700;letter-spacing:.01em;
@@ -1988,7 +1808,6 @@ body.noche .cielo-fondo{opacity:1}
 /* Otros sueños por cumplir: la tarjeta ocupa todo el alto disponible. */
 #screen-subastas .stats-pantalla{padding-top:6px !important}
 #screen-subastas .subastas-grid{flex:1;min-height:0;padding-bottom:0}
-
 
 /* La portada no se desplaza: en pantallas cortas todo se achica para entrar. */
 @media (max-height:720px){
@@ -2006,7 +1825,6 @@ body.noche .cielo-fondo{opacity:1}
   .portada__m1,.portada__m2{font-size:clamp(22px,5vh,32px)}
   .portada__bajada{font-size:13px}
 }
-
 
 /* ==================== PORTADA: DIFUMINADO SIN CORTES ====================
    Los halos vivían dentro de una caja recortada y se veía el borde duro.
@@ -2079,37 +1897,28 @@ body.noche .cielo-fondo{opacity:1}
 
 #panelIzq .buscador-cuentas{margin-top:22px}
 
-
 /* ==================== OTROS SUEÑOS POR CUMPLIR ==================== */
-.cab-seccion b{display:block;font-size:14px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:#fff;line-height:1.1}
+.cab-seccion b{display:block;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#fff;line-height:1.1}
 .cab-seccion i{display:flex;align-items:center;gap:7px;margin-top:4px;font-style:normal;
   font-size:12.5px;color:rgba(159,196,216,.85)}
 
-.lote{height:100%;display:flex;flex-direction:column;overflow:hidden;border-radius:22px;
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  border:1px solid rgba(103,232,249,.22);
-  box-shadow:0 18px 44px rgba(2,10,20,.5)}
-.lote__foto{position:relative;flex:0 0 30%;min-height:0;background-size:cover;background-position:center;
-  background-color:rgba(255,255,255,.05)}
+.lote{display:flex;flex-direction:column;overflow:hidden;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(103,232,249,.22);box-shadow:0 18px 44px rgba(2,10,20,.5)}
+.lote__foto{position:relative;min-height:0;background-size:cover;background-position:center;background-color:rgba(255,255,255,.05)}
 .lote__fav{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;
   background:rgba(6,17,31,.72);border:1px solid rgba(255,255,255,.16);color:#fff;
   display:grid;place-items:center;cursor:pointer}
 .lote__fav svg{width:19px;height:19px}
 .lote__fav:active{color:#5eead4;border-color:rgba(94,234,212,.6)}
 
-.lote__cuerpo{flex:1;min-height:0;display:flex;flex-direction:column;padding:14px 16px 14px;gap:0}
-.lote__titulo{margin:0;font-size:clamp(17px,2.5vh,21px);font-weight:700;line-height:1.2;color:#fff;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lote__cuerpo{flex:1;min-height:0;display:flex;flex-direction:column;gap:0}
+.lote__titulo{margin:0;font-weight:700;color:#fff;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
 .lote__rotulo{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
   color:rgba(94,234,212,.85);font-weight:600}
-.lote__cifras{display:flex;align-items:flex-start;gap:12px;margin-top:10px}
+.lote__cifras{display:flex;align-items:flex-start}
 .lote__precio{flex:1;min-width:0}
-.lote__monto{display:block;margin-top:2px;font-size:clamp(23px,3.4vh,30px);font-weight:700;color:#2dd4bf;
-  letter-spacing:-.02em;line-height:1.05;text-shadow:0 0 20px rgba(45,212,191,.45)}
+.lote__monto{display:block;font-weight:700;color:#2dd4bf;line-height:1.05;text-shadow:0 0 20px rgba(45,212,191,.45)}
 
-.reloj{display:flex;align-items:center;gap:11px;margin-top:11px;padding:10px 12px;border-radius:15px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)}
+.reloj{display:flex;padding:10px 12px;border-radius:15px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)}
 .reloj__ico{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
   border:1px solid rgba(94,234,212,.45);color:#5eead4}
 .reloj__ico svg{width:19px;height:19px}
@@ -2120,43 +1929,34 @@ body.noche .cielo-fondo{opacity:1}
   font-variant-numeric:tabular-nums}
 .reloj__u span{display:block;margin-top:2px;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(159,196,216,.75)}
-.reloj__fecha{flex:none;display:flex;align-items:center;gap:5px;font-size:11px;
-  color:rgba(159,196,216,.85);max-width:74px;line-height:1.15}
+.reloj__fecha{flex:none;display:flex;align-items:center;gap:5px;color:rgba(159,196,216,.85);line-height:1.15}
 .reloj__fecha svg{width:14px;height:14px;flex:none}
 .reloj.es-urgente .reloj__u b{color:#fca5a5}
 .reloj.es-urgente .reloj__ico{border-color:rgba(252,165,165,.6);color:#fca5a5}
 
-.lote__fund{display:flex;align-items:center;gap:11px;margin-top:11px}
-.lote__fund .avatar{width:44px;height:44px;font-size:14px;flex:none;background-color:#fff}
+.lote__fund{display:flex;gap:11px}
+.lote__fund .avatar{font-size:14px;flex:none;background-color:#fff}
 .lote__fund-t{flex:1;min-width:0}
-.lote__fund-t b{display:block;font-size:15px;font-weight:700;color:#fff;line-height:1.2;cursor:pointer}
+.lote__fund-t b{display:block;font-weight:700;color:#fff;line-height:1.2;cursor:pointer}
 
-.lote__ofertar{margin-top:auto;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:12px;
-  width:100%;min-height:54px;border:0;border-radius:16px;cursor:pointer;font-family:inherit;
-  font-size:16px;font-weight:700;letter-spacing:.02em;color:#04222b;
-  background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399);
-  box-shadow:0 0 26px rgba(45,212,191,.4), inset 0 1px 0 rgba(255,255,255,.5)}
-.lote__ofertar svg{width:20px;height:20px}
+.lote__ofertar{letter-spacing:.08em;display:flex;align-items:center;justify-content:center;width:100%;border:0;border-radius:16px;cursor:pointer;font-family:inherit;font-weight:700;letter-spacing:.02em;color:#04222b;background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399);box-shadow:0 0 26px rgba(45,212,191,.4), inset 0 1px 0 rgba(255,255,255,.5)}
+
 .lote__ofertar:active{filter:brightness(1.1)}
-
 
 /* ==================== CUMPLÍ TU SUEÑO ====================
    La tarjeta ocupa todo el hueco entre la cabecera y el botón. */
 /* el campo del texto se queda con todo lo que sobre */
 
-
 /* ==================== SUBASTAS ACTIVAS: NADA CORTADO ==================== */
-#screen-deseos .suenos-lista{align-items:stretch}
-.sueno{max-height:100%;overflow:hidden}
-.sueno__monto{font-size:clamp(26px,4.4vh,40px);white-space:nowrap}
-.sueno__btn{font-size:clamp(14.5px,3.8vw,17px);white-space:nowrap;padding:0 14px}
+
+.sueno__monto{white-space:nowrap}
+.sueno__btn{white-space:nowrap;padding:0 14px}
 @media (max-height:740px){
   .sueno{padding:15px 15px 13px}
   .sueno__ava{width:44px;height:44px}
   .sueno__titulo{font-size:clamp(18px,2.6vh,22px)}
   .sueno__btn{min-height:50px}
 }
-
 
 /* la foto del lote se abre en grande */
 .lote__foto.es-tocable{cursor:zoom-in}
@@ -2177,52 +1977,33 @@ body.noche .cielo-fondo{opacity:1}
 /* el cronómetro: cuenta arriba, fecha abajo */
 .reloj{flex-direction:column;align-items:stretch;gap:8px}
 .reloj__fila{display:flex;align-items:center;gap:11px}
-.reloj__fecha{justify-content:center;max-width:none;padding-top:8px;
-  border-top:1px solid rgba(255,255,255,.1);font-size:11.5px}
-
+.reloj__fecha{justify-content:center;max-width:none;padding-top:8px;border-top:1px solid rgba(255,255,255,.1);font-size:11.5px}
 
 /* ==================== AJUSTES DE ESPACIO ====================
    Cumplí tu sueño: la caja de texto crece y el botón baja al ras del menú. */
 
 /* Subastas activas: del buscador al menú, sin aire de más. */
-#screen-deseos .stats-pantalla{padding-bottom:calc(var(--nav-alto) + 6px) !important}
+
 #screen-deseos .buscador-wrap{margin-bottom:8px}
-#screen-deseos .suenos-lista{margin-top:0;padding-bottom:0}
+#screen-deseos .suenos-lista{margin-top:0}
 
 /* Otros sueños: el botón, algo más contenido. */
 .lote__ofertar{min-height:48px;font-size:15px;gap:10px}
 .lote__ofertar svg{width:18px;height:18px}
 
-
 /* ==================== SUBASTAS ACTIVAS: LA TARJETA ENTRA ENTERA ====================
    Todo se mide contra el alto de pantalla, y la cita es lo único elástico:
    cede líneas para que el botón y el pie nunca queden bajo el menú. */
-#screen-deseos .stats-pantalla{padding-bottom:0 !important;
-  bottom:calc(var(--nav-alto) + 8px) !important}
-#screen-deseos .suenos-lista{padding-bottom:0;align-items:stretch}
-.sueno{height:100%;max-height:100%;padding:clamp(12px,1.8vh,17px);overflow:hidden}
+#screen-deseos .stats-pantalla{padding-bottom:0 !important;bottom:calc(var(--nav-alto) + 8px) !important}
+#screen-deseos .suenos-lista{padding-bottom:0}
 
-.sueno__cab{gap:10px}
-.sueno__ava{width:clamp(40px,5.6vh,50px);height:clamp(40px,5.6vh,50px)}
-.sueno__quien b{font-size:clamp(15px,2.1vh,17px)}
-.sueno__quien span{font-size:clamp(11.5px,1.6vh,13px)}
+.sueno__titulo{margin-top:clamp(8px,1.4vh,14px)}
 
-.sueno__titulo{margin-top:clamp(8px,1.4vh,14px);font-size:clamp(17px,2.6vh,24px);line-height:1.16}
-
-.sueno__comilla{font-size:clamp(24px,3.4vh,32px)}
-
-.sueno__rotulo{font-size:clamp(9px,1.3vh,10.5px)}
-.sueno__monto{margin-top:2px;font-size:clamp(25px,4.2vh,38px)}
-
-.sueno__btn{margin-top:clamp(9px,1.4vh,14px);min-height:clamp(44px,6vh,52px);
-  font-size:clamp(14px,2vh,16px)}
-.sueno__pie{margin-top:clamp(6px,1vh,10px);font-size:clamp(10.5px,1.4vh,12px)}
-.sueno__pie svg{width:14px;height:14px}
+.sueno__pie{margin-top:clamp(6px,1vh,10px)}
 
 /* si la pantalla es corta, la cita cede primero */
 @media (max-height:780px){ .sueno__cita p{-webkit-line-clamp:3} }
 @media (max-height:680px){ .sueno__cita p{-webkit-line-clamp:2} }
-
 
 /* Subastas activas: la tarjeta arranca pegada al buscador. */
 #screen-deseos .stats-pantalla{padding-top:0 !important}
@@ -2230,8 +2011,6 @@ body.noche .cielo-fondo{opacity:1}
 #screen-deseos .buscador input{padding-top:12px !important;padding-bottom:12px !important}
 #screen-deseos .suenos-lista{margin:0 !important;padding:0 !important;flex:none}
 #screen-subastas .subastas-grid,#screen-eventos .carrusel{margin:0 !important;flex:none}
-.sueno{height:100%;max-height:100%}
-
 
 /* ==================== BARRA SEGÚN EL ROL ====================
    La fundación no navega como donante: administra lo suyo. */
@@ -2249,13 +2028,11 @@ body.es-fundacion #screen-app{height:auto;display:block;overflow:visible}
 body.es-fundacion .viewport{padding-bottom:calc(var(--nav-alto) + 20px) !important}
 body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 
-
 /* Todas las tarjetas miden lo mismo y el pie queda a dos píxeles del borde:
    con alto libre, cada una tomaba su propio tamaño y sólo la primera calzaba. */
 .sueno{height:100% !important;max-height:100% !important;padding-bottom:1px !important}
 .sueno__btn{margin-bottom:4px}
 #screen-deseos .suenos-lista{align-items:stretch}
-
 
 /* ==================== GARANTÍA PARA SUBASTAR ==================== */
 .garantia{border-radius:16px;padding:14px 16px;
@@ -2276,10 +2053,8 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .medio.is-on{border-color:rgba(94,234,212,.75);background:rgba(45,212,191,.14)}
 .medio.is-on .medio__ico{color:#5eead4;background:rgba(45,212,191,.2)}
 
-
 /* ==================== SUBASTAS DE LA FUNDACIÓN ==================== */
-#screen-fsubastas .stats-pantalla{padding:14px 16px calc(var(--nav-alto) + 20px) !important;
-  display:block !important;overflow-y:auto}
+
 .crear-subasta{display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;
   font-family:inherit;padding:18px;border-radius:20px;border:0;color:#04222b;
   background:linear-gradient(105deg,#22d3ee,#2dd4bf 52%,#34d399);
@@ -2292,51 +2067,36 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .crear-subasta__t span{display:block;margin-top:3px;font-size:12.5px;opacity:.8}
 #screen-fsubastas .perfil-rotulo{margin-top:22px}
 
-
 /* ==================== OTROS SUEÑOS: CAJAS PAREJAS ==================== */
 #screen-subastas .subastas-grid{align-items:flex-start}
 .lote{height:100% !important;max-height:100% !important;padding-bottom:2px}
-.lote__cuerpo{padding:14px 15px 12px}
+
 /* el bloque de la fundación sube y su logo también */
-.lote__fund{margin-top:4px;align-items:center}
+.lote__fund{align-items:center}
 .lote__fund .avatar{width:48px;height:48px;margin-top:-6px}
-.lote__fund-t b{font-size:15.5px}
-.reloj{margin-top:9px}
+
 .lote__ofertar{margin-top:10px}
 
 /* ==================== FUNDACIONES: TARJETAS PAREJAS Y GRANDES ==================== */
 #screen-fundaciones .carrusel__slide{display:flex;align-items:stretch}
-#screen-fundaciones .card{height:100%;display:flex;flex-direction:column;width:100%}
+#screen-fundaciones .card{width:100%}
 #screen-fundaciones .carrusel__viewport{padding:6px 0}
 #screen-fundaciones .carrusel__slide{flex-basis:88%}
 
-
 /* la garantía, en pantalla propia */
-#screen-garantia.is-active{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
-#screen-garantia .stats-pantalla{flex:1;min-height:0;overflow-y:auto;
-  padding:14px 16px 8px !important;display:block !important;position:static !important;height:auto !important}
-.gar-pie{flex:none;padding:10px 16px calc(10px + env(safe-area-inset-bottom));
-  border-top:1px solid rgba(255,255,255,.1)}
+#screen-garantia.is-active{height:100vh;height:100dvh}
+#screen-garantia .stats-pantalla{overflow-y:auto;position:static !important;height:auto !important}
+
 .gar-pie .btn{width:100%}
 
-
 /* Subastas activas: el texto del sueño cede tamaño y el resto crece. */
-.sueno__comilla{font-size:clamp(20px,2.6vh,26px)}
-.sueno__ava{width:clamp(46px,6.4vh,58px);height:clamp(46px,6.4vh,58px)}
-.sueno__quien b{font-size:clamp(16px,2.3vh,19px)}
-.sueno__quien span{font-size:clamp(12px,1.7vh,14px)}
-.sueno__titulo{font-size:clamp(19px,3vh,27px)}
-.sueno__monto{font-size:clamp(28px,4.8vh,42px)}
-.sueno__btn{min-height:clamp(48px,6.6vh,56px);font-size:clamp(15px,2.2vh,17px)}
 
 /* Otros sueños: caja más angosta y la última oferta siempre en una línea. */
 .subastas-grid > .lote{flex:0 0 74%}
 .lote__monto{font-size:clamp(19px,2.7vh,25px);white-space:nowrap;letter-spacing:-.03em}
 .lote__cifras{gap:10px}
 
-
 /* la pantalla de registrar subasta */
-
 
 /* ==================== OTROS SUEÑOS: EL TÍTULO SE VE ====================
    Sin el bloque de "va ganando", la foto cede lugar y el título respira. */
@@ -2351,15 +2111,11 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 #screen-subastas .reloj{margin-top:11px}
 #screen-subastas .lote__fund{margin-top:11px}
 
-
 /* ==================== REGISTRAR SUBASTA: TODO EN UNA PANTALLA ====================
    Cada bloque se mide contra el alto real: nada de desplazarse. */
 #screen-garantia.is-active{height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
 #screen-garantia .alta__top{flex:none;padding-top:8px !important;padding-bottom:8px !important}
-#screen-garantia .stats-pantalla{flex:1;min-height:0;overflow:hidden !important;
-  display:flex !important;flex-direction:column;gap:0;padding:8px 16px 4px !important}
-
-
+#screen-garantia .stats-pantalla{flex:1;min-height:0;overflow:hidden !important;display:flex !important;flex-direction:column;gap:0}
 
 #screen-garantia .paso-sep{flex:none;margin:clamp(7px,1.1vh,11px) 0 clamp(5px,.8vh,8px) !important;
   font-size:clamp(9px,1.3vh,10.5px)}
@@ -2378,16 +2134,10 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 #screen-garantia .field__hint{font-size:clamp(9.5px,1.3vh,10.5px);margin-top:3px}
 #screen-garantia .grid2{gap:7px}
 
-.gar-pie{flex:none;padding:8px 16px calc(8px + env(safe-area-inset-bottom))}
-.btn--confirmar{width:100%;min-height:clamp(46px,6.4vh,54px);border-radius:16px;
-  font-size:clamp(14px,2vh,16px);font-weight:700;letter-spacing:.09em;
-  background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399) !important;color:#04222b !important;
-  box-shadow:0 0 30px rgba(45,212,191,.45), inset 0 1px 0 rgba(255,255,255,.5) !important}
+.btn--confirmar{width:100%;min-height:clamp(46px,6.4vh,54px);border-radius:16px;font-size:clamp(14px,2vh,16px);font-weight:700;letter-spacing:.09em;background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399) !important;color:#04222b !important;box-shadow:0 0 30px rgba(45,212,191,.45), inset 0 1px 0 rgba(255,255,255,.5) !important}
 .btn--confirmar:active{filter:brightness(1.1)}
 
-
 /* vencimiento y código: campos cortos, en la misma línea */
-
 
 /* ==================== VOLVER · UN SOLO BOTÓN ====================
    Flecha en un disco chico con el degradado del logo, igual en toda la app. */
@@ -2397,7 +2147,6 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
   box-shadow:0 0 16px rgba(45,212,191,.4), inset 0 1px 0 rgba(255,255,255,.45)}
 .volver-ico svg{width:19px;height:19px}
 .volver-ico:active{transform:scale(.92);filter:brightness(1.1)}
-
 
 /* ==================== HACER OFERTA ==================== */
 .of-top{flex:none;display:grid;grid-template-columns:38px 1fr 38px;align-items:center;
@@ -2411,8 +2160,7 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .of-titulo{text-align:center;font-size:17px;font-weight:700;color:#fff}
 
 #screen-garantia .stats-pantalla{padding:12px 16px 6px !important}
-.of-rot{margin:clamp(9px,1.5vh,15px) 2px clamp(5px,.9vh,9px);font-size:clamp(9.5px,1.3vh,11px);
-  letter-spacing:.18em;text-transform:uppercase;color:#5eead4;font-weight:700}
+.of-rot{font-size:clamp(9.5px,1.3vh,11px);letter-spacing:.18em;text-transform:uppercase;color:#5eead4;font-weight:700}
 
 /* el lote */
 
@@ -2425,19 +2173,14 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
 .of-paso svg{width:46%;height:46%}
 .of-paso:active{background:rgba(45,212,191,.2)}
-.of-monto__v{flex:1;text-align:center;font-size:clamp(26px,4.4vh,38px);font-weight:700;color:#fff;
-  letter-spacing:-.02em;white-space:nowrap}
+.of-monto__v{flex:1;text-align:center;font-size:clamp(26px,4.4vh,38px);font-weight:700;color:#fff;letter-spacing:-.02em;white-space:nowrap}
 .of-monto__v em{font-style:normal;margin-right:6px;font-weight:600;opacity:.9}
-.of-supera{display:flex;align-items:center;justify-content:center;gap:8px;margin:clamp(7px,1vh,11px) auto 0;
-  width:fit-content;padding:6px 15px;border-radius:999px;
-  border:1px solid rgba(94,234,212,.35);background:rgba(45,212,191,.08);
-  font-size:clamp(11px,1.5vh,12.5px);color:rgba(255,255,255,.85)}
+.of-supera{display:flex;align-items:center;justify-content:center;gap:8px;margin:clamp(7px,1vh,11px) auto 0;width:fit-content;padding:6px 15px;border-radius:999px;border:1px solid rgba(94,234,212,.35);background:rgba(45,212,191,.08);font-size:clamp(11px,1.5vh,12.5px);color:rgba(255,255,255,.85)}
 .of-supera svg{width:16px;height:16px;color:#5eead4;flex:none}
 .of-supera b{color:#5eead4}
 
 /* la garantía */
-.of-gar{display:flex;gap:13px;margin-top:clamp(9px,1.4vh,14px);padding:clamp(10px,1.5vh,14px);
-  border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.of-gar{display:flex;gap:13px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
 .of-gar__ico{flex:none;width:clamp(44px,6vh,52px);height:clamp(44px,6vh,52px);border-radius:50%;
   display:grid;place-items:center;color:#5eead4;
   background:rgba(45,212,191,.14);border:1px solid rgba(94,234,212,.3)}
@@ -2448,8 +2191,7 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .of-gar__t p{margin:5px 0 0;font-size:clamp(10.5px,1.4vh,12px);line-height:1.35;color:var(--celeste)}
 
 /* el medio elegido */
-.of-medio{display:flex;align-items:center;gap:13px;margin-top:9px;padding:clamp(9px,1.3vh,13px) 14px;
-  border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.of-medio{display:flex;align-items:center;gap:13px;padding:clamp(9px,1.3vh,13px) 14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
 .of-marca{flex:none;font-size:15px;font-weight:800;font-style:italic;color:#fff;letter-spacing:.02em}
 .of-marca--mp{font-style:normal;color:#5eead4}
 .of-medio__t{flex:1;min-width:0}
@@ -2459,8 +2201,7 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
   font-family:inherit;font-size:13.5px;font-weight:600;color:#5eead4}
 .of-cambiar svg{width:15px;height:15px}
 .of-cambiar[disabled],.of-cambiar.es-off{opacity:.45;cursor:not-allowed}
-.of-seguro{display:flex;align-items:center;justify-content:center;gap:7px;
-  margin:clamp(8px,1.2vh,12px) 0 0;font-size:clamp(10px,1.3vh,11.5px);color:rgba(159,196,216,.7)}
+.of-seguro{display:flex;align-items:center;justify-content:center;gap:7px;margin:clamp(8px,1.2vh,12px) 0 0;font-size:clamp(10px,1.3vh,11.5px);color:rgba(159,196,216,.7)}
 .of-seguro svg{width:14px;height:14px;flex:none}
 
 /* el pie */
@@ -2468,7 +2209,6 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .btn--confirmar{display:flex;align-items:center;justify-content:center;gap:12px}
 .btn--confirmar svg{width:20px;height:20px}
 .of-pie{margin:8px 0 0;text-align:center;font-size:11.5px;color:rgba(159,196,216,.75)}
-
 
 /* el encabezado del sueño, sin caja ni ícono */
 .of-enc{text-align:center;padding:0 4px}
@@ -2488,7 +2228,6 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .of-seguro{margin-top:clamp(6px,1vh,10px)}
 .gar-pie{padding-top:8px}
 
-
 /* el monto se escribe tocándolo */
 .of-monto__v input{width:100%;background:none;border:0;outline:0;color:#fff;font-family:inherit;
   font-size:inherit;font-weight:inherit;letter-spacing:inherit;text-align:center;padding:0;
@@ -2502,15 +2241,12 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .of-gar__t b em{font-style:normal;color:#5eead4}
 .of-gar__t p{margin-top:6px}
 
-
 /* La cápsula del mínimo: el disco del ícono nunca se achica, por largo que
    sea el monto. El texto cede tamaño antes que el ícono. */
-
 
 /* Actividades y eventos: la tarjeta ocupa más ancho del carril. */
 #screen-eventos .carrusel__slide{flex-basis:92%}
 #screen-eventos .ecard{width:100%}
-
 
 /* ==================== PORTADA: LEGIBILIDAD Y USO ====================
    El texto del botón pasa a azul profundo: blanco sobre el degradado claro
@@ -2546,13 +2282,14 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
   color:rgba(159,196,216,.7) !important;text-decoration:none !important}
 .linkish--suave:active{color:#5eead4}
 
-
 /* ==================== MENÚ: JERARQUÍA Y COLOR ====================
    La entrada principal manda: es más alta, lleva el borde vivo y su color
    pleno. Las otras cuatro quedan en segundo plano, con el borde quieto. */
-.entrada__dato{display:block;margin-top:3px;font-size:clamp(11px,1.6vh,13px);line-height:1.25;
-  color:rgba(255,255,255,.62);font-weight:500;letter-spacing:0}
-.entrada.es-principal .entrada__dato{color:rgba(255,255,255,.8)}
+/* El subtexto es lo que dice qué hay adentro: a 11px se leía como una nota al
+   pie. Sube a 14 y gana contraste. */
+.entrada__dato{display:block;margin-top:4px;font-size:clamp(14px,1.95vh,16px);line-height:1.3;
+  color:rgba(255,255,255,.78);font-weight:500;letter-spacing:0}
+.entrada.es-principal .entrada__dato{color:rgba(255,255,255,.9)}
 .entrada.es-principal .entrada__t{font-size:clamp(19px,2.9vh,25px)}
 
 /* sólo la principal respira con la luz recorriendo el borde */
@@ -2562,17 +2299,13 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .entrada.es-principal .entrada__chispa{stroke-width:3;animation-duration:2.8s}
 
 /* el color vuelve: cada entrada con su matiz, y el disco bien saturado */
-.entrada__ico{box-shadow:inset 0 1px 0 rgba(255,255,255,.24), 0 0 0 1.4px var(--canto-luz),
-  0 0 24px var(--halo)}
-.entrada__ico svg{filter:drop-shadow(0 0 9px var(--luz))}
 
 /* ==================== BARRA: EL ACTIVO SE VE ==================== */
-.nav5__b{position:relative}
+
 .nav5__b.is-on::after{content:"";position:absolute;bottom:9px;width:5px;height:5px;border-radius:50%;
   background:#5eead4;box-shadow:0 0 8px rgba(94,234,212,.9)}
-.nav5__b.is-on svg{filter:drop-shadow(0 0 10px rgba(94,234,212,.9))}
-.nav5__b:not(.is-on){color:rgba(255,255,255,.38)}
 
+.nav5__b:not(.is-on){color:rgba(255,255,255,.38)}
 
 /* ---- paleta de las entradas · definición única ----
    Cada una con su matiz propio: antes se veían todas del mismo azul. */
@@ -2587,9 +2320,8 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .entrada--lima{--velo1:rgba(112,216,112,.40);--velo2:rgba(0,148,138,.24);
   --halo:rgba(140,224,96,.5);--canto-luz:rgba(163,230,53,.7);--luz:#b6e86a}
 
-
 /* ==================== NOVEDADES · DEFINICIÓN ÚNICA ==================== */
-#screen-avisos #listaAvisos{display:block}
+
 .avisos__barra{display:flex;align-items:center;justify-content:space-between;gap:12px;
   margin:0 2px 6px;font-size:11.5px;color:rgba(159,196,216,.8)}
 .avisos__todo{background:none;border:0;cursor:pointer;font-family:inherit;font-size:12px;
@@ -2642,7 +2374,6 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 #screen-avisos .volver-ico:active{background:linear-gradient(120deg,#22d3ee,#2dd4bf 55%,#a3e635);
   color:#04222b}
 
-
 /* ==================== TUS FUNDACIONES ====================
    Primero lo hecho, después lo pendiente: la pantalla ya no abre con vacíos. */
 .resumen-apoyo{text-align:center;padding:16px 14px 18px;border-radius:20px;margin-bottom:4px;
@@ -2679,7 +2410,6 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 
 #screen-apoyo .subhead{margin-top:18px}
 
-
 /* ==================== CUMPLÍ TU SUEÑO ====================
    Sin marco doble, rótulos discretos y el texto en su justa medida. */
 
@@ -2688,22 +2418,14 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 /* la caja de texto, la mitad de alto */
 
 /* la moneda va dentro del campo */
-.pesos__moneda{position:absolute;right:14px;font-size:11.5px;font-weight:600;
-  color:rgba(159,196,216,.6);letter-spacing:.06em;pointer-events:none}
 
 /* fundaciones sugeridas */
-.fund-sug__rot{display:block;margin:2px 2px 6px;font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(159,196,216,.6);font-weight:600}
-.fund-sug{display:flex;flex-wrap:wrap;gap:7px}
-.fund-chip{display:flex;align-items:center;gap:7px;padding:6px 12px 6px 6px;border-radius:999px;
-  cursor:pointer;font-family:inherit;font-size:12.5px;color:#fff;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
-.fund-chip .avatar{width:24px;height:24px;font-size:9px;flex:none}
+
+.fund-sug{flex-wrap:wrap}
+
 .fund-chip:active{border-color:rgba(94,234,212,.7);background:rgba(45,212,191,.14)}
 
 /* Publicar apagado hasta que haya datos */
-.btn--publicar.es-apagado{opacity:.4;cursor:not-allowed;filter:grayscale(.5);box-shadow:none}
-
 
 /* ==================== SUBASTAS ACTIVAS · AJUSTES ====================
    La cita se corta por líneas completas: antes quedaba media línea partida. */
@@ -2717,17 +2439,13 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 /* quién va ganando, y cuántas ofertas hubo */
 
 /* el cronómetro del sueño, en una línea */
-.sueno__reloj{display:flex;align-items:center;justify-content:center;gap:7px;
-  margin-top:9px;padding:6px 14px;border-radius:999px;align-self:center;
-  border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);
-  font-size:clamp(11px,1.5vh,12.5px);color:rgba(159,196,216,.85)}
+.sueno__reloj{display:flex;align-items:center;justify-content:center;gap:7px;padding:6px 14px;border-radius:999px;align-self:center;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);font-size:clamp(11px,1.5vh,12.5px);color:rgba(159,196,216,.85)}
 .sueno__reloj svg{width:15px;height:15px;color:#5eead4;flex:none}
 .sueno__reloj b{color:#fff;font-weight:700}
 .sueno__reloj.es-urgente{border-color:rgba(252,165,165,.5);background:rgba(229,72,77,.1)}
 .sueno__reloj.es-urgente svg,.sueno__reloj.es-urgente b{color:#fca5a5}
 
 /* el botón absorbe el monto: la cápsula repetida se fue */
-.sueno__btn{margin-top:11px}
 
 /* el buscador se despliega desde la lupa */
 .cab-acciones{display:flex;align-items:center;gap:9px}
@@ -2744,28 +2462,25 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .carril-punto.is-on{width:18px;border-radius:999px;background:#5eead4;
   box-shadow:0 0 8px rgba(94,234,212,.8)}
 
-
 /* ==================== CUMPLÍ TU SUEÑO: NADA TAPADO ====================
    El primer rótulo se comía la T por el recorte del contenedor, y el
    botón quedaba debajo del menú. Ambas cosas eran de espacio, no de texto. */
 
 /* el botón se apoya sobre el menú, nunca debajo */
 
-
 /* ==================== SUBASTAS ACTIVAS: SIN HUECO ====================
    La cita se estiraba para llenar el sobrante y quedaba un vacío enorme
    entre el texto y la línea. Ahora ocupa lo que necesita y el aire
    sobrante se reparte: la cita muestra más líneas si hay lugar. */
-.sueno__cita{flex:0 1 auto}
+
 .sueno__cita p{--lineas:6}
 @media (max-height:820px){ .sueno__cita p{--lineas:5} }
 @media (max-height:760px){ .sueno__cita p{--lineas:4} }
 @media (max-height:700px){ .sueno__cita p{--lineas:3} }
 
 /* el bloque de la oferta se lleva el espacio libre y queda centrado */
-.sueno__monto{margin-top:2px}
-.sueno__reloj{margin-top:10px}
 
+.sueno__reloj{margin-top:10px}
 
 /* ==================== PANEL DE FUNDACIÓN ====================
    Una fundación no navega la app como donante: administra lo suyo.
@@ -2819,11 +2534,9 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .fpend{padding:7px 13px;border-radius:999px;font-size:12px;color:#fdba74;
   background:rgba(251,146,60,.1);border:1px dashed rgba(251,146,60,.42)}
 
-
 /* ==================== SUBASTAS · VISTA DE FUNDACIÓN ====================
    La fundación no oferta: administra. El eje es el ciclo del lote. */
-#screen-fsubastas .stats-pantalla{padding:14px 16px calc(var(--nav-alto) + 24px) !important;
-  display:block !important;overflow-y:auto;position:static !important;height:auto !important}
+#screen-fsubastas .stats-pantalla{padding:14px 16px calc(var(--nav-alto) + 24px) !important;display:block !important;overflow-y:auto;position:static !important;height:auto !important}
 
 .fsub-cifras{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:11px}
 .fsub-cifras > div{padding:12px 13px;border-radius:15px;
@@ -2880,7 +2593,6 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 .lote-detalle__g b{font-size:15px}
 .lote-detalle__f{flex-basis:100%;margin:6px 0 0;font-size:12px;color:var(--celeste)}
 
-
 /* ==================== FUNDACIÓN: LA PANTALLA SE RECORRE ====================
    La regla que fija el perfil de donante usa prioridad máxima; sin esto,
    el panel de fundación quedaba inmóvil y no se podía llegar abajo. */
@@ -2902,7 +2614,6 @@ body.es-fundacion .placa{display:none !important}
 .nav5{pointer-events:auto}
 .nav5__b{pointer-events:auto}
 
-
 /* ==================== FUNDACIÓN · PENDIENTES Y COMUNIDAD ==================== */
 .pendf{display:flex;align-items:center;gap:11px;width:100%;text-align:left;cursor:pointer;
   font-family:inherit;padding:12px 13px;border-radius:14px;color:#fff;font-size:13.5px;
@@ -2914,8 +2625,7 @@ body.es-fundacion .placa{display:none !important}
 .fal-dia{margin-top:14px;padding:14px;border-radius:14px;text-align:center;font-size:13px;
   color:#5eead4;background:rgba(45,212,191,.1);border:1px solid rgba(94,234,212,.3)}
 
-.pers{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:15px;
-  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}
+.pers{display:flex;align-items:center;gap:11px;border-radius:15px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}
 .pers__av{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
   font-size:13px;font-weight:700;color:#04222b;
   background:linear-gradient(120deg,#22d3ee,#2dd4bf 60%,#a3e635)}
@@ -2934,7 +2644,6 @@ body.es-fundacion .placa{display:none !important}
 #screen-comunidad .stats-pantalla{padding:14px 16px calc(var(--nav-alto) + 24px) !important;
   display:block !important;overflow-y:auto;position:static !important;height:auto !important}
 
-
 /* ==================== COMUNIDAD ==================== */
 .fnota{margin:-4px 2px 9px;font-size:11.5px;line-height:1.35;color:rgba(159,196,216,.75)}
 .delta{display:block;margin-top:3px;font-style:normal;font-size:11px;font-weight:600;color:#5eead4}
@@ -2950,7 +2659,6 @@ body.es-fundacion .placa{display:none !important}
   border-color:rgba(255,255,255,.14)}
 #comunidadCuerpo .fsub-cifras b{margin-top:3px}
 
-
 /* ==================== TARJETA DE FUNDACIÓN ====================
    Menos números gritando, más señales de confianza, y nada cortado. */
 #screen-fundaciones .card{display:flex;flex-direction:column;height:100%;overflow:hidden}
@@ -2959,7 +2667,6 @@ body.es-fundacion .placa{display:none !important}
    bloque que se achica cuando la tarjeta no entra, y la fundación aparece sin
    nombre. El que debe ceder es .card__causas, definido más abajo. */
 
-.card__id{display:flex;align-items:flex-start;gap:12px}
 .card__id .avatar{width:54px;height:54px;flex:none;background-color:#fff}
 .card__name{margin:0;font-size:clamp(17px,2.4vh,20px);font-weight:700;color:#fff;line-height:1.2}
 .card__place{margin:3px 0 0;font-size:12px;color:var(--celeste)}
@@ -2992,7 +2699,6 @@ body.es-fundacion .placa{display:none !important}
 #screen-fundaciones .card__side{flex:none}
 #screen-fundaciones .evento-click{padding:10px 0 0;border-top:1px solid rgba(255,255,255,.08);
   margin-top:10px}
-
 
 /* ==================== TARJETA DE FUNDACIÓN · AJUSTES ====================
    El bloque de campañas se estiraba aunque hubiera una sola: media tarjeta
@@ -3074,9 +2780,7 @@ body.portada #screen-home{height:100vh;height:100dvh}
   padding:max(18px, env(safe-area-inset-top)) 16px max(18px, env(safe-area-inset-bottom))}
 .portada__caja > *{width:100%}
 /* El logo es una imagen: sin object-fit, el tope de alto lo deformaba. */
-.portada__logo{align-self:center;width:min(32vw,124px);height:auto;max-height:16vh;
-  object-fit:contain;
-  filter:drop-shadow(0 0 22px rgba(45,212,191,.35))}
+.portada__logo{align-self:center;width:min(32vw,124px);height:auto;max-height:16vh;object-fit:contain;filter:drop-shadow(0 0 22px rgba(45,212,191,.35))}
 .portada__marca{margin:clamp(8px,1.8vh,18px) 0 0}
 .portada__m1,.portada__m2{font-size:clamp(34px,6.6vh,58px)}
 .portada__linea{align-self:center;margin:clamp(8px,1.6vh,18px) 0 clamp(6px,1.2vh,14px)}
@@ -3102,13 +2806,9 @@ body.portada #screen-home{height:100vh;height:100dvh}
    · alto del contenido: 54px
    · más la franja segura del teléfono
    El resto de la app reserva --nav-alto y nada más. */
-:root{--nav-fila:72px; --nav-alto:calc(var(--nav-fila) + env(safe-area-inset-bottom));}
+:root{--nav-fila:72px;--nav-alto:calc(var(--nav-fila) + env(safe-area-inset-bottom))}
 
-.nav5{position:fixed;left:0;right:0;bottom:0;z-index:80;
-  height:var(--nav-alto);
-  padding-bottom:env(safe-area-inset-bottom);
-  background:#071120;
-  border:0;box-shadow:none;border-radius:0}
+.nav5{position:fixed;left:0;right:0;bottom:0;z-index:80;height:var(--nav-alto);padding-bottom:env(safe-area-inset-bottom);background:#071120;border:0;box-shadow:none;border-radius:0}
 .nav5__fila{height:var(--nav-fila);display:grid;grid-template-columns:repeat(3,1fr);align-items:center}
 /* DEFINICIÓN ÚNICA de qué fila se muestra. Va inmediatamente después de la
    regla que le da display:grid a las dos: si se separa, la de arriba vuelve a
@@ -3116,16 +2816,12 @@ body.portada #screen-home{height:100vh;height:100dvh}
 .nav5__fila--fundacion{display:none}
 body.es-fundacion .nav5__fila--donante{display:none}
 body.es-fundacion .nav5__fila--fundacion{display:grid;grid-template-columns:repeat(4,1fr)}
-.nav5__b{position:relative;height:100%;display:grid;place-items:center;
-  background:none;border:0;padding:0;cursor:pointer;color:rgba(255,255,255,.45);
-  transition:color .18s,transform .16s}
+.nav5__b{position:relative;height:100%;display:grid;place-items:center;background:none;border:0;padding:0;cursor:pointer;color:rgba(255,255,255,.45);transition:color .18s,transform .16s}
 
 .nav5__b.is-on{color:#5eead4}
 .nav5__b.is-on svg{filter:drop-shadow(0 0 9px rgba(94,234,212,.75))}
 .nav5__b:active{transform:scale(.9)}
-.nav5__punto{position:absolute;top:22px;right:calc(50% - 21px);width:10px;height:10px;border-radius:50%;
-  background:#E5484D;box-shadow:0 0 0 2px #071120;pointer-events:none;
-  /* fuera del flujo: no puede alterar el alto de la barra */
+.nav5__punto{position:absolute;top:22px;right:calc(50% - 21px);width:10px;height:10px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 2px #071120;pointer-events:none;/* fuera del flujo: no puede alterar el alto de la barra */
   margin:0;padding:0;line-height:0}
 .nav5__b{overflow:visible}
 body.portada .nav5{display:none}
@@ -3164,7 +2860,7 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
   gap:clamp(6px,1.2vh,12px);padding:clamp(12px,2vh,18px) 14px}
 .menu-par .entrada__ico{width:min(46px,6.4vh);height:min(46px,6.4vh)}
 .menu-par .entrada__t{font-size:clamp(15px,2.1vh,18px);line-height:1.15}
-.menu-par .entrada__dato{font-size:clamp(12px,1.6vh,13.5px)}
+.menu-par .entrada__dato{font-size:clamp(13px,1.8vh,15px)}
 /* El chevrón sobra cuando la tarjeta es un bloque y no una fila. */
 .menu-par .entrada__chev{display:none}
 
@@ -3172,15 +2868,7 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 .entrada--fina .entrada__ico{width:min(44px,6vh);height:min(44px,6vh)}
 .entrada--fina .entrada__t{font-size:clamp(16px,2.2vh,19px)}
 
-
-.entrada:active{transform:scale(.985);filter:brightness(1.08)}
-
-
-.entrada__ico{position:relative;z-index:1;flex:none;
-  width:min(56px,8vh);height:min(56px,8vh);border-radius:50%;display:grid;place-items:center;
-  color:var(--luz);
-  background:radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.12), rgba(4,14,26,.75) 65%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.22), 0 0 0 1px var(--canto-luz),
+.entrada__ico{position:relative;z-index:1;flex:none;width:min(56px,8vh);height:min(56px,8vh);border-radius:50%;display:grid;place-items:center;color:var(--luz);background:radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.12), rgba(4,14,26,.75) 65%);box-shadow:inset 0 1px 0 rgba(255,255,255,.22), 0 0 0 1px var(--canto-luz),
     0 0 18px var(--halo)}
 .entrada__ico svg{width:54%;height:54%;filter:drop-shadow(0 0 7px var(--luz))}
 
@@ -3230,15 +2918,13 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
   transition:transform .18s cubic-bezier(.2,.8,.3,1),filter .18s}
 .entrada:active{transform:scale(.985);filter:brightness(1.1)}
 
-
 /* ==================== NOVEDADES ==================== */
 
 #screen-avisos #listaAvisos{display:block}
 /* las nuevas: fondo apenas más claro y título más brillante */
 
 /* ==================== CIELO: MÁS PUNTOS, MÁS CHICOS ==================== */
-.cielo-fondo::after{
-  background:
+.cielo-fondo::after{background:
     radial-gradient(1px 1px at 6% 11%, rgba(255,255,255,.9), transparent),
     radial-gradient(1px 1px at 14% 63%, rgba(210,245,255,.7), transparent),
     radial-gradient(.9px .9px at 21% 29%, rgba(255,255,255,.75), transparent),
@@ -3291,8 +2977,7 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 /* La imagen manda: ocupa casi la mitad de la tarjeta y el título respira. */
 .lote__foto{flex:0 0 46%}
 .lote__cuerpo{padding:16px 16px 14px}
-.lote__titulo{font-size:clamp(19px,2.9vh,24px);line-height:1.18;margin-bottom:2px;
-  -webkit-line-clamp:2}
+.lote__titulo{font-size:clamp(19px,2.9vh,24px);line-height:1.18;margin-bottom:2px;-webkit-line-clamp:2}
 .lote__cifras{margin-top:12px}
 .lote__monto{margin-top:3px}
 .reloj{margin-top:13px}
@@ -3306,66 +2991,39 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 /* ==================== SUEÑOS EN SUBASTA ACTIVA ==================== */
 .cab-punto{width:8px;height:8px;border-radius:50%;background:#2dd4bf;
   box-shadow:0 0 8px rgba(45,212,191,.9)}
-#screen-deseos .buscador{border-radius:999px;background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12)}
-#screen-deseos .buscador input{background:transparent !important;border:0 !important;
-  padding:14px 16px 14px 44px !important;font-size:15px}
+#screen-deseos .buscador{border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+#screen-deseos .buscador input{background:transparent !important;border:0 !important;padding:14px 16px 14px 44px !important;font-size:15px}
 #screen-deseos .buscador__icono{left:16px;color:rgba(159,196,216,.8)}
 
-.suenos-lista{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.suenos-lista{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .suenos-lista::-webkit-scrollbar{display:none}
-.sueno{flex:0 0 84%;scroll-snap-align:center;height:100%;display:flex;flex-direction:column;
-  padding:18px 18px 16px;border-radius:24px;overflow:hidden;
-  background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
-  border:1px solid rgba(103,232,249,.25);
-  box-shadow:0 18px 44px rgba(2,10,20,.5)}
+.sueno{flex:0 0 84%;scroll-snap-align:center;height:100%;display:flex;flex-direction:column;padding:18px 18px 16px;border-radius:24px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));border:1px solid rgba(103,232,249,.25);box-shadow:0 18px 44px rgba(2,10,20,.5)}
 
 .sueno__cab{display:flex;align-items:center;gap:12px;flex:none}
-.sueno__ava{width:52px;height:52px;border-radius:50%;flex:none;display:grid;place-items:center;
-  background-size:cover;background-position:center;border:2px solid rgba(94,234,212,.55);
-  font-size:17px;font-weight:600;color:#0b2136}
+.sueno__ava{width:52px;height:52px;border-radius:50%;flex:none;display:grid;place-items:center;background-size:cover;background-position:center;border:2px solid rgba(94,234,212,.55);font-size:17px;font-weight:600;color:#0b2136}
 .sueno__quien{min-width:0}
-.sueno__quien b{display:flex;align-items:center;gap:6px;font-size:17px;font-weight:700;color:#fff;
-  line-height:1.15}
+.sueno__quien b{display:flex;align-items:center;gap:6px;font-size:17px;font-weight:700;color:#fff;line-height:1.15}
 .sueno__quien span{display:block;margin-top:2px;font-size:13px;color:rgba(159,196,216,.85)}
 
-.sueno__titulo{flex:none;margin:14px 0 0;font-size:clamp(20px,3vh,26px);font-weight:500;
-  letter-spacing:-.02em;line-height:1.18;color:#fff;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sueno__titulo{flex:none;margin:14px 0 0;font-size:clamp(20px,3vh,26px);font-weight:500;letter-spacing:-.02em;line-height:1.18;color:#fff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-.sueno__comilla{position:absolute;left:0;top:-6px;font-size:34px;line-height:1;
-  color:rgba(94,234,212,.55);font-family:Georgia,serif}
+.sueno__rotulo{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(94,234,212,.9);font-weight:600}
+.sueno__monto{display:block;margin-top:4px;font-size:clamp(30px,5vh,44px);font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1;text-shadow:0 0 26px rgba(94,234,212,.55)}
 
-.sueno__rotulo{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(94,234,212,.9);font-weight:600}
-.sueno__monto{display:block;margin-top:4px;font-size:clamp(30px,5vh,44px);font-weight:700;color:#fff;
-  letter-spacing:-.03em;line-height:1;text-shadow:0 0 26px rgba(94,234,212,.55)}
-
-.sueno__btn{flex:none;margin-top:14px;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:12px;
-  width:100%;min-height:56px;border:0;border-radius:16px;cursor:pointer;font-family:inherit;
-  font-size:17px;font-weight:700;letter-spacing:.02em;color:#04222b;
-  background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399);
-  box-shadow:0 0 30px rgba(45,212,191,.45), inset 0 1px 0 rgba(255,255,255,.5)}
+.sueno__btn{flex:none;margin-top:14px;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:56px;border:0;border-radius:16px;cursor:pointer;font-family:inherit;font-size:17px;font-weight:700;letter-spacing:.02em;color:#04222b;background:linear-gradient(100deg,#22d3ee,#2dd4bf 55%,#34d399);box-shadow:0 0 30px rgba(45,212,191,.45), inset 0 1px 0 rgba(255,255,255,.5)}
 .sueno__btn svg{width:20px;height:20px}
 .sueno__btn:active{filter:brightness(1.1)}
 
-.sueno__pie{flex:none;display:flex;align-items:center;justify-content:center;gap:7px;
-  margin:11px 0 0;font-size:12px;color:rgba(159,196,216,.75)}
+.sueno__pie{flex:none;display:flex;align-items:center;justify-content:center;gap:7px;margin:11px 0 0;font-size:12px;color:rgba(159,196,216,.75)}
 .sueno__pie svg{width:16px;height:16px}
 .sueno__pie .borrar-sueno{margin-left:auto;padding:0;font-size:11px;color:rgba(255,255,255,.4)}
 
 /* ---- paleta de las entradas, una sola vez ---- */
 
 /* ---- la cita, definición única: corta por líneas enteras ---- */
-.sueno__cita{position:relative;flex:1 1 0;min-height:0;overflow:hidden;
-  margin:10px 0 0;padding:0 4px 0 22px;cursor:pointer}
-.sueno__comilla{position:absolute;left:0;top:-4px;font-size:clamp(20px,2.6vh,26px);line-height:1;
-  color:rgba(94,234,212,.55);font-family:Georgia,serif}
-.sueno__cita p{margin:0;font-size:clamp(12px,1.6vh,13.5px);line-height:1.5;
-  color:rgba(255,255,255,.82);
-  display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;
-  -webkit-line-clamp:var(--lineas,4);max-height:calc(1.5em * var(--lineas,4))}
+.sueno__cita{position:relative;flex:1 1 0;min-height:0;overflow:hidden;margin:10px 0 0;padding:0 4px 0 22px;cursor:pointer}
+.sueno__comilla{position:absolute;left:0;top:-4px;font-size:clamp(20px,2.6vh,26px);line-height:1;color:rgba(94,234,212,.55);font-family:Georgia,serif}
+.sueno__cita p{margin:0;font-size:clamp(12px,1.6vh,13.5px);line-height:1.5;color:rgba(255,255,255,.82);display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:var(--lineas,4);max-height:calc(1.5em * var(--lineas,4))}
 @media (max-height:800px){ .sueno__cita p{--lineas:3} }
 @media (max-height:700px){ .sueno__cita p{--lineas:2} }
 
@@ -3395,8 +3053,7 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 /* El título ya está en la cabecera: este bloque lo repetía y empujaba
    todo el formulario fuera de la pantalla. */
 #screen-aporte .alta__intro{display:none !important}
-#screen-aporte .alta__form{flex:1 1 auto;min-height:0;overflow:visible}
-#screen-aporte #apCampos{flex:1 1 auto;min-height:0}
+#screen-aporte .alta__form{overflow:visible}
 
 #screen-aporte .alta{flex:1;min-height:0;display:flex !important;flex-direction:column;
   width:100% !important;max-width:520px !important;margin:0 auto !important;
@@ -3406,8 +3063,7 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
 #screen-aporte .alta__form{flex:1;min-height:0;display:flex;flex-direction:column}
-#screen-aporte #apCampos{flex:1;min-height:0;display:flex;flex-direction:column;
-  overflow:visible;padding:0 2px}
+#screen-aporte #apCampos{flex:1;min-height:0;display:flex;flex-direction:column;overflow:visible;padding:0 2px}
 .tarjeta-form{flex:1;min-height:0;display:flex;flex-direction:column;
   background:none;border:0;box-shadow:none;padding:0;overflow:visible}
 
@@ -3425,18 +3081,13 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 /* el signo y la moneda dentro del campo de dinero */
 #screen-aporte .pesos input{padding-left:38px !important;padding-right:48px !important}
 #screen-aporte .pesos__signo{left:15px;font-size:15px}
-.pesos__moneda{position:absolute;right:14px;font-size:11.5px;font-weight:600;
-  color:rgba(159,196,216,.6);letter-spacing:.06em;pointer-events:none}
+.pesos__moneda{position:absolute;right:14px;font-size:11.5px;font-weight:600;color:rgba(159,196,216,.6);letter-spacing:.06em;pointer-events:none}
 
 /* fundaciones sugeridas: cuatro cápsulas que ceden tamaño si falta lugar */
 #screen-aporte .field--fund{flex:none}
-.fund-sug__rot{display:block;margin:1px 2px 5px;font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(159,196,216,.6);font-weight:600}
+.fund-sug__rot{display:block;margin:1px 2px 5px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(159,196,216,.6);font-weight:600}
 .fund-sug{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.fund-chip{display:flex;align-items:center;gap:6px;padding:4px 9px 4px 4px;border-radius:999px;
-  cursor:pointer;font-family:inherit;font-size:clamp(10.5px,1.4vh,12px);color:#fff;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
-  min-width:0;overflow:hidden;white-space:nowrap}
+.fund-chip{display:flex;align-items:center;gap:6px;padding:4px 9px 4px 4px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:clamp(10.5px,1.4vh,12px);color:#fff;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);min-width:0;overflow:hidden;white-space:nowrap}
 .fund-chip span:last-child{overflow:hidden;text-overflow:ellipsis}
 .fund-chip .avatar{width:20px;height:20px;font-size:8px;flex:none}
 .fund-chip.is-on,.fund-chip:active{border-color:rgba(94,234,212,.7);background:rgba(45,212,191,.14)}
@@ -3469,7 +3120,7 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 .intro__halo--2{width:46vw;height:46vw;bottom:-12vh;right:-14vw;background:rgba(163,230,53,.16)}
 
 .intro__caja{position:relative;z-index:1;width:100%;max-width:520px;
-  height:100%;display:flex;flex-direction:column;
+  height:100%;display:flex;flex-direction:column;justify-content:center;
   padding:max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom))}
 
 .intro__eyebrow{margin:0 0 clamp(8px,1.6vh,16px);text-align:center;
@@ -3481,15 +3132,16 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
    Todas ocupan el mismo lugar; se muestra la que tiene .es-on. El avance lo
    maneja el JS al tocar, así que acá no hay retrasos encadenados: cada paso
    anima de cero cuando entra. */
-.intro__pasos{position:relative;flex:1;min-height:0;display:grid}
-.intro__paso{grid-area:1/1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;
-  padding:0 6px;visibility:hidden;opacity:0;pointer-events:none;
-  transform:translateY(26px) scale(.97);
-  transition:opacity .45s ease, transform .45s cubic-bezier(.22,.9,.3,1),
-             visibility 0s linear .45s}
-.intro__paso.es-on{visibility:visible;opacity:1;pointer-events:auto;
-  transform:none;transition-delay:0s}
+/* Los cinco pasos se ven juntos: cada uno es una fila con el número a la
+   izquierda y el texto a la derecha, alineado a la bandera. Leerlos en columna
+   es leer una secuencia; centrados serían cinco carteles sueltos. */
+.intro__pasos{position:relative;flex:none;display:flex;flex-direction:column;
+  gap:clamp(10px,1.8vh,20px)}
+.intro__paso{display:grid;grid-template-columns:auto 1fr;
+  align-items:start;column-gap:clamp(12px,3vw,18px);text-align:left;
+  opacity:0;transform:translateY(16px);
+  animation:introEntra .55s cubic-bezier(.22,.9,.3,1) forwards;
+  animation-delay:calc(.25s + var(--i,0) * .28s)}
 
 @keyframes introEntra{to{opacity:1;transform:none}}
 
@@ -3497,20 +3149,17 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
    Va del tamaño de una insignia, para que el peso visual quede en el título y
    en la explicación, que es lo que hay que leer. */
 .intro__num{position:relative;display:grid;place-items:center;
-  width:clamp(46px,7vh,62px);height:clamp(46px,7vh,62px);border-radius:50%;
-  margin-bottom:clamp(16px,3vh,30px);
+  width:clamp(38px,5.4vh,48px);height:clamp(38px,5.4vh,48px);border-radius:50%;
+  grid-row:1/3;margin:0;
   background:radial-gradient(120% 120% at 30% 20%, rgba(34,211,238,.22), rgba(4,14,26,.85) 68%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 0 0 1.5px var(--canto-vivo),
              0 0 22px rgba(34,211,238,.28)}
 .intro__num::before{content:"";position:absolute;inset:-9px;border-radius:50%;
   border:1.5px solid rgba(94,234,212,.3);opacity:0}
 .intro__num i{font-style:normal;font-weight:800;line-height:1;
-  font-size:clamp(20px,3vh,28px);
-  background:linear-gradient(135deg,#67e8f9 0%,#5eead4 45%,#a3e635 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 8px rgba(94,234,212,.45))}
-.intro__paso.es-on .intro__num{animation:numEntra .7s cubic-bezier(.2,1.1,.3,1) both}
-.intro__paso.es-on .intro__num::before{animation:numOnda 1.6s ease-out .35s infinite}
+  font-size:clamp(17px,2.4vh,21px);color:rgb(var(--tono));
+  filter:drop-shadow(0 0 7px rgba(var(--tono),.55))}
+
 @keyframes numEntra{
   0%  {transform:scale(.5) rotate(-22deg);opacity:0}
   60% {transform:scale(1.08) rotate(4deg);opacity:1}
@@ -3523,19 +3172,19 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 
 /* El título manda. La medida corta (unos 14 caracteres) fuerza dos renglones
    parejos en vez de una línea larga y otra suelta. */
-.intro__t{margin:0 auto;max-width:14ch;color:#fff;font-weight:800;
-  letter-spacing:.01em;line-height:1.08;
-  font-size:clamp(30px,5.2vh,46px);
-  text-shadow:0 0 30px rgba(103,232,249,.45), 0 2px 18px rgba(0,0,0,.55)}
-.intro__paso.es-on .intro__t{animation:subeSuave .55s cubic-bezier(.22,.9,.3,1) .12s both}
+.intro__t{margin:0;color:#fff;font-weight:800;
+  letter-spacing:.01em;line-height:1.12;
+  font-size:clamp(17px,2.5vh,22px);
+  text-shadow:0 0 22px rgba(103,232,249,.35), 0 2px 14px rgba(0,0,0,.5)}
+
 /* La explicación es texto para leer, no un pie de foto: cuerpo de 17px para
    arriba, interlineado 1.45 y unos 28 caracteres por renglón. El contraste lo
    da el tamaño, no la opacidad: bajar el blanco por debajo de .9 sobre este
    fondo es lo que lo volvía difícil de leer. */
-.intro__s{margin:clamp(12px,2.2vh,22px) auto 0;max-width:28ch;
-  color:rgba(233,244,255,.94);line-height:1.45;font-weight:400;
-  font-size:clamp(17px,2.6vh,22px)}
-.intro__paso.es-on .intro__s{animation:subeSuave .55s cubic-bezier(.22,.9,.3,1) .24s both}
+.intro__s{margin:3px 0 0;max-width:34ch;
+  color:rgba(233,244,255,.9);line-height:1.35;font-weight:400;
+  font-size:clamp(14.5px,2.05vh,17px)}
+
 @keyframes subeSuave{from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none}}
 
 /* Cada paso tiñe el fondo de un color distinto. */
@@ -3544,14 +3193,12 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 .intro__paso[data-paso="3"]{--tono:163,230,53}
 .intro__paso[data-paso="4"]{--tono:45,212,191}
 .intro__paso[data-paso="5"]{--tono:103,232,249}
-.intro__paso.es-on::before{content:"";position:absolute;inset:-10% -30%;z-index:-1;
-  background:radial-gradient(closest-side, rgba(var(--tono),.22), transparent 72%);
-  animation:tinteEntra .8s ease both}
-@keyframes tinteEntra{from{opacity:0;transform:scale(.8)} to{opacity:1;transform:none}}
+/* Con los cinco a la vista, el tinte de fondo por paso sobra: el tono queda
+   sólo en el número, que es lo que los diferencia entre sí. */
 
 .intro__cierre{display:flex;flex-direction:column;align-items:center;
-  margin-top:clamp(14px,2.6vh,26px)}
-.intro__paso.es-on .intro__cierre{animation:subeSuave .55s ease .36s both}
+  margin-top:clamp(16px,3vh,30px);
+  opacity:0;animation:introEntra .55s ease 1.75s forwards}
 .intro__corazon{width:clamp(34px,5vh,48px);height:auto;
   filter:drop-shadow(0 0 16px rgba(45,212,191,.45))}
 .intro__marca{margin:clamp(4px,.8vh,8px) 0 0;font-weight:800;letter-spacing:.12em;
@@ -3559,8 +3206,8 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 .intro__m1{color:#fff}
 .intro__m2{color:var(--turq)}
 
-.intro__cta{margin-top:clamp(14px,2.6vh,26px)}
-.intro__paso.es-on .intro__cta{animation:subeSuave .5s ease .48s both}
+.intro__cta{margin-top:clamp(14px,2.6vh,26px);
+  opacity:0;animation:introEntra .5s ease 1.95s forwards}
 
 /* Puntos de avance y pista de uso. */
 .intro__puntos{display:flex;justify-content:center;gap:7px;
@@ -3609,8 +3256,9 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 /* Este párrafo es el que explica de qué se trata todo: mismo cuerpo que la
    explicación de los pasos, con aire arriba para que se lea como un bloque
    aparte y no como una nota al pie de la marca. */
-.intro__porque{margin:clamp(20px,3.6vh,34px) auto 0;max-width:27ch;
-  color:rgba(233,244,255,.94);font-size:clamp(17px,2.6vh,21px);line-height:1.45}
+.intro__porque{margin:clamp(20px,3.6vh,34px) auto 0;max-width:24ch;
+  color:rgba(233,244,255,.96);font-size:clamp(20px,3vh,26px);line-height:1.4;
+  font-weight:500}
 
 /* ---- AURORAS, FUGACES Y DESTELLOS ----
    Todo decorado: pointer-events:none para no robarle el toque a los botones. */
@@ -3732,7 +3380,7 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
         </svg>
         <span class="entrada__ico entrada__ico--arte" aria-hidden="true"><i class="entrada__arte" style="--arte:url(&quot;data:image/png;base64,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&quot;)"></i></span>
         <span class="entrada__col"><span class="fugaz fugaz--btn" id="fugazC"></span>
-        <span class="entrada__t">Otros sueños por cumplir</span>
+        <span class="entrada__t">Sueños por subastar</span>
         <span class="entrada__dato" id="datoLotes"></span></span>
         <span class="entrada__chev" aria-hidden="true">&#8250;</span>
       </button>
@@ -4159,8 +3807,8 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
     <p class="intro__nace" style="--i:4">Por eso nace</p>
     <p class="intro__marca intro__marca--gr" style="--i:5">
       <span class="intro__m1">SOÑÁ</span> <span class="intro__m2">Y DONÁ</span></p>
-    <p class="intro__porque" style="--i:6">Porque queremos que todas las fundaciones
-      puedan recaudar, sin importar el tamaño que tengan.</p>
+    <p class="intro__porque" style="--i:6">Queremos que todas las fundaciones
+      puedan recaudar y cumplir su misión.</p>
     <p class="intro__pista intro__pista--acto1" style="--i:7">Tocá para continuar</p>
   </div>
 
@@ -4169,34 +3817,36 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
     <p class="intro__eyebrow">ASÍ FUNCIONA</p>
 
     <div class="intro__pasos" id="introPasos">
-      <section class="intro__paso" data-paso="1">
+      <section class="intro__paso" data-paso="1" style="--i:0">
         <span class="intro__num"><i>1</i></span>
         <h2 class="intro__t">VOS SOÑÁS</h2>
         <p class="intro__s">Contanos qué querés vivir, conocer o hacer.</p>
       </section>
 
-      <section class="intro__paso" data-paso="2">
+      <section class="intro__paso" data-paso="2" style="--i:1">
         <span class="intro__num"><i>2</i></span>
         <h2 class="intro__t">LO HACEMOS POSIBLE</h2>
         <p class="intro__s">Buscamos la manera de hacer tu sueño realidad.</p>
       </section>
 
-      <section class="intro__paso" data-paso="3">
+      <section class="intro__paso" data-paso="3" style="--i:2">
         <span class="intro__num"><i>3</i></span>
         <h2 class="intro__t">VOS DONÁS</h2>
         <p class="intro__s">Al cumplir tu sueño, lo recaudado va a una fundación.</p>
       </section>
 
-      <section class="intro__paso" data-paso="4">
+      <section class="intro__paso" data-paso="4" style="--i:3">
         <span class="intro__num"><i>4</i></span>
         <h2 class="intro__t">ELLOS CUMPLEN SU SUEÑO</h2>
         <p class="intro__s">Tu aporte ayuda a que otra persona o comunidad lo logre.</p>
       </section>
 
-      <section class="intro__paso" data-paso="5">
+      <section class="intro__paso" data-paso="5" style="--i:4">
         <span class="intro__num"><i>5</i></span>
         <h2 class="intro__t">LA CADENA SIGUE</h2>
         <p class="intro__s">Más sueños, más impacto, todo el año.</p>
+      </section>
+    </div>
 
         <div class="intro__cierre">
           <svg class="intro__corazon" viewBox="0 0 64 56" aria-hidden="true">
@@ -4213,15 +3863,6 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
         </div>
 
         <button class="cta cta--corto intro__cta" id="introEmpezar"><span class="cta__txt">EMPEZAR</span></button>
-      </section>
-    </div>
-
-    <div class="intro__puntos" id="introPuntos" aria-hidden="true">
-      <span class="intro__punto is-on"></span><span class="intro__punto"></span>
-      <span class="intro__punto"></span><span class="intro__punto"></span>
-      <span class="intro__punto"></span>
-    </div>
-    <p class="intro__pista" id="introPista">Tocá para continuar</p>
   </div>
 
   <button class="intro__saltar" id="introSaltar">Saltar</button>
@@ -6487,7 +6128,7 @@ function pintarDatosMenu(){
   var lotes = DB.aportes.filter(function(a){ return a.estado === "en subasta"; }).length;
   var eventos = DB.fundaciones.reduce(function(n,f){ return n + ((f.eventos||[]).length); }, 0);
 
-  poner("datoSuenos", "Contá el tuyo y elegí la fundación");
+  poner("datoSuenos", "Contanos tu sueño");
   poner("datoSubastas", subastas + (subastas===1 ? " sueño en juego" : " sueños en juego"));
   poner("datoLotes", lotes + (lotes===1 ? " lote abierto" : " lotes abiertos"));
   poner("datoEventos", eventos + (eventos===1 ? " actividad próxima" : " actividades próximas"));
@@ -10567,37 +10208,14 @@ function cerrarIntro(){
 // que explica de qué se trata todo, y leerla lleva el tiempo que lleve.
 var relojActo = null;
 
-// El paso a paso es una pantalla por paso y se avanza tocando. Guardamos en
-// qué paso vamos acá y no en el DOM, para que no dependa del orden del markup.
-var introPaso = 0;
-
-function mostrarPaso(n){
-  var pasos = document.querySelectorAll("#introPasos .intro__paso");
-  if(!pasos.length) return;
-  introPaso = Math.max(0, Math.min(pasos.length - 1, n));
-  for(var i = 0; i < pasos.length; i++){
-    pasos[i].classList.toggle("es-on", i === introPaso);
-  }
-  var puntos = document.querySelectorAll("#introPuntos .intro__punto");
-  for(var k = 0; k < puntos.length; k++){
-    puntos[k].classList.toggle("is-on", k === introPaso);
-  }
-  // En el último paso manda el botón: la pista sobraría.
-  var pista = document.getElementById("introPista");
-  if(pista) pista.classList.toggle("es-oculta", introPaso === pasos.length - 1);
-}
-
-function avanzarPaso(){
-  var pasos = document.querySelectorAll("#introPasos .intro__paso");
-  if(introPaso < pasos.length - 1) mostrarPaso(introPaso + 1);
-}
+// Los cinco pasos se muestran juntos: no hay nada que avanzar dentro del
+// segundo acto, se sale con el botón EMPEZAR o con Saltar.
 
 function pasarAlPasoAPaso(){
   var intro = document.getElementById("intro");
   if(!intro || !intro.classList.contains("es-acto1")) return;
   clearTimeout(relojActo);
   intro.classList.remove("es-acto1");
-  mostrarPaso(0);
   requestAnimationFrame(acomodarIntro);
 }
 
@@ -10606,7 +10224,6 @@ function abrirIntro(){
   if(!intro) return;
   intro.hidden = false;
   intro.classList.add("is-on", "es-acto1");
-  mostrarPaso(0);
   clearTimeout(relojActo);
   requestAnimationFrame(acomodarIntro);
 }
@@ -10620,22 +10237,14 @@ function abrirIntro(){
   // Tocar la primera pantalla adelanta al paso a paso sin esperar.
   if(acto1) acto1.addEventListener("click", pasarAlPasoAPaso);
 
-  // Tocar en cualquier parte del paso a paso avanza, salvo sobre el botón
-  // EMPEZAR y sobre Saltar, que tienen lo suyo.
-  var caja = document.getElementById("introActo2");
-  if(caja) caja.addEventListener("click", function(e){
-    if(e.target.closest("#introEmpezar") || e.target.closest("#introSaltar")) return;
-    avanzarPaso();
-  });
-
-  // Y con el teclado, para probarlo en la computadora.
+  // Con el teclado, para probarlo en la computadora: del primer acto se pasa
+  // a la lista, y de la lista se sale.
   document.addEventListener("keydown", function(e){
     var intro = document.getElementById("intro");
     if(!intro || intro.hidden) return;
     if(e.key === "ArrowRight" || e.key === " " || e.key === "Enter"){
-      if(intro.classList.contains("es-acto1")) pasarAlPasoAPaso(); else avanzarPaso();
+      if(intro.classList.contains("es-acto1")) pasarAlPasoAPaso(); else cerrarIntro();
     }
-    if(e.key === "ArrowLeft" && !intro.classList.contains("es-acto1")) mostrarPaso(introPaso - 1);
   });
   window.addEventListener("resize", acomodarIntro);
   document.addEventListener("keydown", function(e){
