@@ -2283,6 +2283,21 @@ body.es-admin #screen-admin.is-active{display:block;height:auto}
 .post__tipo{margin-left:auto;font-size:11.5px;font-weight:600;letter-spacing:.06em;
   text-transform:uppercase;color:rgba(159,196,216,.65)}
 
+/* Presentación y eventos en el inicio de la fundación. */
+.fpresenta{padding:14px;border-radius:16px;background:rgba(255,255,255,.04);
+  box-shadow:0 0 0 1px var(--canto)}
+.fpresenta p{margin:0 0 11px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.84)}
+.fpresenta--vacia{color:rgba(255,255,255,.55) !important;font-style:italic}
+
+.fevento{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:16px;
+  background:rgba(255,255,255,.04);box-shadow:0 0 0 1px var(--canto)}
+.fevento__img{flex:none;width:52px;height:52px;border-radius:12px;
+  background:#0d1c2c center/cover no-repeat}
+.fevento__t{flex:1;min-width:0}
+.fevento__t b{display:block;font-size:14.5px;color:#fff;line-height:1.2}
+.fevento__t span{display:block;font-size:12px;color:rgba(255,255,255,.55)}
+.fevento__gente{color:var(--turq) !important;margin-top:2px}
+
 /* ==================== RECAUDACIÓN · DEFINICIÓN ÚNICA ====================
    Lo primero que tiene que ver una fundación al entrar es cuánta plata tiene
    y cuándo la cobra. El resto (de dónde vino, quién la dio, en qué se usó)
@@ -5486,9 +5501,14 @@ function menosMovimiento(){
   return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function crearCarrilAuto(caja, selItem){
+// El tercer parámetro decide si el carril se mueve solo. Las subastas y los
+// sueños se recorren con el dedo: son decisiones de plata y mover la tarjeta
+// mientras alguien la lee es peor que no moverla. El carril de descubrimiento
+// sí avanza, porque ahí la gracia es que muestre cosas distintas.
+function crearCarrilAuto(caja, selItem, solo){
   if(!caja) return null;
-  var c = {caja:caja, sel:selItem, reloj:null, espera:null, relojScroll:null, tocando:false};
+  var c = {caja:caja, sel:selItem, solo:solo !== false,
+           reloj:null, espera:null, relojScroll:null, tocando:false};
 
   function items(){ return $$(c.sel, caja); }
 
@@ -5535,6 +5555,7 @@ function crearCarrilAuto(caja, selItem){
 
   function arrancar(){
     clearInterval(c.reloj);
+    if(!c.solo) return;                // este carril sólo se mueve con el dedo
     if(menosMovimiento()) return;      // sin movimiento automático
     c.reloj = setInterval(avanzar, CARRIL_INTERVALO);
   }
@@ -5584,11 +5605,13 @@ document.addEventListener("visibilitychange", function(){
 // Los cuatro carriles de la app. La lista de sueños se vuelve a dibujar cada
 // vez que se filtra, así que el montaje se repite y descarta los que ya no
 // están en el documento.
+// [selector del carril, selector de sus tarjetas, ¿avanza solo?]
 var CARRILES = [
-  ["#carrusel .carrusel__viewport", ".carrusel__slide"],
-  ["#carruselEventos .carrusel__viewport", ".carrusel__slide"],
-  ["#listaSubastas", ".lote"],
-  ["#listaDeseos .suenos-lista", ".sueno"]
+  ["#carrusel .carrusel__viewport", ".carrusel__slide", true],
+  ["#carruselEventos .carrusel__viewport", ".carrusel__slide", true],
+  ["#listaSubastas", ".lote", false],
+  ["#listaDeseos .suenos-lista", ".sueno", false],
+  ["#descubrirCarril", ".desc", true]
 ];
 function montarCarriles(){
   carriles = carriles.filter(function(c){
@@ -5601,24 +5624,13 @@ function montarCarriles(){
     if(!caja) return;
     var yaEsta = carriles.some(function(c){ return c.caja === caja; });
     if(yaEsta) return;
-    if(par[0] === "#listaSubastas"){
-      var nav = document.getElementById("subastasNav");
-      var c = crearCarrilAuto(caja, par[1]);
-      if(c) c.puntos = nav;
-      return;
-    }
-    if(par[0].indexOf("#carrusel ") === 0){
-      var c2 = crearCarrilAuto(caja, par[1]);
-      if(c2) c2.puntos = document.getElementById("carruselPuntos");
-      return;
-    }
-    if(par[0].indexOf("#carruselEventos") === 0){
-      var c3 = crearCarrilAuto(caja, par[1]);
-      if(c3) c3.puntos = document.getElementById("eventosPuntos");
-      return;
-    }
-    var c4 = crearCarrilAuto(caja, par[1]);
-    if(c4) c4.puntos = document.querySelector("#listaDeseos .carril-puntos");
+    var c = crearCarrilAuto(caja, par[1], par[2]);
+    if(!c) return;
+    // Cada carril enciende sus propios puntitos, si los tiene.
+    if(par[0] === "#listaSubastas") c.puntos = document.getElementById("subastasNav");
+    else if(par[0].indexOf("#carrusel ") === 0) c.puntos = document.getElementById("carruselPuntos");
+    else if(par[0].indexOf("#carruselEventos") === 0) c.puntos = document.getElementById("eventosPuntos");
+    else if(par[0].indexOf("#listaDeseos") === 0) c.puntos = document.querySelector("#listaDeseos .carril-puntos");
   });
 }
 window.addEventListener("resize", function(){ revisarCarriles(); });
@@ -5762,18 +5774,13 @@ function pintarDescubrir(){
   carril.innerHTML = descubrirMezcla.map(function(x){
     if(x.tipo === "fundacion"){
       var f = x.f;
-      var campana = (f.causas||[])[0];
-      var pc = campana && campana.meta
-        ? Math.min(100, Math.round(campana.r / campana.meta * 100)) : 0;
+      // Sin barra de avance: acá se presenta a la fundación, no se mide una meta.
       return '<button class="desc desc--fund" data-desc-fund="'+f.id+'">'+
         '<span class="desc__av"'+(f.foto?' style="background-image:url('+f.foto+')"':'')+'>'+
           (f.foto ? '' : esc(iniciales(f.nombre)))+'</span>'+
         '<span class="desc__t">'+esc(f.nombre)+'</span>'+
-        '<span class="desc__d">'+esc(f.lema || f.lugar || "")+'</span>'+
-        (campana
-          ? '<span class="desc__barra"><i style="width:'+pc+'%"></i></span>'+
-            '<span class="desc__pie">'+esc(campana.t)+' · '+pc+'%</span>'
-          : '<span class="desc__pie">'+esc(f.lugar||"")+'</span>')+
+        '<span class="desc__d">'+esc(f.lema || "")+'</span>'+
+        '<span class="desc__pie">'+esc(f.lugar||"")+'</span>'+
       '</button>';
     }
     var e = x.e, f2 = x.f;
@@ -5784,6 +5791,9 @@ function pintarDescubrir(){
       '<span class="desc__pie">'+esc(f2.nombre)+'</span>'+
     '</button>';
   }).join("");
+
+  // El carril se monta después de dibujarse: si no, no encuentra sus tarjetas.
+  requestAnimationFrame(montarCarriles);
 }
 
 function proximosEventos(){
@@ -5948,7 +5958,7 @@ function tarjetaPorSubastar(x){
       '<h3 class="lote__t">'+esc(x.titulo)+'</h3>'+
       '<p class="lote__q">Lo pidió '+esc(x.quien)+'</p>'+
       (x.aCambio ? '<p class="lote__d">'+esc(x.aCambio)+'</p>' : '')+
-      '<div class="lote__valor"><span>Valor estimado</span><b>'+pesos(x.valor||0)+'</b></div>'+
+      '<div class="lote__valor"><span>Precio base</span><b>'+pesos(x.valor||0)+'</b></div>'+
       (f
         ? '<div class="lote__fund">'+
             '<span class="lote__fav"'+(f.foto?' style="background-image:url('+f.foto+')"':'')+'>'+
@@ -6191,53 +6201,21 @@ function pintarPanelFundacion(){
      '</div>'+
    '</div>'+
 
-   // Lo primero: qué tiene que hacer hoy.
-   (function(){
-     var pend = [];
-     var porCobrar = DB.aportes.filter(function(a){
-       return a.fid === f.id && a.estado === "en subasta" && !a.cobrado &&
-         a.cierreISO && new Date(a.cierreISO).getTime() < Date.now(); });
-     var cierran = DB.aportes.filter(function(a){
-       return a.fid === f.id && a.estado === "en subasta" && a.cierreISO &&
-         (new Date(a.cierreISO).getTime() - Date.now()) > 0 &&
-         (new Date(a.cierreISO).getTime() - Date.now()) < 86400000 * 2; });
-     var sinLeer = suenos.filter(function(x){ return !x.vistoFund; });
-     var ultimo = DB.posts.filter(function(po){ return po.fid === f.id; }).length;
-
-     if(porCobrar.length) pend.push({t:porCobrar.length+(porCobrar.length===1?' subasta por cobrar':' subastas por cobrar'), i:'cobro', ir:'fRecauda'});
-     if(cierran.length) pend.push({t:cierran.length+(cierran.length===1?' subasta cierra en 48 h':' subastas cierran en 48 h'), i:'reloj', ir:'fRecauda'});
-     if(sinLeer.length) pend.push({t:sinLeer.length+(sinLeer.length===1?' sueño nuevo dirigido a vos':' sueños nuevos dirigidos a vos'), i:'sueno', ir:'fRecauda'});
-     if(!ultimo) pend.push({t:'Todavía no publicaste ninguna actividad', i:'nota', ir:'publicar'});
-
-     if(!pend.length) return '<div class="fal-dia">Estás al día. No hay nada pendiente.</div>';
-     return '<p class="frotulo">Para resolver</p>'+
-       '<div class="stack" style="gap:8px">'+pend.map(function(x){
-         return '<button class="pendf" data-pend="'+x.ir+'">'+
-           '<span class="pendf__p"></span>'+
-           '<span class="pendf__t">'+esc(x.t)+'</span>'+
-           '<span class="lotef__chev">&#8250;</span></button>';
-       }).join("")+'</div>';
-   })()+
-
-   // El tablero del mes vive ahora en Recaudación, junto al dinero.
-   // Lo que puede hacer ahora
-   '<p class="frotulo">Publicar</p>'+
-   '<div class="facciones">'+
-     '<button class="faccion" id="btnPublicarActividad">'+
-       '<span class="faccion__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">'+
-       '<rect x="3.6" y="4.6" width="16.8" height="14.8" rx="2.6"/><path d="M3.6 9.4h16.8M7 13h7M7 16h4"/></svg></span>'+
-       'Actividad</button>'+
-     '<button class="faccion" id="btnNuevaCampana">'+
-       '<span class="faccion__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+
-       '<path d="M4 20V6.4l12-2.6v13.4z"/><path d="M16 8.6h3.4v6.4H16"/><path d="M7 20v2.4"/></svg></span>'+
-       'Campaña</button>'+
-     '<button class="faccion" id="btnRendicion">'+
-       '<span class="faccion__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+
-       '<path d="M6 3.6h9l4 4V20.4H6z"/><path d="M14.6 3.6v4.2h4.2"/><path d="M9 13h6M9 16.4h4"/></svg></span>'+
-       'Rendición</button>'+
+   // La presentación va primero: es lo que un donante lee para decidir.
+   // El tablero del mes vive en Recaudación, junto al dinero. Acá el orden es
+   // el de un perfil: quiénes somos, qué estamos haciendo, cuándo nos pueden
+   // ver y con qué papeles. La gestión está en las otras pestañas.
+   '<p class="frotulo">Quiénes somos</p>'+
+   '<div class="fpresenta">'+
+     ((f.presentacion && f.presentacion.texto)
+       ? '<p>'+esc(f.presentacion.texto)+'</p>'
+       : '<p class="fpresenta--vacia">Todavía no cargaste tu presentación. '+
+         'Es lo primero que lee alguien que no te conoce.</p>')+
+     '<button class="btn btn--ghost btn--sm" data-editar="presentacion">'+
+       ((f.presentacion && f.presentacion.texto) ? 'Editar presentación' : 'Escribir presentación')+
+     '</button>'+
    '</div>'+
 
-   // Campañas con su avance
    '<p class="frotulo">Campañas abiertas</p>'+
    ((f.causas||[]).length
      ? '<div class="stack" style="gap:10px">'+f.causas.map(function(c){
@@ -6250,12 +6228,18 @@ function pintarPanelFundacion(){
        }).join("")+'</div>'
      : '<div class="empty">Todavía no abriste ninguna campaña.</div>')+
 
-   // Qué falta para que el perfil dé confianza
-   (faltan.length
-     ? '<p class="frotulo">Completá tu perfil</p>'+
-       '<div class="fpendientes">'+faltan.map(function(t){
-         return '<span class="fpend">'+esc(t)+'</span>'; }).join("")+'</div>'
-     : '')+
+   '<p class="frotulo">Próximos eventos</p>'+
+   ((f.eventos||[]).length
+     ? '<div class="stack" style="gap:10px">'+f.eventos.map(function(ev){
+         return '<div class="fevento">'+
+           (ev.imagen ? '<span class="fevento__img" style="background-image:url('+ev.imagen+')"></span>' : '')+
+           '<span class="fevento__t"><b>'+esc(ev.n||"")+'</b>'+
+             '<span>'+esc(ev.f||"")+(ev.lugar ? ' · '+esc(ev.lugar) : '')+'</span>'+
+             '<span class="fevento__gente">'+((ev.asistentes||[]).length)+
+             (((ev.asistentes||[]).length)===1 ? ' anotado' : ' anotados')+'</span>'+
+           '</span></div>';
+       }).join("")+'</div>'
+     : '<div class="empty">No tenés eventos publicados.</div>')+
 
    // Ficha institucional: lo que mira un donante antes de confiar
    '<div class="desplegable" id="fichaFund">'+
@@ -8328,7 +8312,7 @@ function tarjetaSueno(x){
     '</blockquote>'+
 
     '<div class="sueno__oferta">'+
-      '<span class="sueno__rotulo">'+(mejor ? 'Oferta actual' : 'Valor de salida')+'</span>'+
+      '<span class="sueno__rotulo">'+(mejor ? 'Oferta actual' : 'Precio base')+'</span>'+
       '<span class="sueno__monto">'+pesos(actual)+'</span>'+
       '<span class="sueno__gana">'+
         '<span>'+(lider || '<i>Todavía nadie ofertó</i>')+'</span>'+
@@ -8489,16 +8473,14 @@ function pintarComunidad(){
   var f = miFundacion(); if(!f) return;
   var caja = $("#comunidadCuerpo"); if(!caja) return;
 
-  // El feed muestra lo que publicaron todas las fundaciones, no sólo la propia:
-  // una fundación chica ve lo que hacen las demás, y de ahí sale la comunidad.
-  var posts = DB.posts.slice().sort(function(a,b){
-    return String(b.fechaISO||"").localeCompare(String(a.fechaISO||""));
-  });
-  var mios = posts.filter(function(po){ return po.fid === f.id; }).length;
+  // Cada fundación ve su propio muro: lo que publicó y cómo se ve.
+  var posts = DB.posts.filter(function(po){ return po.fid === f.id; })
+    .sort(function(a,b){
+      return String(b.fechaISO||"").localeCompare(String(a.fechaISO||""));
+    });
 
   function tarjeta(po){
     var fu = fundacionPorId(po.fid) || f;
-    var propio = po.fid === f.id;
     var mg = DB.megusta[po.id] || 0;
     var lodi = DB.miMeGusta[po.id];
     var sueno = po.suenoDe
@@ -8510,12 +8492,12 @@ function pintarComunidad(){
         '</div>'
       : '';
 
-    return '<article class="post'+(propio?' post--mio':'')+'">'+
+    return '<article class="post">'+
       '<header class="post__cab">'+
         '<span class="post__av"'+(fu.foto?' style="background-image:url('+fu.foto+')"':'')+'>'+
           (fu.foto ? '' : esc(iniciales(fu.nombre)))+'</span>'+
         '<span class="post__quien"><b>'+esc(fu.nombre)+'</b>'+
-          '<span>'+esc(po.fecha || "")+(propio ? ' · vos' : '')+'</span></span>'+
+          '<span>'+esc(po.fecha || "")+'</span></span>'+
       '</header>'+
 
       (po.foto
@@ -8551,12 +8533,12 @@ function pintarComunidad(){
       '<span class="post-nuevo__t"><b>Contá un sueño cumplido</b>'+
       '<span>Mostrá qué pasó con lo que recaudaste</span></span></button>'+
 
-    (mios ? '' : '<p class="rec-nota" style="margin-top:12px">Todavía no publicaste nada. '+
+    (posts.length ? '' : '<p class="rec-nota" style="margin-top:12px">Todavía no publicaste nada. '+
        'Las fundaciones que cuentan lo que hacen reciben más apoyo.</p>')+
 
     '<div class="feed">'+
       (posts.length ? posts.map(tarjeta).join("")
-                    : '<div class="empty">Todavía no hay publicaciones.</div>')+
+                    : '<div class="empty">Acá van a aparecer tus publicaciones.</div>')+
     '</div>';
 }
 
@@ -9889,7 +9871,7 @@ function abrirGmailDeseo(f, titulo, destino, valor, texto){
     "Quiero contarles un sueño.\n\n"+
     "Título: "+titulo+"\n"+
     (destino ? "Destino: "+destino+"\n" : "")+
-    (valor ? "Valor estimado: "+pesos(valor)+"\n" : "")+
+    (valor ? "Precio base: "+pesos(valor)+"\n" : "")+
     "\nMi sueño:\n"+texto+"\n\n"+
     "Quedo a la espera de su respuesta.\n\n"+
     sesion.nombre+"\n"+sesion.mail+"\n\n"+
@@ -10746,6 +10728,26 @@ document.addEventListener("click", function(e){
   if((t = e.target.closest("[data-rechazar]"))) return rechazarSueno(t.dataset.rechazar);
   if((t = e.target.closest("[data-abrir-subasta]"))) return abrirSubastaDeSueno(t.dataset.abrirSubasta);
   if((t = e.target.closest("[data-pausar]"))) return pausarSubastaDeSueno(t.dataset.pausar);
+  if((t = e.target.closest("[data-lanzar-ya]"))){
+    var sx = DB.solicitudes.filter(function(q){ return q.id === t.dataset.lanzarYa; })[0];
+    if(sx){
+      sx.estado = "en subasta";
+      sx.desdeISO = null;
+      anotarAuditoria("Adelantó el lanzamiento", sx.titulo, "");
+      pintarAdmin(); pintarTodo();
+      toast("Subasta abierta.");
+    }
+    return;
+  }
+  if((t = e.target.closest("[data-bloquear]"))){
+    var quienB = t.dataset.bloquear;
+    DB.bloqueados[quienB] = !DB.bloqueados[quienB];
+    anotarAuditoria(DB.bloqueados[quienB] ? "Bloqueó a un usuario" : "Desbloqueó a un usuario",
+                    quienB, "");
+    pintarAdmin();
+    toast(DB.bloqueados[quienB] ? "Usuario bloqueado." : "Usuario desbloqueado.");
+    return;
+  }
   if(e.target.closest("#adminSalir")) return salirDeAdmin();
   if((t = e.target.closest("[data-suspender]"))){
     var fx = fundacionPorId(t.dataset.suspender);
@@ -10920,6 +10922,8 @@ var adminSeccion = "tablero";
 
 // Toda acción administrativa deja rastro: quién, qué y cuándo.
 DB.auditoria = DB.auditoria || [];
+// Usuarios bloqueados por la administración, por nombre.
+DB.bloqueados = DB.bloqueados || {};
 function anotarAuditoria(accion, sobre, detalle){
   DB.auditoria.unshift({
     id:nid("au"),
@@ -11003,6 +11007,7 @@ function pintarAdmin(){
   var secciones = [
     ["tablero", "Tablero", 0],
     ["suenos", "Sueños", d.pendientes.length],
+    ["usuarios", "Usuarios", 0],
     ["fundaciones", "Fundaciones", 0],
     ["finanzas", "Finanzas", 0],
     ["auditoria", "Auditoría", 0]
@@ -11085,9 +11090,10 @@ function pintarAdmin(){
         '<p class="adm-sueno__q">Lo pidió '+esc(x.quien)+
           (fu ? ' · a beneficio de '+esc(fu.nombre) : '')+'</p>'+
         (x.aCambio ? '<p class="adm-sueno__d">'+esc(x.aCambio)+'</p>' : '')+
-        '<p class="adm-sueno__m">'+pesos(x.valor||0)+' estimado'+
+        '<p class="adm-sueno__m">'+pesos(x.valor||0)+' de base'+
           (m ? ' · '+pesos(m.monto)+' ofertado' : '')+
-          (x.cierreISO ? ' · cierra '+fechaCorta(x.cierreISO) : '')+'</p>'+
+          (x.desdeISO ? ' · sale el '+fechaCorta(x.desdeISO) : '')+
+          (x.cierreISO && !x.desdeISO ? ' · cierra '+fechaCorta(x.cierreISO) : '')+'</p>'+
         (acciones ? '<div class="adm-sueno__acc">'+acciones+'</div>' : '')+
       '</div>';
     }
@@ -11108,9 +11114,13 @@ function pintarAdmin(){
       '<p class="frotulo">Aprobados, sin subasta ('+d.porSubastar.length+')</p>'+
       (d.porSubastar.length
         ? d.porSubastar.map(function(x){
-            return ficha(x,
-              '<button class="btn btn--primary btn--sm" data-abrir-subasta="'+x.id+'">'+
-              'Abrir subasta</button>');
+            return ficha(x, x.desdeISO
+              ? '<button class="btn btn--primary btn--sm" data-abrir-subasta="'+x.id+'">'+
+                'Cambiar fecha</button>'+
+                '<button class="btn btn--ghost btn--sm" data-lanzar-ya="'+x.id+'">'+
+                'Lanzar ahora</button>'
+              : '<button class="btn btn--primary btn--sm" data-abrir-subasta="'+x.id+'">'+
+                'Programar subasta</button>');
           }).join("")
         : '<div class="empty">Ninguno esperando salir.</div>')+
 
@@ -11127,6 +11137,67 @@ function pintarAdmin(){
         ? '<p class="frotulo">Rechazados ('+d.rechazados.length+')</p>'+
           d.rechazados.map(function(x){ return ficha(x, ''); }).join("")
         : '');
+    return;
+  }
+
+  // ---- USUARIOS: mismo formato que fundaciones ----
+  if(adminSeccion === "usuarios"){
+    // Se arma desde la actividad: quien donó, ofertó, pidió un sueño o apoya
+    // todos los meses. No hay padrón aparte.
+    var gente = {};
+    function tocar(nombre, mail){
+      if(!nombre) return null;
+      gente[nombre] = gente[nombre] || {nombre:nombre, mail:mail||"", donado:0,
+        veces:0, suenos:0, ofertas:0, mensual:0, ultima:null};
+      if(mail && !gente[nombre].mail) gente[nombre].mail = mail;
+      return gente[nombre];
+    }
+    d.donaciones.forEach(function(x){
+      var g = tocar(x.anonimo ? "Donante anónimo" : x.quien, x.mail);
+      if(!g) return;
+      g.donado += x.monto || 0; g.veces++;
+      var t = fechaDon(x);
+      if(t && (!g.ultima || t > g.ultima)) g.ultima = t;
+    });
+    d.suscripciones.forEach(function(x){
+      var g = tocar(x.quien, x.mail); if(g) g.mensual += x.monto || 0;
+    });
+    d.sol.forEach(function(x){
+      var g = tocar(x.quien, x.mail); if(g) g.suenos++;
+      (x.ofertas||[]).forEach(function(o){
+        var go = tocar(o.anonimo ? "Donante anónimo" : o.quien, "");
+        if(go) go.ofertas++;
+      });
+    });
+    var lista = Object.keys(gente).map(function(k){ return gente[k]; })
+      .sort(function(a,b){ return (b.donado + b.mensual*12) - (a.donado + a.mensual*12); });
+
+    caja.innerHTML =
+      '<div class="adm-grilla">'+
+        tarjeta("Usuarios", String(lista.length), "con actividad")+
+        tarjeta("Con apoyo mensual", String(lista.filter(function(g){ return g.mensual; }).length),
+                pesos(d.porMes)+" por mes")+
+      '</div>'+
+      '<p class="frotulo">Todos los usuarios</p>'+
+      lista.map(function(g){
+        var bloqueado = DB.bloqueados[g.nombre];
+        var anon = g.nombre === "Donante anónimo";
+        return '<div class="adm-fund'+(bloqueado?' es-suspendida':'')+'">'+
+          '<span class="adm-fund__av">'+esc(anon ? "?" : iniciales(g.nombre))+'</span>'+
+          '<span class="adm-fund__t"><b>'+esc(g.nombre)+'</b>'+
+            '<span>'+(g.mail ? esc(g.mail)+' · ' : '')+
+              pesos(g.donado)+' donados'+
+              (g.mensual ? ' · '+pesos(g.mensual)+'/mes' : '')+'</span>'+
+            '<span>'+g.suenos+(g.suenos===1?' sueño':' sueños')+
+              ' · '+g.ofertas+(g.ofertas===1?' oferta':' ofertas')+'</span>'+
+            '<span class="adm-estado es-'+(bloqueado?"suspendida":"activa")+'">'+
+            (bloqueado ? "Bloqueado" : "Activo")+'</span>'+
+          '</span>'+
+          (anon ? '' :
+            '<button class="btn btn--ghost btn--sm" data-bloquear="'+esc(g.nombre)+'">'+
+              (bloqueado ? "Desbloquear" : "Bloquear")+'</button>')+
+        '</div>';
+      }).join("");
     return;
   }
 
@@ -11256,29 +11327,52 @@ function rechazarSueno(id){
 function abrirSubastaDeSueno(id){
   var x = DB.solicitudes.filter(function(s){ return s.id === id; })[0];
   if(!x) return;
-  abrirModal({eyebrow:"Subasta", titulo:"Abrir la subasta",
-    sub:"Elegí cuántos días queda abierta. El cronómetro arranca al confirmar.",
-    body:'<div class="field"><label for="admDias">Duración</label>'+
+  var hoyTxt = new Date().toISOString().slice(0, 10);
+  abrirModal({eyebrow:"Subasta", titulo:"Programar la subasta",
+    sub:"Elegí cuándo sale y cuánto dura. Si la fecha es hoy, abre en el momento.",
+    body:'<div class="field"><label for="admDesde">Fecha de lanzamiento</label>'+
+         '<input type="date" id="admDesde" value="'+hoyTxt+'" min="'+hoyTxt+'"></div>'+
+         '<div class="field"><label for="admDias">Duración</label>'+
          '<select id="admDias">'+
          '<option value="7">7 días</option>'+
          '<option value="14" selected>14 días</option>'+
          '<option value="21">21 días</option>'+
          '<option value="30">30 días</option>'+
          '</select></div>',
-    ok:"Abrir subasta",
+    ok:"Programar",
     onOk:function(){
       var dias = Number(val("admDias")) || 14;
-      var cierre = new Date();
+      var desdeTxt = val("admDesde") || hoyTxt;
+      // El date devuelve una fecha sin hora: se arma en local para que no se
+      // corra un día por la zona horaria.
+      var partes = desdeTxt.split("-");
+      var desde = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]), 9, 0, 0);
+      var arrancaHoy = desdeTxt === hoyTxt;
+
+      var cierre = new Date(desde.getTime());
       cierre.setDate(cierre.getDate() + dias);
       cierre.setHours(21, 0, 0, 0);
-      x.estado = "en subasta";
+
       x.cierreISO = cierre.toISOString().slice(0, 16);
-      anotarAuditoria("Abrió una subasta", x.titulo, dias+" días de duración");
-      DB.avisos.push({id:nid("av"), titulo:"Tu sueño salió a subasta",
-        texto:x.titulo+" está abierto por "+dias+" días.", hora:"ahora",
-        cuando:new Date().toISOString(), destino:"subastas", clase:"actividad", leido:false});
+      if(arrancaHoy){
+        x.estado = "en subasta";
+        x.desdeISO = null;
+        anotarAuditoria("Abrió una subasta", x.titulo, dias+" días de duración");
+        DB.avisos.push({id:nid("av"), titulo:"Tu sueño salió a subasta",
+          texto:x.titulo+" está abierto por "+dias+" días.", hora:"ahora",
+          cuando:new Date().toISOString(), destino:"subastas", clase:"actividad", leido:false});
+        toast("Subasta abierta por "+dias+" días.");
+      } else {
+        // Queda programada: sigue en la espera hasta la fecha elegida.
+        x.desdeISO = desde.toISOString().slice(0, 16);
+        anotarAuditoria("Programó una subasta", x.titulo,
+                        "Sale el "+fechaCorta(x.desdeISO)+", por "+dias+" días");
+        DB.avisos.push({id:nid("av"), titulo:"Tu sueño ya tiene fecha",
+          texto:x.titulo+" sale a subasta el "+fechaCorta(x.desdeISO)+".", hora:"ahora",
+          cuando:new Date().toISOString(), destino:"subastas", clase:"actividad", leido:false});
+        toast("Programada para el "+fechaCorta(x.desdeISO)+".");
+      }
       cerrarModal(); pintarAdmin(); pintarTodo();
-      toast("Subasta abierta por "+dias+" días.");
     }});
 }
 
