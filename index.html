@@ -2727,8 +2727,8 @@ body.es-admin #screen-admin.is-active{display:block;height:auto}
 /* quién va ganando, y cuántas ofertas hubo */
 
 /* el cronómetro del sueño, en una línea */
-.sueno__reloj{display:flex;align-items:center;justify-content:center;gap:7px;padding:6px 14px;border-radius:999px;align-self:center;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);font-size:clamp(11px,1.5vh,12.5px);color:rgba(159,196,216,.85)}
-.sueno__reloj svg{width:15px;height:15px;color:#5eead4;flex:none}
+.sueno__reloj{display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 18px;border-radius:16px;align-self:stretch;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);font-size:clamp(11px,1.5vh,12.5px);color:rgba(159,196,216,.85)}
+.sueno__reloj svg{width:22px;height:22px;color:#5eead4;flex:none}
 .sueno__reloj b{color:#fff;font-weight:700}
 .sueno__reloj.es-urgente{border-color:rgba(252,165,165,.5);background:rgba(229,72,77,.1)}
 .sueno__reloj.es-urgente svg,.sueno__reloj.es-urgente b{color:#fca5a5}
@@ -3305,6 +3305,46 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 .sueno__pie .borrar-sueno{margin-left:auto;padding:0;font-size:11px;color:rgba(255,255,255,.4)}
 
 /* ---- paleta de las entradas, una sola vez ---- */
+
+/* ==================== TARJETA DE SUBASTA ACTIVA · JERARQUÍA ==============
+   Reordenada: la foto y el título arriba, la fundación destacada, el reloj
+   como pieza principal y el autor al pie. Quien pidió el sueño importa, pero
+   no es lo que decide si alguien oferta: eso lo definen el sueño, la causa y
+   el tiempo que queda. */
+.sueno--foto{padding-top:0;overflow:hidden}
+.sueno__img{flex:none;height:clamp(120px,17vh,190px);margin:0 -18px 4px;
+  background:#0d1c2c center/cover no-repeat}
+
+/* La fundación deja de ser una línea gris al lado del nombre de la persona. */
+.sueno__fund{flex:none;display:flex;align-items:center;gap:10px;
+  margin-top:clamp(8px,1.4vh,13px);padding:9px 12px;border-radius:14px;cursor:pointer;
+  background:rgba(94,234,212,.09);box-shadow:0 0 0 1px rgba(94,234,212,.3)}
+.sueno__fav{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:#fff center/cover no-repeat;color:#0b1b2c;font-size:12px;font-weight:800}
+.sueno__fundt{min-width:0}
+.sueno__fundt i{display:block;font-style:normal;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(94,234,212,.9);font-weight:700}
+.sueno__fundt b{display:block;font-size:14.5px;color:#fff;line-height:1.2;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* El reloj pasa de pastilla discreta a bloque con peso propio. */
+.sueno__relojt{display:flex;flex-direction:column;line-height:1.05}
+.sueno__relojt i{font-style:normal;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(159,196,216,.9);font-weight:700}
+.sueno__relojt b{font-size:clamp(17px,2.5vh,21px);font-weight:800;color:#fff}
+.sueno__reloj.es-urgente .sueno__relojt b{color:#ffb4b4}
+
+/* El autor, al pie y en tamaño de dato. */
+.sueno__autor{flex:none;display:flex;align-items:center;gap:9px;width:100%;
+  margin-top:10px;padding:0;border:0;background:none;cursor:pointer;
+  font-family:inherit;font-size:13px;color:rgba(255,255,255,.62);text-align:left}
+/* El width del avatar lo fija otra regla más específica; sin flex:none el
+   contenedor lo estira y la inicial queda en una elipse. */
+.sueno__autor .sueno__ava{flex:none;width:30px;height:30px;min-width:30px;
+  border-width:1px;font-size:11px}
+.sueno__autor span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sueno__autor b{color:rgba(255,255,255,.9);font-weight:600}
+.sueno__autor .sueno__mas{flex:none;color:rgba(255,255,255,.4)}
 
 /* ---- la cita, definición única: corta por líneas enteras ---- */
 .sueno__cita{position:relative;flex:1 1 0;min-height:0;overflow:hidden;margin:10px 0 0;padding:0 4px 0 22px;cursor:pointer}
@@ -8267,20 +8307,23 @@ function tarjetaSueno(x){
       : 'Mejor oferta de <b>'+esc(nom)+'</b>';
   }
 
-  return '<article class="sueno">'+
-    '<div class="sueno__cab" data-ver-perfil="'+esc(x.quien)+'">'+
-      avatarUsuario(quien, "sueno__ava")+
-      '<div class="sueno__quien">'+
-        '<b>'+esc(quien)+'</b>'+
-        '<span>Pidió'+(f ? ' · '+esc(f.nombre) : '')+'</span>'+
-      '</div>'+
-      '<span class="sueno__mas">&#8250;</span>'+
-    '</div>'+
+  // El orden dice de qué se trata: primero el sueño, después a quién ayuda, y
+  // el reloj bien visible porque es lo que apura la decisión. Quién lo pidió va
+  // al pie: importa, pero no es lo que define si alguien oferta.
+  return '<article class="sueno'+(x.foto?' sueno--foto':'')+'">'+
+    (x.foto ? '<div class="sueno__img" style="background-image:url('+x.foto+')"></div>' : '')+
 
     '<h3 class="sueno__titulo">'+esc(x.titulo||"Sueño")+'</h3>'+
 
+    (f
+      ? '<div class="sueno__fund" data-fund-sueno="'+f.id+'">'+
+          '<span class="sueno__fav"'+(f.foto?' style="background-image:url('+f.foto+')"':'')+'>'+
+            (f.foto ? '' : esc(iniciales(f.nombre)))+'</span>'+
+          '<span class="sueno__fundt"><i>Lo recaudado va a</i><b>'+esc(f.nombre)+'</b></span>'+
+        '</div>'
+      : '')+
+
     '<blockquote class="sueno__cita" data-ver-deseo="'+x.id+'">'+
-      '<span class="sueno__comilla">&ldquo;</span>'+
       '<p>'+esc(x.aCambio||"")+'</p>'+
     '</blockquote>'+
 
@@ -8294,9 +8337,15 @@ function tarjetaSueno(x){
     '</div>'+
 
     '<div class="sueno__reloj" data-cierra="'+esc(x.cierreISO||"")+'">'+
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">'+
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'+
       '<circle cx="12" cy="12" r="8.4"/><path d="M12 7.4V12l3 1.8"/></svg>'+
-      'Cierra en <b data-u="txt">--</b></div>'+
+      '<span class="sueno__relojt"><i>Cierra en</i><b data-u="txt">--</b></span></div>'+
+
+    '<button class="sueno__autor" data-ver-perfil="'+esc(x.quien)+'">'+
+      avatarUsuario(quien, "sueno__ava")+
+      '<span>Lo pidió <b>'+esc(quien)+'</b></span>'+
+      '<span class="sueno__mas">&#8250;</span>'+
+    '</button>'+
 
     (propio ? '<button class="borrar-sueno" data-borrar-sueno="'+x.id+'">Eliminar publicación</button>' : '')+
     (puedeAportar()
