@@ -2060,6 +2060,48 @@ body.es-fundacion #panelIzq{overflow:visible;padding-bottom:0}
 
 /* ==================== SUBASTAS DE LA FUNDACIÓN ==================== */
 
+/* ==================== CARRIL DE DESCUBRIMIENTO · DEFINICIÓN ÚNICA ==========
+   Cierra el menú con contenido real —fundaciones y próximos eventos, mezclados
+   al azar— en lugar de dos accesos más. El alto lo reparte acomodarMenu(). */
+.descubrir{display:flex;flex-direction:column;min-height:0}
+.descubrir__cab{display:flex;align-items:baseline;gap:10px;flex:none;
+  padding:0 2px 8px}
+.descubrir__rot{flex:1;font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(159,196,216,.85)}
+.descubrir__ver{background:none;border:0;padding:0;cursor:pointer;font-family:inherit;
+  font-size:13px;font-weight:600;color:var(--turq)}
+
+.descubrir__carril{flex:1;min-height:0;display:flex;gap:10px;overflow-x:auto;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  -ms-overflow-style:none;scrollbar-width:none;padding-bottom:2px}
+.descubrir__carril::-webkit-scrollbar{display:none}
+
+.desc{flex:0 0 62%;max-width:230px;scroll-snap-align:center;
+  display:flex;flex-direction:column;gap:5px;text-align:left;cursor:pointer;
+  padding:12px;border:0;border-radius:18px;font-family:inherit;
+  background:var(--vidrio);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 0 1px var(--canto)}
+.desc:active{filter:brightness(1.1)}
+.desc__av{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:#fff center/cover no-repeat;color:#0b1b2c;font-size:13px;font-weight:800}
+/* La foto del evento se estira con la tarjeta: el alto del carril lo decide
+   acomodarMenu() y cambia con el teléfono. */
+.desc__foto{flex:1;min-height:56px;border-radius:12px;position:relative;
+  background:#0d1c2c center/cover no-repeat}
+.desc__fecha{position:absolute;left:7px;bottom:7px;padding:3px 8px;border-radius:99px;
+  font-size:11px;font-weight:700;color:#04121d;background:var(--turq)}
+.desc__t{font-size:14.5px;font-weight:700;line-height:1.2;color:#fff;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.desc__d{flex:1;min-height:0;font-size:12.5px;line-height:1.3;color:rgba(255,255,255,.62);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.desc__barra{display:block;height:5px;border-radius:99px;margin-top:auto;
+  background:rgba(255,255,255,.12);overflow:hidden}
+.desc__barra i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--cian),var(--turq))}
+.desc__pie{font-size:11.5px;color:rgba(255,255,255,.55);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.desc--evento .desc__t{margin-top:2px}
+
 /* ==================== ADMINISTRACIÓN · DEFINICIÓN ÚNICA ====================
    El panel del administrador general. Misma paleta que el resto, pero más
    denso: acá se leen datos, no se navega una experiencia. */
@@ -3575,26 +3617,15 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
       </button>
       </div>
 
-      <button class="entrada entrada--violeta entrada--fina" id="btnVerEventos">
-        <svg class="entrada__borde" aria-hidden="true" preserveAspectRatio="none">
-          <rect class="entrada__base" x="0" y="0" width="100%" height="100%" rx="22" ry="22"></rect>
-          <rect class="entrada__chispa" x="0" y="0" width="100%" height="100%" rx="22" ry="22" pathLength="100"></rect>
-        </svg>
-        <span class="entrada__ico entrada__ico--arte" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4.6" y="7.4" width="22.8" height="20" rx="3.4" fill="currentColor"   fill-opacity=".16" stroke="currentColor" stroke-width="1.7"/><path d="M4.6 13.6h22.8" stroke="currentColor" stroke-width="1.7"/><path d="M10.6 4.4v5.4M21.4 4.4v5.4" stroke="currentColor" stroke-width="1.7"   stroke-linecap="round"/><path d="M12.2 20.6l2.6 2.6 5.2-5.2" stroke="currentColor" stroke-width="2"   stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="entrada__col"><span class="entrada__t">Actividades y eventos</span>
-        <span class="entrada__dato" id="datoEventos"></span></span>
-        <span class="entrada__chev" aria-hidden="true">&#8250;</span>
-      </button>
-      <button class="entrada entrada--lima entrada--fina" id="btnVerFundaciones">
-        <svg class="entrada__borde" aria-hidden="true" preserveAspectRatio="none">
-          <rect class="entrada__base" x="0" y="0" width="100%" height="100%" rx="22" ry="22"></rect>
-          <rect class="entrada__chispa" x="0" y="0" width="100%" height="100%" rx="22" ry="22" pathLength="100"></rect>
-        </svg>
-        <span class="entrada__ico entrada__ico--arte" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="7.8" cy="8.2" r="3.3" fill="currentColor" fill-opacity=".22"    stroke="currentColor" stroke-width="1.7"/><circle cx="24.2" cy="8.2" r="3.3" fill="currentColor" fill-opacity=".22"    stroke="currentColor" stroke-width="1.7"/><path d="M2.6 21.4v-1.2a5.2 5.2 0 0 1 10.4 0v1.2" stroke="currentColor"   stroke-width="1.7" stroke-linecap="round"/><path d="M19 21.4v-1.2a5.2 5.2 0 0 1 10.4 0v1.2" stroke="currentColor"   stroke-width="1.7" stroke-linecap="round"/><path d="M16 29.2s-4.9-3-4.9-6.4a2.75 2.75 0 0 1 4.9-1.7 2.75 2.75 0 0 1 4.9 1.7c0 3.4-4.9 6.4-4.9 6.4z"   fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1.7"   stroke-linejoin="round"/></svg></span>
-        <span class="entrada__col"><span class="entrada__t">Conocé las fundaciones</span>
-        <span class="entrada__dato" id="datoFund"></span></span>
-        <span class="entrada__chev" aria-hidden="true">&#8250;</span>
-      </button>
+      <!-- En lugar de dos entradas más, un carril que mezcla fundaciones y
+           próximos eventos: muestra contenido real en vez de anunciarlo. -->
+      <div class="descubrir" id="descubrir">
+        <div class="descubrir__cab">
+          <span class="descubrir__rot">Descubrí</span>
+          <button class="descubrir__ver" id="btnVerFundaciones">Ver todas &#8250;</button>
+        </div>
+        <div class="descubrir__carril" id="descubrirCarril"></div>
+      </div>
     </nav>
 </div>
 
@@ -5528,6 +5559,53 @@ var carEventos = crearCarrusel({
   render:function(ev){ return tarjetaEvento(ev); }
 });
 
+// El carril de descubrimiento del menú: mezcla fundaciones y próximos eventos.
+// Se arma una vez por sesión y se mantiene, para que no cambie de orden cada
+// vez que se repinta el menú y la persona pierda de vista lo que estaba mirando.
+var descubrirMezcla = null;
+function pintarDescubrir(){
+  var carril = document.getElementById("descubrirCarril");
+  if(!carril) return;
+
+  if(!descubrirMezcla){
+    var items = DB.fundaciones.map(function(f){ return {tipo:"fundacion", f:f}; })
+      .concat(proximosEventos().map(function(it){
+        return {tipo:"evento", e:it.e, f:it.f}; }));
+    // Barajado simple, para que no aparezcan siempre las mismas primero.
+    for(var i = items.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+    }
+    descubrirMezcla = items.slice(0, 14);
+  }
+
+  carril.innerHTML = descubrirMezcla.map(function(x){
+    if(x.tipo === "fundacion"){
+      var f = x.f;
+      var campana = (f.causas||[])[0];
+      var pc = campana && campana.meta
+        ? Math.min(100, Math.round(campana.r / campana.meta * 100)) : 0;
+      return '<button class="desc desc--fund" data-desc-fund="'+f.id+'">'+
+        '<span class="desc__av"'+(f.foto?' style="background-image:url('+f.foto+')"':'')+'>'+
+          (f.foto ? '' : esc(iniciales(f.nombre)))+'</span>'+
+        '<span class="desc__t">'+esc(f.nombre)+'</span>'+
+        '<span class="desc__d">'+esc(f.lema || f.lugar || "")+'</span>'+
+        (campana
+          ? '<span class="desc__barra"><i style="width:'+pc+'%"></i></span>'+
+            '<span class="desc__pie">'+esc(campana.t)+' · '+pc+'%</span>'
+          : '<span class="desc__pie">'+esc(f.lugar||"")+'</span>')+
+      '</button>';
+    }
+    var e = x.e, f2 = x.f;
+    return '<button class="desc desc--evento" data-desc-evento="1">'+
+      '<span class="desc__foto"'+(e.imagen?' style="background-image:url('+e.imagen+')"':'')+'>'+
+        '<span class="desc__fecha">'+esc(e.f || "")+'</span></span>'+
+      '<span class="desc__t">'+esc(e.n || "")+'</span>'+
+      '<span class="desc__pie">'+esc(f2.nombre)+'</span>'+
+    '</button>';
+  }).join("");
+}
+
 function proximosEventos(){
   var lista = [];
   DB.fundaciones.forEach(function(f){
@@ -6085,11 +6163,14 @@ function acomodarMenu(){
   // filas finas. Los pesos se reparten sobre el alto que quedó libre.
   var principal = menu.querySelector(".es-principal");
   var par = menu.querySelector(".menu-par");
+  var descubrir = menu.querySelector(".descubrir");
   var finas = menu.querySelectorAll(".entrada--fina");
   var bloques = [];
-  if(principal) bloques.push({el:principal, peso:1.32});
-  if(par) bloques.push({el:par, peso:1.42});
-  Array.prototype.forEach.call(finas, function(f){ bloques.push({el:f, peso:0.82}); });
+  if(principal) bloques.push({el:principal, peso:1.0});
+  if(par) bloques.push({el:par, peso:1.05});
+  Array.prototype.forEach.call(finas, function(f){ bloques.push({el:f, peso:0.8}); });
+  // El carril se lleva el resto: es el que muestra contenido, no accesos.
+  if(descubrir) bloques.push({el:descubrir, peso:1.5});
   if(!bloques.length) return;
 
   var libre = hueco - sep * (bloques.length - 1);
@@ -6336,8 +6417,7 @@ function pintarDatosMenu(){
   poner("datoSuenos", "Contanos tu sueño");
   poner("datoSubastas", subastas + (subastas===1 ? " sueño en juego" : " sueños en juego"));
   poner("datoLotes", lotes + (lotes===1 ? " lote abierto" : " lotes abiertos"));
-  poner("datoEventos", eventos + (eventos===1 ? " actividad próxima" : " actividades próximas"));
-  poner("datoFund", DB.fundaciones.length + " fundaciones verificadas");
+  pintarDescubrir();
 }
 
 function revisarMenuFijo(){
@@ -8118,6 +8198,9 @@ var MODO_FUNDACION = true;
 var MAIL_DONANTE = "demo@gmail.com";
 var MAIL_FUNDACION = "institucional@fundaciongarrahan.org";
 var ID_FUNDACION_DEMO = "fGar";
+// Va acá y no junto al panel de administración: el deslizador de la portada lo
+// lee al armarse, y una var declarada más abajo llega como undefined.
+var MAIL_ADMIN = "admin@sonaydona.org";
 var garantiaPaga = {};
 
 // ---- pantallas propias de la fundación ----
@@ -10501,6 +10584,19 @@ document.addEventListener("click", function(e){
   if(e.target.closest("#btnPublicarActividad")) return modalPublicarActividad();
   if(e.target.closest("#btnVerSubastas")) return abrirSubastas();
   if(e.target.closest("#btnVerEventos")) return abrirEventos();
+  // El carril del menú: cada tarjeta lleva a su sección.
+  if((t = e.target.closest("[data-desc-fund]"))){
+    abrirFundaciones();
+    var fid = t.dataset.descFund;
+    requestAnimationFrame(function(){
+      var vp = document.querySelector("#carrusel .carrusel__viewport");
+      var sl = document.querySelector('#carruselTrack [data-fundacion="'+fid+'"]');
+      var cont = sl && sl.closest(".carrusel__slide");
+      if(vp && cont) vp.scrollTo({left:cont.offsetLeft - (vp.clientWidth - cont.offsetWidth)/2});
+    });
+    return;
+  }
+  if(e.target.closest("[data-desc-evento]")) return abrirEventos();
   if(e.target.closest("#btnVerFundaciones")) return abrirFundaciones();
   if(e.target.closest("[data-volver-inicio]")) return volverHome();
   if(e.target.closest("#btnVerDeseos")) return abrirDeseos();
@@ -10600,7 +10696,6 @@ document.addEventListener("keydown", function(e){
    "Por subastar" es una etapa de espera: el sueño ya fue aprobado pero no
    corre reloj. El cronómetro aparece recién cuando el administrador la abre. */
 
-var MAIL_ADMIN = "admin@sonaydona.org";
 var adminSeccion = "tablero";
 
 // Toda acción administrativa deja rastro: quién, qué y cuándo.
