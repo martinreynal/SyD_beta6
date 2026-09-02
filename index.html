@@ -3333,6 +3333,14 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 .lote__cifras{margin-top:12px}
 .lote__monto{margin-top:3px}
 .reloj{margin-top:13px}
+/* El mismo reloj de los lotes, ajustado al alto que deja la tarjeta. */
+.reloj--sueno{flex:none;flex-direction:column;align-items:stretch;gap:7px;
+  margin-top:10px;padding:9px 12px}
+.reloj--sueno .reloj__fila{display:flex;align-items:center;gap:10px}
+.reloj--sueno .reloj__ico{width:32px;height:32px}
+.reloj--sueno .reloj__u b{font-size:clamp(16px,2.4vh,20px)}
+.reloj--sueno .reloj__fecha{justify-content:center;font-size:11.5px;
+  padding-top:7px;border-top:1px solid rgba(255,255,255,.09)}
 .lote__fund{margin-top:13px}
 .lote__fund-t b{font-size:16px}
 .cab-seccion b{font-size:15px}
@@ -3387,7 +3395,35 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 /* Con la foto arriba queda menos alto para la historia: se recorta por líneas
    enteras en vez de dejar medio renglón cortado. */
 .sueno--foto .sueno__cita p{--lineas:2}
-@media (max-height:760px){ .sueno--foto .sueno__cita p{--lineas:1} }
+/* Con el reloj de columnas, que es más alto que la línea que había antes, en
+   pantallas bajas la historia cede su lugar y la foto se achica. */
+@media (max-height:900px){
+  /* Con el título en tres renglones y el reloj de columnas, la cita entra en
+     uno solo: a dos quedaba media línea cortada. */
+  .sueno--foto .sueno__cita p{--lineas:1}
+  .sueno--foto .sueno__img{height:clamp(86px,12vh,120px)}
+  .sueno--foto .sueno__titulo{font-size:clamp(17px,2.4vh,21px);-webkit-line-clamp:2}
+}
+@media (max-height:700px){
+  .sueno--foto .sueno__cita{display:none}
+  /* La foto cede el alto que necesita un título de dos renglones: es lo único
+     que puede achicarse sin perder información. */
+  .sueno--foto .sueno__img{height:clamp(56px,8vh,84px)}
+  /* Los 40 px que faltaban salen de acá: el monto y el reloj se achican, no
+     se recorta información. */
+  .sueno--foto .sueno__monto{font-size:clamp(26px,4.6vh,34px)}
+  .sueno--foto .sueno__oferta{margin-top:6px;padding-top:8px;gap:2px}
+  .sueno--foto .reloj--sueno{margin-top:7px;padding:7px 10px;gap:5px}
+  .sueno--foto .reloj--sueno .reloj__ico{width:26px;height:26px}
+  .sueno--foto .reloj--sueno .reloj__ico svg{width:15px;height:15px}
+  .sueno--foto .reloj--sueno .reloj__u b{font-size:15px}
+  .sueno--foto .reloj--sueno .reloj__u span{font-size:7.5px}
+  .sueno--foto .reloj--sueno .reloj__fecha{font-size:10.5px;padding-top:5px}
+  .sueno--foto .sueno__autor{margin-top:6px}
+  /* Los últimos pixeles: el bloque de la fundación con menos relleno. */
+  .sueno--foto .sueno__fund{margin-top:7px;padding:7px 11px}
+  .sueno--foto .sueno__fav{width:30px;height:30px}
+}
 
 /* La fundación deja de ser una línea gris al lado del nombre de la persona. */
 .sueno__fund{flex:none;display:flex;align-items:center;gap:10px;
@@ -3435,9 +3471,14 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 
 /* ---- bloque de la oferta · definición única ----
    Se lleva el aire sobrante para que no quede un hueco bajo la cita. */
-.sueno__oferta{flex:1 1 auto !important;min-height:0;display:flex;flex-direction:column;
+/* min-height:0 dejaba que este bloque se encogiera por debajo de su propio
+   contenido, y el conteo de ofertas terminaba encima del reloj en pantallas
+   bajas. Con min-content no se comprime: el alto lo cede la cita, que sí se
+   puede recortar. */
+.sueno__oferta{flex:1 1 auto !important;min-height:min-content;
+  display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:4px;
-  margin-top:10px;padding-top:12px;text-align:center;
+  margin-top:10px;padding-top:12px;padding-bottom:4px;text-align:center;
   border-top:1px solid rgba(255,255,255,.1)}
 .sueno__gana{display:flex;flex-direction:column;align-items:center;gap:5px;margin:0;
   font-size:clamp(12.5px,1.8vh,14px);color:rgba(255,255,255,.75)}
@@ -6149,7 +6190,8 @@ function tarjetaSubasta(a){
 // El cronómetro late cada segundo mientras la pantalla está a la vista.
 var relojSubastas = null;
 function latirRelojes(){
-  // Los sueños muestran el tiempo en una línea; los lotes, en columnas.
+  // Quedó el bloque viejo por si alguna pantalla todavía usa el formato en
+  // una línea; las tarjetas de sueño ya usan el reloj de columnas de abajo.
   $$(".sueno__reloj[data-cierra]").forEach(function(c){
     var meta = new Date(c.dataset.cierra).getTime();
     var falta = Math.max(0, meta - Date.now());
@@ -8661,11 +8703,23 @@ function tarjetaSueno(x){
       '</span>'+
     '</div>'+
 
-    '<div class="sueno__reloj" data-cierra="'+esc(x.cierreISO||"")+'">'+
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'+
-      '<circle cx="12" cy="12" r="8.4"/><path d="M12 7.4V12l3 1.8"/></svg>'+
-      '<span class="sueno__relojt"><i>Cierra en</i><b data-u="txt">--</b>'+
-        '<span class="sueno__cuando" data-u="fecha"></span></span></div>'+
+    '<div class="reloj reloj--sueno" data-cierra="'+esc(x.cierreISO||"")+'">'+
+      '<div class="reloj__fila">'+
+        '<span class="reloj__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '+
+          'stroke-width="1.8" stroke-linecap="round">'+
+          '<circle cx="12" cy="12" r="8.4"/><path d="M12 7.4V12l3 1.8"/></svg></span>'+
+        '<span class="reloj__cuenta">'+
+          '<span class="reloj__u"><b data-u="d">--</b><span>días</span></span>'+
+          '<span class="reloj__u"><b data-u="h">--</b><span>horas</span></span>'+
+          '<span class="reloj__u"><b data-u="m">--</b><span>min</span></span>'+
+        '</span>'+
+      '</div>'+
+      '<span class="reloj__fecha">'+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">'+
+        '<rect x="3.6" y="5" width="16.8" height="15" rx="2.6"/>'+
+        '<path d="M8 3v3.4M16 3v3.4M3.6 9.6h16.8"/></svg>'+
+        'Cierra el '+esc(fechaHoraLarga(x.cierreISO))+'</span>'+
+    '</div>'+
 
     // Quien pide un sueño puede no querer dar su nombre: el pedido se muestra
     // igual, pero sin avatar ni acceso al perfil.
