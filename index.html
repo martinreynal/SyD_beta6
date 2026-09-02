@@ -488,17 +488,27 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 .paso-punto.is-hecho{background:var(--cielo)}
 .alta__titulo{font-size:clamp(26px,3.4vw,38px) !important}
 .tipo-elec{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:6px}
-.tipo-op{display:grid;gap:5px;text-align:left;border:1px solid var(--linea);background:var(--blanco);
-  border-radius:14px;padding:20px 18px;cursor:pointer;transition:border-color .15s,background .15s}
-.tipo-op:hover{border-color:var(--cielo)}
-.tipo-op.is-on{border-color:var(--verde);background:rgba(67,170,139,.06)}
-.tipo-op__n{font-size:15.5px;font-weight:600;letter-spacing:-.01em}
-.tipo-op__d{font-size:12.5px;color:var(--gris);line-height:1.45}
+/* Estas opciones venían del tema claro original: fondo blanco y texto gris.
+   Sobre el fondo oscuro de la app el título quedaba blanco sobre blanco. */
+.tipo-op{display:grid;gap:5px;text-align:left;border:0;
+  background:rgba(255,255,255,.05);box-shadow:0 0 0 1px var(--canto);
+  border-radius:16px;padding:16px 16px;cursor:pointer;font-family:inherit;
+  transition:box-shadow .15s,background .15s}
+.tipo-op:active{background:rgba(255,255,255,.08)}
+.tipo-op.is-on{background:rgba(94,234,212,.1);
+  box-shadow:0 0 0 1.5px var(--canto-vivo), 0 0 20px rgba(45,212,191,.16)}
+.tipo-op__n{font-size:15.5px;font-weight:700;letter-spacing:-.01em;color:#fff;
+  line-height:1.25}
+.tipo-op.is-on .tipo-op__n{color:var(--turq)}
+.tipo-op__d{font-size:13px;color:rgba(255,255,255,.68);line-height:1.4}
 .canal{display:grid;gap:8px;margin-bottom:16px}
-.canal-op{display:flex;align-items:center;gap:11px;border:1px solid var(--linea);background:var(--blanco);
-  border-radius:11px;padding:12px 14px;cursor:pointer;font-size:14px;transition:border-color .15s,background .15s}
-.canal-op:hover{border-color:var(--cielo)}
-.canal-op.is-on{border-color:var(--verde);background:rgba(67,170,139,.06)}
+.canal-op{display:flex;align-items:center;gap:11px;border:0;
+  background:rgba(255,255,255,.05);box-shadow:0 0 0 1px var(--canto);color:#fff;
+  border-radius:12px;padding:12px 14px;cursor:pointer;font-size:14px;font-family:inherit;
+  transition:box-shadow .15s,background .15s}
+.canal-op:active{background:rgba(255,255,255,.08)}
+.canal-op.is-on{background:rgba(94,234,212,.1);color:var(--turq);
+  box-shadow:0 0 0 1.5px var(--canto-vivo)}
 .canal-op b{font-weight:600}
 .canal-op span{color:var(--gris);font-size:12.5px;margin-left:auto}
 .alta__nota{font-size:12.5px;color:var(--gris);line-height:1.55;background:var(--nube);border-radius:12px;
@@ -623,12 +633,18 @@ body.noche #vistaLista .empty{color:rgba(255,255,255,.7);border-color:rgba(255,2
 
 /* ---- valor complementario ---- */
 .vopciones{display:grid;gap:9px}
-.vop{display:grid;gap:3px;text-align:left;border:1px solid var(--linea);background:var(--blanco);
-  border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color .15s,background .15s}
-.vop:hover{border-color:var(--cielo)}
-.vop.is-on{border-color:var(--verde);background:rgba(67,170,139,.06)}
-.vop__n{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
-.vop__d{font-size:12.5px;color:var(--gris);line-height:1.4}
+/* Mismo caso que .tipo-op: venían del tema claro, con fondo blanco y el título
+   en negro. Sobre el fondo oscuro el nombre de cada opción no se leía. */
+.vop{display:grid;gap:3px;text-align:left;border:0;font-family:inherit;
+  background:rgba(255,255,255,.05);box-shadow:0 0 0 1px var(--canto);
+  border-radius:14px;padding:14px 15px;cursor:pointer;
+  transition:box-shadow .15s,background .15s}
+.vop:active{background:rgba(255,255,255,.08)}
+.vop.is-on{background:rgba(94,234,212,.1);
+  box-shadow:0 0 0 1.5px var(--canto-vivo), 0 0 20px rgba(45,212,191,.16)}
+.vop__n{font-size:15px;font-weight:700;letter-spacing:-.01em;color:#fff;line-height:1.25}
+.vop.is-on .vop__n{color:var(--turq)}
+.vop__d{font-size:13px;color:rgba(255,255,255,.68);line-height:1.4}
 
 .paso-sep{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin:24px 0 12px;padding-top:18px;border-top:1px solid var(--linea)}
 
