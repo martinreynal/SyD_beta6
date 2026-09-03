@@ -3447,7 +3447,9 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 .sueno__autor .sueno__mas{flex:none;color:rgba(255,255,255,.4)}
 
 /* ---- la cita, definición única: corta por líneas enteras ---- */
-.sueno__cita{position:relative;flex:1 1 0;min-height:0;overflow:hidden;margin:10px 0 0;padding:0 4px 0 22px;cursor:pointer}
+/* flex:none desde que se quitó el pie del autor: con flex:1 la cita absorbía
+   todo el espacio libre y quedaba un hueco entre ella y el monto. */
+.sueno__cita{position:relative;flex:none;min-height:0;overflow:hidden;margin:10px 0 0;padding:0 4px 0 22px;cursor:pointer}
 .sueno__comilla{position:absolute;left:0;top:-4px;font-size:clamp(20px,2.6vh,26px);line-height:1;color:rgba(94,234,212,.55);font-family:Georgia,serif}
 .sueno__cita p{margin:0;font-size:clamp(12px,1.6vh,13.5px);line-height:1.5;color:rgba(255,255,255,.82);display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:var(--lineas,4);max-height:calc(1.5em * var(--lineas,4))}
 @media (max-height:800px){ .sueno__cita p{--lineas:3} }
@@ -3659,6 +3661,11 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
 /* La pista del primer acto llega al final de la secuencia: hasta que no entró
    la última línea no tiene sentido invitar a seguir. */
 .intro__pista--acto1{margin-top:clamp(22px,4vh,40px)}
+/* Una de las dos salidas del primer acto, según sea la primera visita o no. */
+.intro__cta--acto1{display:none;margin-top:clamp(20px,3.4vh,34px);align-self:center;
+  min-width:min(300px,82%)}
+.intro.es-corta .intro__pista--acto1{display:none}
+.intro.es-corta .intro__cta--acto1{display:flex}
 
 /* ---- PRIMER ACTO: por qué existe la app ---- */
 .intro__acto{position:relative;z-index:1;width:100%;max-width:520px;
@@ -4257,7 +4264,15 @@ body.perfil-quieto .panels,body.perfil-quieto .panel{
       <span class="intro__m1">SOÑÁ</span> <span class="intro__m2">Y DONÁ</span></p>
     <p class="intro__porque" style="--i:6">Queremos que todas las fundaciones
       puedan recaudar y cumplir su misión.</p>
+    <!-- Dos salidas para el primer acto: la primera vez se sigue al paso a
+         paso tocando; después, el botón entra directo a la app. -->
     <p class="intro__pista intro__pista--acto1" style="--i:7">Tocá para continuar</p>
+    <button class="cta cta--corto intro__cta intro__cta--acto1" id="introEntrar" style="--i:7">
+      <span class="cta__txt">SOÑÁ Y DONÁ</span>
+      <svg class="intro__cta-f" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 12h15"/><path d="M13.5 6.5 19.5 12l-6 5.5"/></svg>
+    </button>
   </div>
 
   <!-- Segundo acto: cinco pantallas, una por paso. Se avanza tocando. -->
@@ -6116,8 +6131,9 @@ function tarjetaPorSubastar(x){
     '<div class="lote__cuerpo">'+
       '<span class="lote__rot">Esperando salir a subasta</span>'+
       '<h3 class="lote__t">'+esc(x.titulo)+'</h3>'+
-      '<p class="lote__q">'+(x.anonimo ? 'Lo pidió alguien de forma anónima'
-                                       : 'Lo pidió '+esc(x.quien))+'</p>'+
+      // Los sueños se muestran sin autor: lo que importa es el sueño y a qué
+      // fundación va lo recaudado, no quién lo pidió.
+
       // Sin la historia: acá la tarjeta muestra qué se subasta y a beneficio de
       // quién. El relato completo se lee al abrir el sueño.
 
@@ -8581,17 +8597,8 @@ function tarjetaSueno(x){
         'Cierra el '+esc(fechaHoraLarga(x.cierreISO))+'</span>'+
     '</div>'+
 
-    // Quien pide un sueño puede no querer dar su nombre: el pedido se muestra
-    // igual, pero sin avatar ni acceso al perfil.
-    (x.anonimo
-      ? '<span class="sueno__autor es-anon">'+
-          '<span class="sueno__ava sueno__ava--anon">?</span>'+
-          '<span>Lo pidió alguien de forma anónima</span></span>'
-      : '<button class="sueno__autor" data-ver-perfil="'+esc(x.quien)+'">'+
-          avatarUsuario(quien, "sueno__ava")+
-          '<span>Lo pidió <b>'+esc(quien)+'</b></span>'+
-          '<span class="sueno__mas">&#8250;</span>'+
-        '</button>')+
+    // Sin el pie del autor: el sueño se presenta solo.
+
 
     (propio ? '<button class="borrar-sueno" data-borrar-sueno="'+x.id+'">Eliminar publicación</button>' : '')+
     (puedeAportar()
@@ -9135,7 +9142,7 @@ function filaSuenoFund(x){
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+
       '<path d="M12 3.4l2.2 4.6 5 .6-3.7 3.4 1 5-4.5-2.5-4.5 2.5 1-5L4.8 8.6l5-.6z"/></svg></span>'+
     '<span class="lotef__t"><b>'+esc(x.titulo)+'</b>'+
-      '<span class="lotef__d">Lo pidió '+esc(x.quien)+'</span>'+
+
       '<span class="lotef__d">'+(m ? pesos(m.monto)+' en juego' : 'Sin ofertas')+
       ' · '+esc(x.destino||"Aporte general")+'</span></span>'+
     '<span class="lotef__chev">&#8250;</span></button>';
@@ -9511,8 +9518,7 @@ function modalOfertarSueno(did){
   var minimo = mejor ? mejor.monto + 1000 : (x.valor || 1000);
 
   abrirModal({eyebrow:"Quedarte con el deseo", titulo:x.titulo||"Deseo",
-    sub:"Lo pidió "+esc(DB.perfilesAnonimos[x.quien] ? "Donante anónimo" : x.quien)+
-      (x.valor ? " · salió en "+pesos(x.valor) : ""),
+    sub:(x.valor ? "Salió en "+pesos(x.valor) : ""),
     ancho:"grande",
     body:
       (mejor
@@ -11791,6 +11797,8 @@ var relojActo = null;
 function pasarAlPasoAPaso(){
   var intro = document.getElementById("intro");
   if(!intro || !intro.classList.contains("es-acto1")) return;
+  // En la versión corta no hay paso a paso: se sale por el botón.
+  if(intro.classList.contains("es-corta")) return;
   clearTimeout(relojActo);
   intro.classList.remove("es-acto1");
   requestAnimationFrame(acomodarIntro);
@@ -11801,6 +11809,10 @@ function abrirIntro(){
   if(!intro) return;
   intro.hidden = false;
   intro.classList.add("is-on", "es-acto1");
+  // La primera vez en este dispositivo se ven las dos partes: la presentación
+  // y el paso a paso. Después alcanza con la presentación, y de ahí se entra
+  // directo con el botón.
+  intro.classList.toggle("es-corta", introYaVista());
   clearTimeout(relojActo);
   requestAnimationFrame(acomodarIntro);
 }
@@ -11810,6 +11822,9 @@ function abrirIntro(){
   var saltar = document.getElementById("introSaltar");
   var acto1 = document.getElementById("introActo1");
   if(empezar) empezar.addEventListener("click", cerrarIntro);
+  // El botón de la versión corta hace lo mismo que EMPEZAR: entra a la app.
+  var entrar = document.getElementById("introEntrar");
+  if(entrar) entrar.addEventListener("click", cerrarIntro);
   if(saltar) saltar.addEventListener("click", cerrarIntro);
   // Tocar la primera pantalla adelanta al paso a paso sin esperar.
   if(acto1) acto1.addEventListener("click", pasarAlPasoAPaso);
